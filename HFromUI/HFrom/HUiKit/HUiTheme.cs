@@ -5,7 +5,6 @@ using HFromUI.HControl;
 using HFromUI.HControl.Tools.Button;
 using HFromUI.HFrom.Panel;
 using HFromUI.HFrom.Text;
-using HFromUI.HFrom.Combbox;
 using HFromUI.HFrom.Tables;
 
 
@@ -210,22 +209,6 @@ namespace HFromUI.HFrom.HUiKit
             return n;
         }
 
-        /// <summary>下拉框（HCombobox）深色样式 + 浅色箭头 + 不可编辑</summary>
-        public static HCombobox StyleInput(HCombobox c)
-        {
-            c.Radius = 4;
-            c.BorderWidth = 1;
-            c.ShowBorder = true;
-            c.BackColor = CardBg;
-            c.BaseColor = InputBg;
-            c.BorderColor = Border;
-            c.ForeColor = TextMain;
-            c.Font = FontUi;
-            c.DropDownStyle = ComboBoxStyle.DropDownList;
-            try { c.ArrowImage = HPhoto.Get("downBlue"); } catch { }
-            return c;
-        }
-
         // ============ 标签 ============
 
         /// <summary>标签（HLabel）</summary>
@@ -281,16 +264,6 @@ namespace HFromUI.HFrom.HUiKit
             t.TextColor = TextMain;
             t.LineColor = Border;
             return t;
-        }
-
-        /// <summary>下拉树选择器（HTreeComboBox）</summary>
-        public static HTreeComboBox StyleTreeComboBox(HTreeComboBox c)
-        {
-            c.BackColor = InputBg;
-            c.BaseColor = InputBg;
-            c.BorderColor = Border;
-            c.ShowBorder = true;
-            return c;
         }
 
         /// <summary>分页数据网格（HPagedDataGridView）</summary>

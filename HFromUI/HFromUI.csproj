@@ -256,6 +256,57 @@
     <Compile Include="HControl\Tools\Indicator\HWarningSign.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentPalette.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentGlyph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HRangeSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentDropButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HIconCircle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentToggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HSegmented.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HFluentSpinner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HCollapsePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Fluent\HNotificationCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HControl\Tools\Hmi\HHmiPalette.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -414,12 +465,6 @@
     <Compile Include="HEnum\HShapeType.cs" />
     <Compile Include="HConvert\HBytes.cs" />
     <Compile Include="HEnum\HThemeMode.cs" />
-    <Compile Include="HFrom\Combbox\HNoBoraderCombobox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HNoBoraderCombobox.Designer.cs">
-      <DependentUpon>HNoBoraderCombobox.cs</DependentUpon>
-    </Compile>
     <Compile Include="HFrom\From\ZvMessageShow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -432,76 +477,6 @@
     <Compile Include="HFrom\From\ZxMessageShow.Designer.cs">
       <DependentUpon>ZxMessageShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\HMI\FromHelper.cs" />
-    <Compile Include="HFrom\HMI\HBagFilter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HBarChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HCurve.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HCurveHistory.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HDigitalInput.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HGanttChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\CLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HLabelCombo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HLedDisplay.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HMachineCenter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HPieChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HProgress.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\CProgressBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HProgressColorful.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HProgressLine.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HPumpOne.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HSignature.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HStatusManagement.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HTable.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HTitle.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HTruck.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HVacuumPump.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\HMI\HWaterBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="HFrom\Panel\HScrollablePanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -511,7 +486,7 @@
     <Compile Include="HFrom\Panel\HTabControlT.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\PropertyGrid\APropertyGrid.cs">
+    <Compile Include="HControl\Tools\PropertyGrid\APropertyGrid.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HFrom\Text\HGCodeEditor.cs">
@@ -641,10 +616,16 @@
     <Compile Include="HFrom\HUiKit\HZoomBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HNavigator\HNavigator.cs">
+    <Compile Include="HControl\Tools\HNavigator\HNavigator.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HNavigator\HNavigatorTree.cs">
+    <Compile Include="HControl\Tools\HNavigator\HNavigatorTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\HNavigator\HSideNavigator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\TreeGrid\HTreeGridView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HFrom\HShell\HTopNav.cs">
@@ -695,72 +676,6 @@
     </Compile>
     <Compile Include="HControl\Tools\Button\HRadioButton.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HCombobox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HCombobox.Designer.cs">
-      <DependentUpon>HCombobox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HComboboxDropForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HComboboxDropForm.Designer.cs">
-      <DependentUpon>HComboboxDropForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HComboboxEx.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HComboboxEx.Designer.cs">
-      <DependentUpon>HComboboxEx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HTreeComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HTreeComboBox.Designer.cs">
-      <DependentUpon>HTreeComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HTreeComboDropForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\Combbox\HTreeComboDropForm.Designer.cs">
-      <DependentUpon>HTreeComboDropForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateDayPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateDayPanel.Designer.cs">
-      <DependentUpon>HDateDayPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateMonthPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateMonthPanel.Designer.cs">
-      <DependentUpon>HDateMonthPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateTimeDropForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateTimeDropForm.Designer.cs">
-      <DependentUpon>HDateTimeDropForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateTimePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateTimePicker.Designer.cs">
-      <DependentUpon>HDateTimePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateYearPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HDateYearPanel.Designer.cs">
-      <DependentUpon>HDateYearPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Date\HTimePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Date\HTimePicker.Designer.cs">
-      <DependentUpon>HTimePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="HFrom\From\DDataGridView.cs">
       <SubType>Component</SubType>
@@ -825,18 +740,6 @@
     <Compile Include="HFrom\From\ZzMessageShow.Designer.cs">
       <DependentUpon>ZzMessageShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\LED\HLedBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\LED\HLedBar.Designer.cs">
-      <DependentUpon>HLedBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\LED\HLedNum.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\LED\HLedNum.Designer.cs">
-      <DependentUpon>HLedNum.cs</DependentUpon>
-    </Compile>
     <Compile Include="HFrom\MaterialTary\MaterialTaryB.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -850,8 +753,6 @@
       <DependentUpon>MaterialTaryC.cs</DependentUpon>
     </Compile>
     <Compile Include="HFrom\MaterialTary\MaterialUserControlB.cs" />
-    <Compile Include="HFrom\MenuStrip\HMenuStripRenderer.cs" />
-    <Compile Include="HFrom\MenuStrip\HDarkMenuRenderer.cs" />
     <Compile Include="HFrom\Panel\HFlodPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -887,12 +788,6 @@
     </Compile>
     <Compile Include="HFrom\Panel\HUnlockerPanel.Designer.cs">
       <DependentUpon>HUnlockerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\ScreenShot\HScreenShotForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\ScreenShot\HScreenShotForm.Designer.cs">
-      <DependentUpon>HScreenShotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HFrom\ScrollSelect\HScrollSelectH.cs">
       <SubType>UserControl</SubType>
@@ -996,12 +891,6 @@
     </Compile>
     <Compile Include="HFrom\Text\HWaterMarkTextbox.Designer.cs">
       <DependentUpon>HWaterMarkTextbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tips\HToolTip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tips\HToolTip.Designer.cs">
-      <DependentUpon>HToolTip.cs</DependentUpon>
     </Compile>
     <Compile Include="HSocket\HTTP\HttpClient.cs" />
     <Compile Include="HInformation\Log\HAppDataAddNum.cs" />
@@ -1174,33 +1063,6 @@
     <EmbeddedResource Include="HFrom\Base\HControlBase.resx">
       <DependentUpon>HControlBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Combbox\HCombobox.resx">
-      <DependentUpon>HCombobox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Combbox\HComboboxDropForm.resx">
-      <DependentUpon>HComboboxDropForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Combbox\HComboboxEx.resx">
-      <DependentUpon>HComboboxEx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HDateDayPanel.resx">
-      <DependentUpon>HDateDayPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HDateMonthPanel.resx">
-      <DependentUpon>HDateMonthPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HDateTimeDropForm.resx">
-      <DependentUpon>HDateTimeDropForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HDateTimePicker.resx">
-      <DependentUpon>HDateTimePicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HDateYearPanel.resx">
-      <DependentUpon>HDateYearPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Date\HTimePicker.resx">
-      <DependentUpon>HTimePicker.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HFrom\From\HAnchorTips.resx">
       <DependentUpon>HAnchorTips.cs</DependentUpon>
     </EmbeddedResource>
@@ -1237,9 +1099,6 @@
     <EmbeddedResource Include="HFrom\From\ZzMessageShow.resx">
       <DependentUpon>ZzMessageShow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\LED\HLedNum.resx">
-      <DependentUpon>HLedNum.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryA.resx">
       <DependentUpon>MaterialTaryA.cs</DependentUpon>
     </EmbeddedResource>
@@ -1254,9 +1113,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HFrom\Panel\HUnlockerPanel.resx">
       <DependentUpon>HUnlockerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\ScreenShot\HScreenShotForm.resx">
-      <DependentUpon>HScreenShotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HFrom\ScrollSelect\HScrollSelectH.resx">
       <DependentUpon>HScrollSelectH.cs</DependentUpon>

@@ -9,12 +9,11 @@ using System.Windows.Forms;
 
 namespace HFromUI.HFrom.From
 {
-    using HFromUI.HFrom.Date;
+    using HFromUI.HControl.Tools.DateTime;
     using HFromUI.HData.Win;
     using HFromUI.HFrom.Panel;
     using HFromUI.HControl.Tools.Button;
     using HFromUI.HFrom.Text;
-    using HFromUI.HFrom.Combbox;
     public partial class HMaskForm : Form
     {
         private HForm MainPPForm;
@@ -151,10 +150,6 @@ namespace HFromUI.HFrom.From
             else if (MainControl is HTextbox)
             {
                 radius = (MainControl as HTextbox).Radius;
-            }
-            else if (MainControl is HComboboxEx)
-            {
-                radius = (MainControl as HComboboxEx).Radius;
             }
             else if (MainControl is HDateTimePicker)
             {

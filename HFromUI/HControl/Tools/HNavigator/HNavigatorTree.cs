@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-namespace HFromUI.HFrom.HNavigator
+using HFromUI.HControl.Base;
+namespace HFromUI.HControl.Tools.HNavigator
 {
     using HFromUI.HFrom.HUiKit;
     /// <summary>
@@ -109,7 +110,7 @@ namespace HFromUI.HFrom.HNavigator
     /// </summary>
     [DefaultEvent("AfterSelect")]
     [ToolboxItem(true)]
-    public class HNavigatorTree : Control
+    public class HNavigatorTree : HLabelBase
     {
         #region 内部结构
         private class HRowInfo
@@ -167,6 +168,8 @@ namespace HFromUI.HFrom.HNavigator
         #endregion
         public HNavigatorTree()
         {
+            // 基类 HLabelBase 默认为 AutoSize 标签，树为定高列表，先关闭自动尺寸
+            AutoSize = false;
             SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer
                 | ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw
                 | ControlStyles.Selectable, true);

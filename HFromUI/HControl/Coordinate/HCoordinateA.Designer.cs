@@ -1,6 +1,6 @@
-﻿
 
-using HFromUI.HFrom.PropertyGrid;
+
+using HFromUI.HControl.Tools.PropertyGrid;
 namespace HFromUI.HControl.Coordinate
 {
     using HFromUI.HControl.Coordinate;
@@ -90,7 +90,7 @@ namespace HFromUI.HControl.Coordinate
             this.toolSS_Draw6 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.HCoordinateDraw = new HFromUI.HControl.Coordinate.HCoordinate();
-            this.aPropertyGridSet = new HFromUI.HFrom.PropertyGrid.APropertyGrid();
+            this.aPropertyGridSet = new HFromUI.HControl.Tools.PropertyGrid.APropertyGrid();
             this.toolStripSet.SuspendLayout();
             this.toolStripDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -713,7 +713,7 @@ namespace HFromUI.HControl.Coordinate
         private System.Windows.Forms.ToolStripSeparator toolSS_Draw5;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private HCoordinate HCoordinateDraw;
-        private HFromUI.HFrom.PropertyGrid.APropertyGrid aPropertyGridSet;
+        private HFromUI.HControl.Tools.PropertyGrid.APropertyGrid aPropertyGridSet;
         private System.Windows.Forms.ToolStripSeparator toolSS_Set7;
         private System.Windows.Forms.ToolStripButton toolSbtn_Group;
         private System.Windows.Forms.ToolStripButton toolSbtn_UnGroup;

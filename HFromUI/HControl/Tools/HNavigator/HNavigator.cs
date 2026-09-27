@@ -5,7 +5,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-namespace HFromUI.HFrom.HNavigator
+using HFromUI.HControl.Base;
+namespace HFromUI.HControl.Tools.HNavigator
 {
     using HFromUI.HFrom.HUiKit;
     /// <summary>底部菜单点击委托（参数为菜单项索引）</summary>
@@ -22,7 +23,7 @@ namespace HFromUI.HFrom.HNavigator
     /// </summary>
     [DefaultEvent("SelectedMenuChanged")]
     [ToolboxItem(true)]
-    public class HNavigator : ContainerControl
+    public class HNavigator : HLabelBase
     {
         #region 常量与字段
         private const int HeaderHeight = 26;
@@ -92,7 +93,9 @@ namespace HFromUI.HFrom.HNavigator
         #endregion
         public HNavigator()
         {
-            SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer
+            // 基类 HLabelBase 默认为 AutoSize 标签，导航面板是定高容器：关闭自动尺寸并打开容器样式
+            AutoSize = false;
+            SetStyle(ControlStyles.ContainerControl | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer
                 | ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw, true);
             BackColor = Color.White;
             Font = new Font("微软雅黑", 9F);
