@@ -4,7 +4,7 @@ using HFromUI.HControl.Tools.PropertyGrid;
 namespace HFromUI.HControl.Coordinate
 {
     using HFromUI.HControl.Coordinate;
-    partial class HCoordinateA
+    partial class HCoordinatePad
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -32,7 +32,7 @@ namespace HFromUI.HControl.Coordinate
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HCoordinateA));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HCoordinatePad));
             this.toolStripSet = new System.Windows.Forms.ToolStrip();
             this.toolSS_Set1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSbtn_Enable = new System.Windows.Forms.ToolStripButton();
@@ -656,14 +656,14 @@ namespace HFromUI.HControl.Coordinate
             this.hPropertyGrid.ViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
             this.hPropertyGrid.ViewForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             // 
-            // HCoordinateA
+            // HCoordinatePad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStripDraw);
             this.Controls.Add(this.toolStripSet);
-            this.Name = "HCoordinateA";
+            this.Name = "HCoordinatePad";
             this.Size = new System.Drawing.Size(865, 552);
             this.toolStripSet.ResumeLayout(false);
             this.toolStripSet.PerformLayout();

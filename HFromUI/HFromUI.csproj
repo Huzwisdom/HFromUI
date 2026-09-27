@@ -367,11 +367,11 @@
     <Compile Include="HControl\Tools\Editors\HSearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Coordinate\HCoordinateA.cs">
+    <Compile Include="HControl\Coordinate\HCoordinatePad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HControl\Coordinate\HCoordinateA.Designer.cs">
-      <DependentUpon>HCoordinateA.cs</DependentUpon>
+    <Compile Include="HControl\Coordinate\HCoordinatePad.Designer.cs">
+      <DependentUpon>HCoordinatePad.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Coordinate\HCoordinateToolIcons.cs" />
     <Compile Include="HControl\Coordinate\HCoordinate.cs">
@@ -841,8 +841,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HControl\Coordinate\HCoordinateA.resx">
-      <DependentUpon>HCoordinateA.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Coordinate\HCoordinatePad.resx">
+      <DependentUpon>HCoordinatePad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HControl\Coordinate\HSetDecimalPlaces.resx">
       <DependentUpon>HSetDecimalPlaces.cs</DependentUpon>

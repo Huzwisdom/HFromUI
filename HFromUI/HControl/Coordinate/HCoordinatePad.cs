@@ -18,11 +18,11 @@ namespace HFromUI.HControl.Coordinate
     using HFromUI.HColor;
     using HFromUI.HEnum;
     using HFromUI.HControl.Tools.Message;
-    public partial class HCoordinateA : UserControl
+    public partial class HCoordinatePad : UserControl
     {
 
         private Timer timer;
-        public HCoordinateA()
+        public HCoordinatePad()
         {
             InitializeComponent();
 
@@ -109,7 +109,7 @@ namespace HFromUI.HControl.Coordinate
         /// <summary>LoadIni 方法。</summary>
         public void LoadIni(bool isloadC = false)
         {
-            if (!IsLoad && (this.Name != nameof(HCoordinateA) || isloadC))
+            if (!IsLoad && (this.Name != nameof(HCoordinatePad) || isloadC))
             {
                 IsLoad = true;
                 // HCoordinateDraw.CoordinateDrawList.IsContinuous= Convert.ToBoolean( HAppData.Get(this.Name+"IsContinuous",false));
@@ -134,15 +134,16 @@ namespace HFromUI.HControl.Coordinate
             LoadIni();
             if (HCoordinateDraw.CoordinateDrawList.IsRunShapes)
             {
-                toolSbtn_Start.BackColor = HColors.Greens.Basil;
-                toolSbtn_Stop.BackColor = HColors.Reds.BritishRed;
+                // 运行中：启动/停止图标整体切换为绿色，停止后还原常态
+                HCoordinateToolIcons.SetState(toolSbtn_Start, CoordinateIconState.Running);
+                HCoordinateToolIcons.SetState(toolSbtn_Stop, CoordinateIconState.Running);
                 HCoordinateDraw.CoordinateScreen.EnableDraw = false;
                 toolSbtn_Enable.Enabled= toolSbtn_Layer.Enabled = false;
             }
             else
             {
-                toolSbtn_Start.BackColor = HColors.Whites.White;
-                toolSbtn_Stop.BackColor = HColors.Whites.White;
+                HCoordinateToolIcons.SetState(toolSbtn_Start, CoordinateIconState.Normal);
+                HCoordinateToolIcons.SetState(toolSbtn_Stop, CoordinateIconState.Normal);
                 toolSbtn_Enable.Enabled = toolSbtn_Layer.Enabled = true;
             }
             if (HCoordinateDraw.CoordinateDrawList.SelectGUID.Count > 1)
@@ -163,25 +164,26 @@ namespace HFromUI.HControl.Coordinate
             }
             if (HCoordinateDraw.CoordinateDrawList.IsCapture)
             {
-                toolSbtn_Number.BackColor = HColors.Grays.AshGray;
+                HCoordinateToolIcons.SetState(toolSbtn_Number, CoordinateIconState.Active);
             }
             else
             {
-                toolSbtn_Number.BackColor = HColors.Whites.White;
+                HCoordinateToolIcons.SetState(toolSbtn_Number, CoordinateIconState.Normal);
             }
             if (HCoordinateDraw.CoordinateDrawList.IsContinuous)
             {
-                toolSbtn_Continuous.BackColor = HColors.Grays.AshGray;
+                HCoordinateToolIcons.SetState(toolSbtn_Continuous, CoordinateIconState.Active);
             }
             else
             {
-                toolSbtn_Continuous.BackColor = HColors.Whites.White;
+                HCoordinateToolIcons.SetState(toolSbtn_Continuous, CoordinateIconState.Normal);
             }
             toolSbtn_Forward.Enabled = HCoordinateDraw.CoordinateDrawList.DrawChangeForward();
             toolSbtn_backward.Enabled=HCoordinateDraw.CoordinateDrawList.DrawChangeBackward();
             if (HCoordinateDraw.CoordinateScreen.EnableDraw)
             {
-                toolSbtn_Enable.BackColor = HColors.Oranges.Apricot;
+                // 使能开启：铅笔图标切换为橙色，不再使用背景色
+                HCoordinateToolIcons.SetState(toolSbtn_Enable, CoordinateIconState.Active);
                 hPropertyGrid.Enabled = true;
             }
             else
@@ -192,7 +194,7 @@ namespace HFromUI.HControl.Coordinate
                 }
                 hPropertyGrid.Enabled = false;
                 HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.None;
-                toolSbtn_Enable.BackColor = HColors.Whites.White;
+                HCoordinateToolIcons.SetState(toolSbtn_Enable, CoordinateIconState.Normal);
             }
             if (HCoordinateDraw.CoordinateDrawList.SelectDrawBase == null || HCoordinateDraw.CoordinateDrawList.SelectGUID.Count != 1)
             {
@@ -209,46 +211,46 @@ namespace HFromUI.HControl.Coordinate
             switch (HCoordinateDraw.CoordinateDrawList.SelectedShapeType)
             {
                 case HShapeType.Select:
-                    toolSbtn_Mouse.BackColor = HColors.Whites.White;
-                    toolSbtn_Select.BackColor = HColors.Grays.AshGray;
-                    toolSbtn_Point.BackColor = HColors.Whites.White;
-                    toolSbtn_Line.BackColor = HColors.Whites.White;
-                    toolSbtn_3pArc.BackColor = HColors.Whites.White;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Active);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Normal);
                     break;
                 case HShapeType.None:
-                    toolSbtn_Mouse.BackColor = HColors.Grays.AshGray;
-                    toolSbtn_Select.BackColor = HColors.Whites.White;
-                    toolSbtn_Point.BackColor = HColors.Whites.White;
-                    toolSbtn_Line.BackColor = HColors.Whites.White;
-                    toolSbtn_3pArc.BackColor = HColors.Whites.White;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Active);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Normal);
                     break;
                 case HShapeType.Line:
-                    toolSbtn_Mouse.BackColor = HColors.Whites.White;
-                    toolSbtn_Select.BackColor = HColors.Whites.White;
-                    toolSbtn_Point.BackColor = HColors.Whites.White;
-                    toolSbtn_Line.BackColor = HColors.Grays.AshGray;
-                    toolSbtn_3pArc.BackColor = HColors.Whites.White;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Active);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Normal);
                     break;
                 case HShapeType.Arc3P:
-                    toolSbtn_Mouse.BackColor = HColors.Whites.White;
-                    toolSbtn_Select.BackColor = HColors.Whites.White;
-                    toolSbtn_Point.BackColor = HColors.Whites.White;
-                    toolSbtn_Line.BackColor = HColors.Whites.White;
-                    toolSbtn_3pArc.BackColor = HColors.Grays.AshGray;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Active);
                     break;
                 case HShapeType.Point:
-                    toolSbtn_Mouse.BackColor = HColors.Whites.White;
-                    toolSbtn_Select.BackColor = HColors.Whites.White;
-                    toolSbtn_Point.BackColor = HColors.Grays.AshGray;
-                    toolSbtn_Line.BackColor = HColors.Whites.White;
-                    toolSbtn_3pArc.BackColor = HColors.Whites.White;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Active);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Normal);
                     break;
                 default:
-                    toolSbtn_Mouse.BackColor = HColors.Whites.White;
-                    toolSbtn_Select.BackColor = HColors.Whites.White;
-                    toolSbtn_Point.BackColor = HColors.Whites.White;
-                    toolSbtn_Line.BackColor = HColors.Whites.White;
-                    toolSbtn_3pArc.BackColor = HColors.Whites.White;
+                    HCoordinateToolIcons.SetState(toolSbtn_Mouse, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Select, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Point, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_Line, CoordinateIconState.Normal);
+                    HCoordinateToolIcons.SetState(toolSbtn_3pArc, CoordinateIconState.Normal);
                     break;
             }
 

@@ -38,7 +38,7 @@
 | 工艺图元 | `HFromUI.HControl.Tools.Process` | HEStop、HFactory、HFire、HRoom、HCleaner、HSwitchButton 等 |
 | 自然装饰 | `HFromUI.HControl.Tools.Nature` | HSun、HMoon、HStarSky、HHeart、HFlower、HArrow |
 | 图表 | `HFromUI.HControl.Chart` | HChart 多序列图表（坐标轴/图例/菜单/提示） |
-| 坐标绘图 | `HFromUI.HControl.Coordinate` | HCoordinateA 组态画布（点/线/弧/多边形/GCode 图元） |
+| 坐标绘图 | `HFromUI.HControl.Coordinate` | HCoordinatePad 组态画布（点/线/弧/多边形/GCode 图元） |
 | 可视窗口 | `HFromUI.HControl.VisualWindow` | HVisualWindow 机器视觉 ROI 工具集 |
 | 基础控件 | `HFromUI.HControl` / `HFromUI.HFrom` | HChart、HNumericUpDown、HSearchBox、HDatePicker，以及旧版窗体/进度条/滚动条/下拉框等 |
 
