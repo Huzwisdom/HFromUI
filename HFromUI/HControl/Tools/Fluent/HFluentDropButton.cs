@@ -8,6 +8,7 @@ using HFromUI.HAttribute;
 
 namespace HFromUI.HControl.Tools.Fluent
 {
+    using Panel = System.Windows.Forms.Panel;
     /// <summary>
     /// Fluent 下拉按钮：弱化文字样式 + 下箭头，点击弹出圆角选项卡片，
     /// 选中后按钮文字同步为选项并触发 SelectedIndexChanged。

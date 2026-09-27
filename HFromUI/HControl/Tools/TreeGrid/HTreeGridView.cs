@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace HFromUI.HControl.Tools.TreeGrid
 {
     using HFromUI.HControl.Base;
-    using HFromUI.HFrom.HUiKit;
+    using HFromUI.HControl.Tools.UiKit;
 
     /// <summary>单元格文字对齐方式。</summary>
     public enum HTreeGridAlign

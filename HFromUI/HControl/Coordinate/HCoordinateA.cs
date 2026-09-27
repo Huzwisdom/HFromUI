@@ -11,14 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HFromUI.HFrom;
 
 namespace HFromUI.HControl.Coordinate
 {
     using HFromUI.HLangage;
     using HFromUI.HColor;
     using HFromUI.HEnum;
-    using HFromUI.HFrom.From;
     using HFromUI.HControl.Tools.Message;
     public partial class HCoordinateA : UserControl
     {
@@ -31,8 +29,8 @@ namespace HFromUI.HControl.Coordinate
             {
                 HCoordinateDraw.CoordinateDrawList.Name = this.Name;
                 HCoordinateDraw.CoordinateDrawList.SelectValueChanged += (o, e) => { Coordinate_ValueChanged(o, e); };
-                aPropertyGridSet.PropertyValueChanged += (o, e) => { PropertyGrid_PropertyValueChanged(o, e); };
-                aPropertyGridSet.SetRowHeight(12);
+                hPropertyGrid.PropertyValueChanged += (o, e) => { PropertyGrid_PropertyValueChanged(o, e); };
+                hPropertyGrid.SetRowHeight(12);
 
                 LoadTranslationLanguage();
 
@@ -179,15 +177,15 @@ namespace HFromUI.HControl.Coordinate
             if (HCoordinateDraw.CoordinateScreen.EnableDraw)
             {
                 toolSbtn_Enable.BackColor = HColors.Oranges.Apricot;
-                aPropertyGridSet.Enabled = true;
+                hPropertyGrid.Enabled = true;
             }
             else
             {
-                if (aPropertyGridSet.Enabled)
+                if (hPropertyGrid.Enabled)
                 {
                     HCoordinateDraw.Clear();
                 }
-                aPropertyGridSet.Enabled = false;
+                hPropertyGrid.Enabled = false;
                 HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.None;
                 toolSbtn_Enable.BackColor = HColors.Whites.White;
             }
@@ -201,7 +199,7 @@ namespace HFromUI.HControl.Coordinate
             }
             if (HCoordinateDraw.CoordinateDrawList.SelectDrawBase == null)
             {
-                aPropertyGridSet.SetValue(null);
+                hPropertyGrid.SetValue(null);
             }
             switch (HCoordinateDraw.CoordinateDrawList.SelectedShapeType)
             {
@@ -274,7 +272,7 @@ namespace HFromUI.HControl.Coordinate
                 HDrawBaseValueChanged.id = HCoordinateDraw.CoordinateDrawList.GetShapesIndex(HDrawBaseValueChanged.GuidCode);
                 HCoordinateDraw.CoordinateDrawList.SelectDrawBase.id = HDrawBaseValueChanged.id;
             }
-            aPropertyGridSet.SetValue(HCoordinateDraw.CoordinateDrawList.SelectDrawBase);
+            hPropertyGrid.SetValue(HCoordinateDraw.CoordinateDrawList.SelectDrawBase);
          
         }
 
@@ -282,7 +280,7 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_Mouse_Click(object sender, EventArgs e)
         {
             HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.None;
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
         }
 
@@ -290,7 +288,7 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_Select_Click(object sender, EventArgs e)
         {
             HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.Select;
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
         }
 
@@ -298,7 +296,7 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_Point_Click(object sender, EventArgs e)
         {
             HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.Point;
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
         }
 
@@ -306,7 +304,7 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_Line_Click(object sender, EventArgs e)
         {
             HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.Line;
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
             if (HCoordinateDraw.CoordinateDrawList.IsContinuous)
             {
@@ -318,7 +316,7 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_3pArc_Click(object sender, EventArgs e)
         {
             HCoordinateDraw.CoordinateDrawList.SelectedShapeType = HShapeType.Arc3P;
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
             if (HCoordinateDraw.CoordinateDrawList.IsContinuous)
             {
@@ -329,7 +327,7 @@ namespace HFromUI.HControl.Coordinate
         /// <summary>转换为 olSbtn_Continuous_Click。</summary>
         private void toolSbtn_Continuous_Click(object sender, EventArgs e)
         {
-            aPropertyGridSet.SetValue(null);
+            hPropertyGrid.SetValue(null);
             HCoordinateDraw.SelectShape(-1); HCoordinateDraw.Clear();
             HCoordinateDraw.CoordinateDrawList.IsContinuous = !HCoordinateDraw.CoordinateDrawList.IsContinuous;
             if (HCoordinateDraw.CoordinateDrawList.IsContinuous)
@@ -342,11 +340,11 @@ namespace HFromUI.HControl.Coordinate
         private void toolSbtn_Layer_Click(object sender, EventArgs e)
         {
             LoadIni(true);
-            SetLayer setLayer = new SetLayer();
+            HSetLayer setLayer = new HSetLayer();
             if (!setLayer.IsShow && IsLoad)
             {
                 setLayer.SetValue(HCoordinateDraw.CoordinateDrawList.IsEnableLayer, HCoordinateDraw.CoordinateDrawList.Layer);
-                DialogResult dialogResult = setLayer.ZzShowDialog("", HTranslation.GetContent("设置图层"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
+                DialogResult dialogResult = setLayer.ShowMessageDialog("", HTranslation.GetContent("设置图层"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
 
                 if (dialogResult == DialogResult.OK)
                 {
@@ -402,8 +400,8 @@ namespace HFromUI.HControl.Coordinate
                     }
                     else
                     {
-                        HMessageA zxMessageShow = new HMessageA();
-                        DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("加载失败：", (result.Message ?? HTranslation.GetContent("文件格式错误"))), HTranslation.GetContent("打开文件错误"), 0, HTranslation.GetContent("确认"));
+                        HAlertBox alertBox = new HAlertBox();
+                        DialogResult dialogResult = alertBox.ShowMessageDialog(HTranslation.GetContent("加载失败：", (result.Message ?? HTranslation.GetContent("文件格式错误"))), HTranslation.GetContent("打开文件错误"), 0, HTranslation.GetContent("确认"));
                       
                     }
                 }
@@ -430,8 +428,8 @@ namespace HFromUI.HControl.Coordinate
                     OK success = SaveShapesToFile(filePath, HCoordinateDraw.CoordinateDrawList.Shapes);
                     if (!success)
                     {
-                        HMessageA zxMessageShow = new HMessageA();
-                        DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("保存失败，请检查路径或权限。")+ success, HTranslation.GetContent("保存文件错误"), 0, HTranslation.GetContent("确认"));
+                        HAlertBox alertBox = new HAlertBox();
+                        DialogResult dialogResult = alertBox.ShowMessageDialog(HTranslation.GetContent("保存失败，请检查路径或权限。")+ success, HTranslation.GetContent("保存文件错误"), 0, HTranslation.GetContent("确认"));
 
                     }
                 }
@@ -511,12 +509,12 @@ namespace HFromUI.HControl.Coordinate
             {
                 return;
             }
-            SetFormat setFormat = new SetFormat();
+            HSetFormat setFormat = new HSetFormat();
             LoadIni(true);
             if (!setFormat.IsShow && IsLoad)
             {
                 setFormat.SetValue(HCoordinateDraw.CoordinateDrawList.IsEnableFormat, HCoordinateDraw.CoordinateDrawList.FormatX1, HCoordinateDraw.CoordinateDrawList.FormatY1, HCoordinateDraw.CoordinateDrawList.FormatX2, HCoordinateDraw.CoordinateDrawList.FormatY2);
-                DialogResult dialogResult = setFormat.ZzShowDialog("", HTranslation.GetContent("设置幅面"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
+                DialogResult dialogResult = setFormat.ShowMessageDialog("", HTranslation.GetContent("设置幅面"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
                 if (dialogResult == DialogResult.OK)
                 {
                     HCoordinateDraw.CoordinateDrawList.IsEnableFormat = setFormat.IsEnableFormat;
@@ -592,7 +590,7 @@ namespace HFromUI.HControl.Coordinate
             {
                 return;
             }
-            HCoordinateDraw.CoordinateDrawList.Last(aPropertyGridSet.SetValue);
+            HCoordinateDraw.CoordinateDrawList.Last(hPropertyGrid.SetValue);
             HCoordinateDraw.CoordinateScreen.IsRefresh = true;
         }
 
@@ -603,7 +601,7 @@ namespace HFromUI.HControl.Coordinate
             {
                 return;
             }
-            HCoordinateDraw.CoordinateDrawList.Next(aPropertyGridSet.SetValue);
+            HCoordinateDraw.CoordinateDrawList.Next(hPropertyGrid.SetValue);
             HCoordinateDraw.CoordinateScreen.IsRefresh = true;
         }
 
@@ -723,11 +721,11 @@ namespace HFromUI.HControl.Coordinate
                 return;
             }
             LoadIni(true);
-            SetDecimalPlaces setDecimalPlaces = new SetDecimalPlaces();
+            HSetDecimalPlaces setDecimalPlaces = new HSetDecimalPlaces();
             if (!setDecimalPlaces.IsShow && IsLoad)
             {
                 setDecimalPlaces.SetValue(HCoordinateDraw.CoordinateScreen.SetDecimalPlaces.Value);
-                DialogResult dialogResult = setDecimalPlaces.ZzShowDialog("", HTranslation.GetContent("设置小数保留位数"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
+                DialogResult dialogResult = setDecimalPlaces.ShowMessageDialog("", HTranslation.GetContent("设置小数保留位数"), 2, HTranslation.GetContent("确认"), HTranslation.GetContent("取消"));
 
                 if (dialogResult == DialogResult.OK)
                 {
@@ -950,7 +948,7 @@ namespace HFromUI.HControl.Coordinate
             {
                 return;
             }
-            DialogResult dialogResult= HMessageB.ShowDialog(HTranslation.GetContent($"是否开启模拟运行？"),
+            DialogResult dialogResult= HConfirmBox.ShowDialog(HTranslation.GetContent($"是否开启模拟运行？"),
                 HTranslation.GetContent($"模拟运行"),2,
                 HTranslation.GetContent($"确认"),
                 HTranslation.GetContent($"取消")

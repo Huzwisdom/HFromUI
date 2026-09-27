@@ -4,13 +4,12 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using HFromUI.HEnum;
-using HFromUI.HFrom;
 using HFromUI.HControl;
 namespace HFromUI.HCamera
 {
     using HFromUI.HLangage;
-    using HFromUI.HFrom.HUiKit;
-    using HFromUI.HFrom.Panel;
+    using HFromUI.HControl.Tools.UiKit;
+    using HFromUI.HControl.Tools.Panel;
     using HFromUI.HControl.Tools.Button;
     using HFromUI.HControl.Tools.Bars;
     /// <summary>

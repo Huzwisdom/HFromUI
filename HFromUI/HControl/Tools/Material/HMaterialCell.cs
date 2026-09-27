@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using HFromUI.HColor;
+using HFromUI.HControl.Chart.Tips;
 using HFromUI.HInformation;
 
 namespace HFromUI.HControl.Tools.Material
@@ -50,16 +51,6 @@ namespace HFromUI.HControl.Tools.Material
 
         /// <summary>Material 成员。</summary>
         public HMaterial Material;
-        /// <summary>toolTip 字段。</summary>
-        private ToolTip toolTip = new ToolTip()
-        {
-            IsBalloon = true,
-            InitialDelay = 1000,
-            ReshowDelay = 1000,
-            OwnerDraw = true,
-            AutoPopDelay = 2700,
-
-        };
         /// <summary>showNumber 字段。</summary>
         private int showNumber = 0;
         /// <summary>ShowUI 方法。</summary>
@@ -72,17 +63,13 @@ namespace HFromUI.HControl.Tools.Material
             }
             if (Material != null)
             {
-                if (toolTip != null)
+                if (isMouseMove)
                 {
-                    if (isMouseMove)
-                    {
-                        toolTip.SetToolTip(Control, Material.ShowContent);
-                    }
-                    else
-                    {
-                        toolTip.RemoveAll();
-                    }
-
+                    HTipBalloon.Default.Show(Control, Material.ShowContent);
+                }
+                else
+                {
+                    HTipBalloon.Default.Hide(Control);
                 }
 
                 Control.Text = Material.TextContent;

@@ -1,0 +1,9 @@
+重构：清空 HFrom 目录并迁移至 HControl/Tools，消息框字典化，控件统一 H 前缀
+
+- HFrom/Panel 全部迁移到 HControl/Tools/Panel，HUiKit 9 件迁移到 Tools/UiKit，HAnchorTips 迁移到 Tools/Tips；HFrom 其余 Base/From/HShell/MenuStrip/ScrollSelect/Tables 全部删除
+- 消息框改名并重构：HMessageA/B/C -> HAlertBox/HConfirmBox/HConfirmBoxLarge；9 个字母/数字静态实例改为私有 Dictionary 字符串键控（键不存在则新建后显示/操作，存在则直接操作），ZzShow/ZzShowDialog 改名为 ShowMessage/ShowMessageDialog，清理 ShowA-H/Show2 等字母后缀 API
+- 外部 zxMessageShow 等无意义字段统一改名为 _alertBox/_confirmBox 等
+- DDataGridView 迁移为 Tools/Grid/HDataGridView
+- 控件统一 H 前缀：SetLayer/SetFormat/SetDecimalPlaces -> HSetLayer/HSetFormat/HSetDecimalPlaces，AxisGoHome -> HAxisGoHome，APropertyGrid -> HPropertyGrid（字段同步改名）
+- HCamera/HShell/HVideoWall 命名空间改为 HFromUI.HCamera.HShell，同步所有 using 与 csproj 条目
+- 清理 HMath、Coordinate 等处的陈旧 using

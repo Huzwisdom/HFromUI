@@ -11,7 +11,7 @@ namespace HFromUI.HControl.Tools.DateTime
     /// 日期时间选择控件（单框）：显示格式固定 yyyy-MM-dd HH:mm:ss.fff（年-月-日 时:分:秒.毫秒）。
     /// 七个数字段均可点选编辑（↑↓/滚轮/直接键入，输满自动跳下一段），右侧下拉箭头展开纯自绘月历
     /// （选日期保留已有时分秒）。时间字段增减越过午夜会自然进/退日期；整体夹在 0001-01-01 与 9999-12-31 之间。
-    /// 与 HDatePicker / HTimePicker 同属 HDateTimeFieldBox 分段编辑家族（区别于 HFromUI.HFrom 下旧版 HDateTimePicker）。
+    /// 与 HDatePicker / HTimePicker 同属 HDateTimeFieldBox 分段编辑家族。
     /// </summary>
     [DefaultEvent("ValueChanged")]
     [DefaultProperty("Value")]

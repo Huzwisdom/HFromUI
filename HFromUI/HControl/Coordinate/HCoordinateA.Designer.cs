@@ -90,7 +90,7 @@ namespace HFromUI.HControl.Coordinate
             this.toolSS_Draw6 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.HCoordinateDraw = new HFromUI.HControl.Coordinate.HCoordinate();
-            this.aPropertyGridSet = new HFromUI.HControl.Tools.PropertyGrid.APropertyGrid();
+            this.hPropertyGrid = new HFromUI.HControl.Tools.PropertyGrid.HPropertyGrid();
             this.toolStripSet.SuspendLayout();
             this.toolStripDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -616,7 +616,7 @@ namespace HFromUI.HControl.Coordinate
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.aPropertyGridSet);
+            this.splitContainer1.Panel2.Controls.Add(this.hPropertyGrid);
             this.splitContainer1.Size = new System.Drawing.Size(825, 509);
             this.splitContainer1.SplitterDistance = 559;
             this.splitContainer1.TabIndex = 2;
@@ -632,29 +632,29 @@ namespace HFromUI.HControl.Coordinate
             this.HCoordinateDraw.TabIndex = 0;
             this.HCoordinateDraw.TabStop = true;
             // 
-            // aPropertyGridSet
+            // hPropertyGrid
             // 
-            this.aPropertyGridSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(220)))));
-            this.aPropertyGridSet.CommandsActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
-            this.aPropertyGridSet.CommandsBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(154)))), ((int)(((byte)(107)))));
-            this.aPropertyGridSet.CommandsBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
-            this.aPropertyGridSet.CommandsDisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.aPropertyGridSet.CommandsForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.aPropertyGridSet.CommandsLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(65)))), ((int)(((byte)(84)))));
-            this.aPropertyGridSet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aPropertyGridSet.HelpBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(153)))), ((int)(((byte)(108)))));
-            this.aPropertyGridSet.HelpBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
-            this.aPropertyGridSet.HelpForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.aPropertyGridSet.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(82)))), ((int)(((byte)(45)))));
-            this.aPropertyGridSet.Location = new System.Drawing.Point(0, 0);
-            this.aPropertyGridSet.Name = "aPropertyGridSet";
-            this.aPropertyGridSet.RowHeight = -1;
-            this.aPropertyGridSet.Size = new System.Drawing.Size(262, 509);
-            this.aPropertyGridSet.TabIndex = 0;
-            this.aPropertyGridSet.ThemeMode = HFromUI.HEnum.HThemeMode.Warm;
-            this.aPropertyGridSet.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(180)))), ((int)(((byte)(140)))));
-            this.aPropertyGridSet.ViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
-            this.aPropertyGridSet.ViewForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.hPropertyGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(220)))));
+            this.hPropertyGrid.CommandsActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(20)))), ((int)(((byte)(60)))));
+            this.hPropertyGrid.CommandsBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(154)))), ((int)(((byte)(107)))));
+            this.hPropertyGrid.CommandsBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
+            this.hPropertyGrid.CommandsDisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.hPropertyGrid.CommandsForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.hPropertyGrid.CommandsLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(65)))), ((int)(((byte)(84)))));
+            this.hPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hPropertyGrid.HelpBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(153)))), ((int)(((byte)(108)))));
+            this.hPropertyGrid.HelpBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
+            this.hPropertyGrid.HelpForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.hPropertyGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(82)))), ((int)(((byte)(45)))));
+            this.hPropertyGrid.Location = new System.Drawing.Point(0, 0);
+            this.hPropertyGrid.Name = "hPropertyGrid";
+            this.hPropertyGrid.RowHeight = -1;
+            this.hPropertyGrid.Size = new System.Drawing.Size(262, 509);
+            this.hPropertyGrid.TabIndex = 0;
+            this.hPropertyGrid.ThemeMode = HFromUI.HEnum.HThemeMode.Warm;
+            this.hPropertyGrid.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(180)))), ((int)(((byte)(140)))));
+            this.hPropertyGrid.ViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(78)))), ((int)(((byte)(55)))));
+            this.hPropertyGrid.ViewForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             // 
             // HCoordinateA
             // 
@@ -713,7 +713,7 @@ namespace HFromUI.HControl.Coordinate
         private System.Windows.Forms.ToolStripSeparator toolSS_Draw5;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private HCoordinate HCoordinateDraw;
-        private HFromUI.HControl.Tools.PropertyGrid.APropertyGrid aPropertyGridSet;
+        private HFromUI.HControl.Tools.PropertyGrid.HPropertyGrid hPropertyGrid;
         private System.Windows.Forms.ToolStripSeparator toolSS_Set7;
         private System.Windows.Forms.ToolStripButton toolSbtn_Group;
         private System.Windows.Forms.ToolStripButton toolSbtn_UnGroup;

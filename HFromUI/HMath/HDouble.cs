@@ -1,10 +1,8 @@
-using HFromUI.HFrom;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using HFromUI.HFrom.From;
 using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
@@ -472,7 +470,7 @@ namespace HFromUI.HMath
             => destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
 
 
-        HMessageA zxMessageShow = new HMessageA();
+        HAlertBox alertBox = new HAlertBox();
         // 从 string 解析为 HDouble
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
@@ -482,9 +480,9 @@ namespace HFromUI.HMath
                 // 尝试解析数字字符串，支持空字符串转为 0
                 if (string.IsNullOrWhiteSpace(str))
                 {
-                    if (!zxMessageShow.IsShow)
+                    if (!alertBox.IsShow)
                     {
-                        DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("无法将 {0} 转换为 Double。输入为null,请正确写数字！",str), HTranslation.GetContent("输入值错误"), 0, HTranslation.GetContent("确认"));
+                        DialogResult dialogResult = alertBox.ShowMessageDialog(HTranslation.GetContent("无法将 {0} 转换为 Double。输入为null,请正确写数字！",str), HTranslation.GetContent("输入值错误"), 0, HTranslation.GetContent("确认"));
                     }
                 }
                 else
@@ -510,9 +508,9 @@ namespace HFromUI.HMath
 
                         return new HDouble(result);
                     }
-                    if (!zxMessageShow.IsShow)
+                    if (!alertBox.IsShow)
                     {
-                        DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("无法将 {0} 转换为 Double。请正确写数字！",str), HTranslation.GetContent("输入值错误"), 0, HTranslation.GetContent("确认"));
+                        DialogResult dialogResult = alertBox.ShowMessageDialog(HTranslation.GetContent("无法将 {0} 转换为 Double。请正确写数字！",str), HTranslation.GetContent("输入值错误"), 0, HTranslation.GetContent("确认"));
 
                     }
                 }

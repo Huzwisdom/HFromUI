@@ -388,25 +388,25 @@
     <Compile Include="HControl\Coordinate\HDrawProcessParametersDefault.cs" />
     <Compile Include="HControl\Coordinate\HDrawRunPoint.cs" />
     <Compile Include="HControl\Coordinate\HDrawSet.cs" />
-    <Compile Include="HControl\Coordinate\SetDecimalPlaces.cs">
+    <Compile Include="HControl\Coordinate\HSetDecimalPlaces.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HControl\Coordinate\SetDecimalPlaces.Designer.cs">
-      <DependentUpon>SetDecimalPlaces.cs</DependentUpon>
+    <Compile Include="HControl\Coordinate\HSetDecimalPlaces.Designer.cs">
+      <DependentUpon>HSetDecimalPlaces.cs</DependentUpon>
     </Compile>
-    <Compile Include="HControl\Coordinate\SetFormat.cs">
+    <Compile Include="HControl\Coordinate\HSetFormat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HControl\Coordinate\SetFormat.Designer.cs">
-      <DependentUpon>SetFormat.cs</DependentUpon>
+    <Compile Include="HControl\Coordinate\HSetFormat.Designer.cs">
+      <DependentUpon>HSetFormat.cs</DependentUpon>
     </Compile>
-    <Compile Include="HControl\Coordinate\SetLayer.cs">
+    <Compile Include="HControl\Coordinate\HSetLayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HControl\Coordinate\SetLayer.Designer.cs">
-      <DependentUpon>SetLayer.cs</DependentUpon>
+    <Compile Include="HControl\Coordinate\HSetLayer.Designer.cs">
+      <DependentUpon>HSetLayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="HControl\Tools\Homing\AxisGoHome.cs">
+    <Compile Include="HControl\Tools\Homing\HAxisGoHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HControl\Draw\Draw2DTableUtil.cs" />
@@ -466,28 +466,28 @@
     <Compile Include="HConvert\HBytes.cs" />
     <Compile Include="HConvert\HSvgToBitmap.cs" />
     <Compile Include="HEnum\HThemeMode.cs" />
-    <Compile Include="HControl\Tools\Message\HMessageA.cs">
+    <Compile Include="HControl\Tools\Message\HAlertBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\Message\HMessageA.Designer.cs">
-      <DependentUpon>HMessageA.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HAlertBox.Designer.cs">
+      <DependentUpon>HAlertBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="HControl\Tools\Message\HMessageB.cs">
+    <Compile Include="HControl\Tools\Message\HConfirmBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\Message\HMessageB.Designer.cs">
-      <DependentUpon>HMessageB.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HConfirmBox.Designer.cs">
+      <DependentUpon>HConfirmBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HScrollablePanel.cs">
+    <Compile Include="HControl\Tools\Panel\HScrollablePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HTabControlL.cs">
+    <Compile Include="HControl\Tools\Panel\HTabControlL.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HTabControlT.cs">
+    <Compile Include="HControl\Tools\Panel\HTabControlT.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\PropertyGrid\APropertyGrid.cs">
+    <Compile Include="HControl\Tools\PropertyGrid\HPropertyGrid.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HInterface\iHDrawContinuousLine.cs" />
@@ -571,62 +571,44 @@
     <Compile Include="HControl\Tools\Bars\HWaveProgressBar.Designer.cs">
       <DependentUpon>HWaveProgressBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Base\HAnchorBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\Base\HAnchorBase.Designer.cs">
-      <DependentUpon>HAnchorBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Base\HPanelBase.cs">
+    <Compile Include="HControl\Tools\UiKit\HStatusLed.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Base\HPanelBase.Designer.cs">
-      <DependentUpon>HPanelBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Base\HControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Base\HControlBase.Designer.cs">
-      <DependentUpon>HControlBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\HUiKit\HStatusLed.cs">
+    <Compile Include="HControl\Tools\UiKit\HUiTheme.cs" />
+    <Compile Include="HControl\Tools\UiKit\HGlyph.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HUiTheme.cs" />
-    <Compile Include="HFrom\HUiKit\HGlyph.cs">
+    <Compile Include="HControl\Tools\UiKit\HBadge.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HBadge.cs">
+    <Compile Include="HControl\Tools\UiKit\HChip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HChip.cs">
+    <Compile Include="HControl\Tools\UiKit\HIconTile.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HIconTile.cs">
+    <Compile Include="HControl\Tools\UiKit\HCard.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HCard.cs">
+    <Compile Include="HControl\Tools\UiKit\HSideMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HSideMenu.cs">
+    <Compile Include="HControl\Tools\UiKit\HZoomBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HUiKit\HZoomBar.cs">
+    <Compile Include="HControl\Tools\Navigator\HNavigator.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\HNavigator\Navigator.cs">
+    <Compile Include="HControl\Tools\Navigator\HNavigatorTree.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\HNavigator\HNavigatorTree.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HControl\Tools\HNavigator\HSideNavigator.cs">
+    <Compile Include="HControl\Tools\Navigator\HSideNavigator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\TreeGrid\HTreeGridView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\HShell\HTopNav.cs">
+    <Compile Include="HControl\Tools\Grid\HDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Chart\HChartTypes.cs" />
@@ -654,6 +636,9 @@
     <Compile Include="HControl\Chart\Tips\HTipShape.cs" />
     <Compile Include="HControl\Chart\Tips\HTipArt.cs" />
     <Compile Include="HControl\Chart\Tips\HTipPopup.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipBalloon.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HControl\Tools\Button\HPushButtonTypes.cs" />
     <Compile Include="HControl\Tools\Button\HPushButtonScheme.cs" />
     <Compile Include="HControl\Tools\Button\HPushButton.cs">
@@ -675,68 +660,17 @@
     <Compile Include="HControl\Tools\Button\HRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\From\DDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HAnchorTips.cs">
+    <Compile Include="HControl\Tools\Tips\HAnchorTips.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HFrom\From\HAnchorTips.Designer.cs">
+    <Compile Include="HControl\Tools\Tips\HAnchorTips.Designer.cs">
       <DependentUpon>HAnchorTips.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\From\HMaskForm.cs">
+    <Compile Include="HControl\Tools\Message\HConfirmBoxLarge.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HFrom\From\HMaskForm.Designer.cs">
-      <DependentUpon>HMaskForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HForm.Designer.cs">
-      <DependentUpon>HForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HFormNw.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HFormNw.Designer.cs">
-      <DependentUpon>HFormNw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HFormSizable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HFormSizable.Designer.cs">
-      <DependentUpon>HFormSizable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HMessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HMessageForm.Designer.cs">
-      <DependentUpon>HMessageForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HShadowForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HShadowForm.designer.cs">
-      <DependentUpon>HShadowForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HShadowFormSizable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HShadowFormSizable.designer.cs">
-      <DependentUpon>HShadowFormSizable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\From\HUpdateLayeredForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\From\HUpdateLayeredForm.Designer.cs">
-      <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HControl\Tools\Message\HMessageC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HControl\Tools\Message\HMessageC.Designer.cs">
-      <DependentUpon>HMessageC.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HConfirmBoxLarge.Designer.cs">
+      <DependentUpon>HConfirmBoxLarge.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Material\HMaterialGroup.cs">
       <SubType>UserControl</SubType>
@@ -744,108 +678,41 @@
     <Compile Include="HControl\Tools\Material\HMaterialGroup.Designer.cs">
       <DependentUpon>HMaterialGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HFlodPanel.cs">
+    <Compile Include="HControl\Tools\Panel\HFlodPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HFlodPanel.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HFlodPanel.Designer.cs">
       <DependentUpon>HFlodPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HGroupBox.cs">
+    <Compile Include="HControl\Tools\Panel\HGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HGroupBox.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HGroupBox.Designer.cs">
       <DependentUpon>HGroupBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HListBox.cs">
+    <Compile Include="HControl\Tools\Panel\HListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HListBox.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HListBox.Designer.cs">
       <DependentUpon>HListBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HMovePanel.cs">
+    <Compile Include="HControl\Tools\Panel\HMovePanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HMovePanel.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HMovePanel.Designer.cs">
       <DependentUpon>HMovePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HPanel.cs">
+    <Compile Include="HControl\Tools\Panel\HPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HPanel.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HPanel.Designer.cs">
       <DependentUpon>HPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Panel\HUnlockerPanel.cs">
+    <Compile Include="HControl\Tools\Panel\HUnlockerPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Panel\HUnlockerPanel.Designer.cs">
+    <Compile Include="HControl\Tools\Panel\HUnlockerPanel.Designer.cs">
       <DependentUpon>HUnlockerPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\ScrollSelect\HScrollSelectH.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\ScrollSelect\HScrollSelectH.Designer.cs">
-      <DependentUpon>HScrollSelectH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\ScrollSelect\HScrollSelectV.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\ScrollSelect\HScrollSelectV.Designer.cs">
-      <DependentUpon>HScrollSelectV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\DataGridViewButtonClickEventArgs.cs" />
-    <Compile Include="HFrom\Tables\HMenuRender.cs" />
-    <Compile Include="HFrom\Tables\HContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HContextMenuStrip.Designer.cs">
-      <DependentUpon>HContextMenuStrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HDataFilterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HDataFilterForm.Designer.cs">
-      <DependentUpon>HDataFilterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HDataGridView.Designer.cs">
-      <DependentUpon>HDataGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HDataGridViewButtonCell.cs" />
-    <Compile Include="HFrom\Tables\HTabButtonBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTabButtonBar.Designer.cs">
-      <DependentUpon>HTabButtonBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTabControl.Designer.cs">
-      <DependentUpon>HTabControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTabControlExt.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTabControlExt.Designer.cs">
-      <DependentUpon>HTabControlExt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTreeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTreeView.Designer.cs">
-      <DependentUpon>HTreeView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTreeViewEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTreeLazyLoadEventArgs.cs" />
-    <Compile Include="HFrom\Tables\HTreeListColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HTreeList.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HSocket\HTTP\HttpClient.cs" />
     <Compile Include="HInformation\Log\HAppDataAddNum.cs" />
@@ -976,14 +843,14 @@
     <EmbeddedResource Include="HControl\Coordinate\HCoordinateA.resx">
       <DependentUpon>HCoordinateA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Coordinate\SetDecimalPlaces.resx">
-      <DependentUpon>SetDecimalPlaces.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Coordinate\HSetDecimalPlaces.resx">
+      <DependentUpon>HSetDecimalPlaces.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Coordinate\SetFormat.resx">
-      <DependentUpon>SetFormat.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Coordinate\HSetFormat.resx">
+      <DependentUpon>HSetFormat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Coordinate\SetLayer.resx">
-      <DependentUpon>SetLayer.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Coordinate\HSetLayer.resx">
+      <DependentUpon>HSetLayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HControl\Tools\Bars\HScrollBar.resx">
       <DependentUpon>HScrollBar.cs</DependentUpon>
@@ -1012,47 +879,17 @@
     <EmbeddedResource Include="HControl\Tools\Bars\HWaveProgressBar.resx">
       <DependentUpon>HWaveProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Base\HAnchorBase.resx">
-      <DependentUpon>HAnchorBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Base\HControlBase.resx">
-      <DependentUpon>HControlBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HAnchorTips.resx">
+    <EmbeddedResource Include="HControl\Tools\Tips\HAnchorTips.resx">
       <DependentUpon>HAnchorTips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HMaskForm.resx">
-      <DependentUpon>HMaskForm.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HAlertBox.resx">
+      <DependentUpon>HAlertBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HForm.resx">
-      <DependentUpon>HForm.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HConfirmBox.resx">
+      <DependentUpon>HConfirmBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HFormNw.resx">
-      <DependentUpon>HFormNw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HFormSizable.resx">
-      <DependentUpon>HFormSizable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HMessageForm.resx">
-      <DependentUpon>HMessageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HShadowForm.resx">
-      <DependentUpon>HShadowForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HShadowFormSizable.resx">
-      <DependentUpon>HShadowFormSizable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\HUpdateLayeredForm.resx">
-      <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Tools\Message\HMessageA.resx">
-      <DependentUpon>HMessageA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Tools\Message\HMessageB.resx">
-      <DependentUpon>HMessageB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HControl\Tools\Message\HMessageC.resx">
-      <DependentUpon>HMessageC.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HConfirmBoxLarge.resx">
+      <DependentUpon>HConfirmBoxLarge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HControl\Tools\Material\HMaterialTray.resx">
       <DependentUpon>HMaterialTray.cs</DependentUpon>
@@ -1060,45 +897,14 @@
     <EmbeddedResource Include="HControl\Tools\Material\HMaterialGroup.resx">
       <DependentUpon>HMaterialGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Panel\HListBox.resx">
+    <EmbeddedResource Include="HControl\Tools\Panel\HListBox.resx">
       <DependentUpon>HListBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Panel\HUnlockerPanel.resx">
+    <EmbeddedResource Include="HControl\Tools\Panel\HUnlockerPanel.resx">
       <DependentUpon>HUnlockerPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\ScrollSelect\HScrollSelectH.resx">
-      <DependentUpon>HScrollSelectH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\ScrollSelect\HScrollSelectV.resx">
-      <DependentUpon>HScrollSelectV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Tables\HDataGridView.resx">
-      <DependentUpon>HDataGridView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Tables\HTabButtonBar.resx">
-      <DependentUpon>HTabButtonBar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Tables\HTabControl.resx">
-      <DependentUpon>HTabControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Tables\HTabControlExt.resx">
-      <DependentUpon>HTabControlExt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Compile Include="HFrom\Tables\HPagination.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HPagination.Designer.cs">
-      <DependentUpon>HPagination.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Tables\HPagedDataGridView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Tables\HPagedDataGridView.Designer.cs">
-      <DependentUpon>HPagedDataGridView.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

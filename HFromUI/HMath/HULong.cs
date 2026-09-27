@@ -1,10 +1,8 @@
-using HFromUI.HFrom;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using HFromUI.HFrom.From;
 using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
@@ -279,8 +277,8 @@ namespace HFromUI.HMath
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
             => destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
 
-        /// <summary>zxMessageShow 字段。</summary>
-        private HMessageA zxMessageShow = new HMessageA();
+        /// <summary>_alertBox 字段。</summary>
+        private HAlertBox _alertBox = new HAlertBox();
 
         /// <summary>ConvertFrom 方法。</summary>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
@@ -290,9 +288,9 @@ namespace HFromUI.HMath
                 object old = GetOldValue(context);
                 if (string.IsNullOrWhiteSpace(str))
                 {
-                    if (!zxMessageShow.IsShow)
+                    if (!_alertBox.IsShow)
                     {
-                        zxMessageShow.ZzShowDialog(
+                        _alertBox.ShowMessageDialog(
                             HTranslation.GetContent("无法将 {0} 转换为 ULong。输入为null,请正确写数字！", str),
                             HTranslation.GetContent("输入值错误"),
                             0,
@@ -316,9 +314,9 @@ namespace HFromUI.HMath
                         }
                         return new HULong(result);
                     }
-                    if (!zxMessageShow.IsShow)
+                    if (!_alertBox.IsShow)
                     {
-                        zxMessageShow.ZzShowDialog(
+                        _alertBox.ShowMessageDialog(
                             HTranslation.GetContent("无法将 {0} 转换为 ULong。请正确写数字！", str),
                             HTranslation.GetContent("输入值错误"),
                             0,

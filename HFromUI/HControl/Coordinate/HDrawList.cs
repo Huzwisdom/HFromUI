@@ -1,7 +1,6 @@
 using HFromUI.HBase;
 using HFromUI.HData;
 using HFromUI.HEnum;
-using HFromUI.HFrom;
 using HFromUI.HMath;
 using System;
 using System.Collections.Concurrent;
@@ -17,7 +16,6 @@ namespace HFromUI.HControl.Coordinate
     using HFromUI.HColor;
     using HFromUI.HLangage;
     using HFromUI.HInterface;
-    using HFromUI.HFrom.From;
     using HFromUI.HControl.Tools.Message;
 
     public class HDrawList
@@ -768,9 +766,9 @@ namespace HFromUI.HControl.Coordinate
                 SelectDrawBase = Shapes.Next(GetShapesIndex(SelectDrawBase.GuidCode));
                 if (SelectDrawBase==null)
                 {
-                    if (!zxMessageShow.IsShow)
+                    if (!_confirmBox.IsShow)
                     {
-                        DialogResult dialogResult = zxMessageShow.ZzShowDialog(
+                        DialogResult dialogResult = _confirmBox.ShowMessageDialog(
                             HTranslation.GetContent("已经是最后一个图案了，是否保留在这个图案？"),
                             HTranslation.GetContent("提示"),
                             2,
@@ -795,8 +793,8 @@ namespace HFromUI.HControl.Coordinate
             }
             return OK.FromError(2);
         }
-        /// <summary>zxMessageShow 字段。</summary>
-        private HMessageB zxMessageShow = new HMessageB();
+        /// <summary>_confirmBox 字段。</summary>
+        private HConfirmBox _confirmBox = new HConfirmBox();
         /// <summary>Last 方法。</summary>
         public OK Last(Action<object> action)
         {
@@ -810,9 +808,9 @@ namespace HFromUI.HControl.Coordinate
                 SelectDrawBase = Shapes.Last(GetShapesIndex(SelectDrawBase.GuidCode));
                 if (SelectDrawBase == null)
                 {
-                    if (!zxMessageShow.IsShow)
+                    if (!_confirmBox.IsShow)
                     {
-                        DialogResult dialogResult= zxMessageShow.ZzShowDialog(
+                        DialogResult dialogResult= _confirmBox.ShowMessageDialog(
                             HTranslation.GetContent("已经是第一个图案了，是否保留在这个图案？"),
                             HTranslation.GetContent("提示"),
                             2,

@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using HFromUI.HFrom.From;
+using HFromUI.HControl.Tools.Tips;
 using HFromUI.HControl.Base;
 
 namespace HFromUI.HControl.Tools.Bars

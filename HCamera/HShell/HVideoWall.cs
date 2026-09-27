@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using HFromUI.HCamera;
 using HFromUI.HControl;
 using HFromUI.HEnum;
-using HFromUI.HFrom.Panel;
-using HFromUI.HFrom.HUiKit;
+using HFromUI.HControl.Tools.Panel;
+using HFromUI.HControl.Tools.UiKit;
 using HFromUI.HControl.VisualWindow;
 
-namespace HFromUI.HFrom.HShell
+namespace HFromUI.HCamera.HShell
 {
     using HFromUI.HLangage;
     using Panel = System.Windows.Forms.Panel;

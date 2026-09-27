@@ -1,9 +1,7 @@
-using HFromUI.HFrom;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
-using HFromUI.HFrom.From;
 using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
@@ -133,7 +131,7 @@ namespace HFromUI.HMath
     public class HBoolConverter : TypeConverter
     {
         // 原有字段与方法
-        private HMessageA zxMessageShow = new HMessageA();
+        private HAlertBox _alertBox = new HAlertBox();
 
         /// <summary>CanConvertFrom 方法。</summary>
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -151,9 +149,9 @@ namespace HFromUI.HMath
                 object old = GetOldValue(context);
                 if (string.IsNullOrWhiteSpace(str))
                 {
-                    if (!zxMessageShow.IsShow)
+                    if (!_alertBox.IsShow)
                     {
-                        zxMessageShow.ZzShowDialog(
+                        _alertBox.ShowMessageDialog(
                             HTranslation.GetContent("无法将 {0} 转换为 Bool。输入为null,请正确写 True 或 False！", str),
                             HTranslation.GetContent("输入值错误"),
                             0,
@@ -176,9 +174,9 @@ namespace HFromUI.HMath
                         }
                         return new HBool(result);
                     }
-                    if (!zxMessageShow.IsShow)
+                    if (!_alertBox.IsShow)
                     {
-                        zxMessageShow.ZzShowDialog(
+                        _alertBox.ShowMessageDialog(
                             HTranslation.GetContent("无法将 {0} 转换为 Bool。请正确写 True 或 False！", str),
                             HTranslation.GetContent("输入值错误"),
                             0,
