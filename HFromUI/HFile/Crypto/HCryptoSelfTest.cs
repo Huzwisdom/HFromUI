@@ -5,7 +5,7 @@ using System.Text;
 namespace HFromUI.HFile.Crypto
 {
     /// <summary>
-    /// 加解密全套算法自测总入口：顺序运行本文件夹下全部 19 个算法验证类，
+    /// 加解密全套算法自测总入口：顺序运行本文件夹下全部 29 个算法验证类，
     /// 并额外验证“不同算法的密文包不能互相解密”（魔术头隔离）。
     /// 用法：<c>HCryptoSelfTest.Run()</c>；全部通过返回 true，详细明细输出到控制台。
     /// 各算法也可单独调用对应的 <c>XxxVerify.Run()</c>。
@@ -41,7 +41,19 @@ namespace HFromUI.HFile.Crypto
                 new KeyValuePair<string, Func<bool>>("HHmacSha512", HHmacSha512Verify.Run),
                 new KeyValuePair<string, Func<bool>>("HBase64", HBase64Verify.Run),
                 new KeyValuePair<string, Func<bool>>("HHex", HHexVerify.Run),
-                new KeyValuePair<string, Func<bool>>("HCryptoRandom", HCryptoRandomVerify.Run)
+                new KeyValuePair<string, Func<bool>>("HCryptoRandom", HCryptoRandomVerify.Run),
+
+                // 校验和（CRC / Adler / Fletcher）：只能计算与验证、不能还原
+                new KeyValuePair<string, Func<bool>>("HCrc8", HCrc8Verify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc8Maxim", HCrc8MaximVerify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc16Ccitt", HCrc16CcittVerify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc16Modbus", HCrc16ModbusVerify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc16Arc", HCrc16ArcVerify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc32", HCrc32Verify.Run),
+                new KeyValuePair<string, Func<bool>>("HCrc32C", HCrc32CVerify.Run),
+                new KeyValuePair<string, Func<bool>>("HAdler32", HAdler32Verify.Run),
+                new KeyValuePair<string, Func<bool>>("HFletcher16", HFletcher16Verify.Run),
+                new KeyValuePair<string, Func<bool>>("HFletcher32", HFletcher32Verify.Run)
             };
 
             int passed = 0;
