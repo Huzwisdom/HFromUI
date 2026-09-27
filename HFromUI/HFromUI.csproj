@@ -373,6 +373,7 @@
     <Compile Include="HControl\Coordinate\HCoordinateA.Designer.cs">
       <DependentUpon>HCoordinateA.cs</DependentUpon>
     </Compile>
+    <Compile Include="HControl\Coordinate\HCoordinateToolIcons.cs" />
     <Compile Include="HControl\Coordinate\HCoordinate.cs">
       <SubType>Component</SubType>
     </Compile>

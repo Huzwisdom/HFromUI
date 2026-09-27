@@ -25,6 +25,11 @@ namespace HFromUI.HControl.Coordinate
         public HCoordinateA()
         {
             InitializeComponent();
+
+            // 统一替换两个工具栏的按钮图标为黑橙矢量图标（仅换图，不改布局与交互）
+            HCoordinateToolIcons.Apply(toolStripSet);
+            HCoordinateToolIcons.Apply(toolStripDraw);
+
                 if (!this.DesignMode&& LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
                 HCoordinateDraw.CoordinateDrawList.Name = this.Name;
