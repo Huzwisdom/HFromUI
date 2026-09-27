@@ -8,15 +8,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using HFromUI.HFrom.From;
+using HFromUI.HControl.Base;
 
-namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
     [DefaultEvent("ValueChanged")]
-    public class HTrackBar : UserControl
+    public class HTrackBar : HBarBase
     {
-        [HCategoryLanguage("自定义"), HDisplayNameLanguage("值改变事件"), HDescriptionLanguage("值改变事件"), Browsable(true)]
-        public event EventHandler ValueChanged;
-
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("手动操作值改变事件"), HDescriptionLanguage("手动操作值改变事件"), Browsable(true)]
         public event EventHandler ManualValueChanged;
 
@@ -44,7 +42,7 @@ namespace HFromUI.HFrom.Bars
         private long minValue = 0;
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("最小值"), HDescriptionLanguage("最小值"), Browsable(true)]
-        public long MinValue
+        public new long MinValue
         {
             get { return minValue; }
             set
@@ -52,6 +50,7 @@ namespace HFromUI.HFrom.Bars
                 if (minValue > m_value)
                     return;
                 minValue = value;
+                SyncBaseState(minValue, maxValue, m_value);
                 this.Refresh();
             }
         }
@@ -60,7 +59,7 @@ namespace HFromUI.HFrom.Bars
         private long maxValue = 100;
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("最大值"), HDescriptionLanguage("最大值"), Browsable(true)]
-        public long MaxValue
+        public new long MaxValue
         {
             get { return maxValue; }
             set
@@ -68,6 +67,7 @@ namespace HFromUI.HFrom.Bars
                 if (value < m_value)
                     return;
                 maxValue = value;
+                SyncBaseState(minValue, maxValue, m_value);
                 this.Refresh();
             }
         }
@@ -76,7 +76,7 @@ namespace HFromUI.HFrom.Bars
         private long m_value = 0;
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("值"), HDescriptionLanguage("值"), Browsable(true)]
-        public long Value
+        public new long Value
         {
             get { return this.m_value; }
             set
@@ -87,11 +87,9 @@ namespace HFromUI.HFrom.Bars
                 //if (m_value == value)
                 //return;
                 this.m_value = value;
+                SyncBaseState(minValue, maxValue, m_value);
                 this.Invalidate();
-                if (ValueChanged != null)
-                {
-                    ValueChanged(this, null);
-                }
+                OnValueChanged(EventArgs.Empty);
             }
         }
 
@@ -229,6 +227,7 @@ namespace HFromUI.HFrom.Bars
 
         public HTrackBar()
         {
+            SyncBaseState(minValue, maxValue, m_value);
             this.Size = new Size(250, 30);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.DoubleBuffer, true);
@@ -317,8 +316,8 @@ namespace HFromUI.HFrom.Bars
                 }
                 else
                 {
-                    DateTime dt = new DateTime().AddSeconds(Value);
-                    TimeSpan ts = dt - new DateTime();
+                    System.DateTime dt = new System.DateTime().AddSeconds(Value);
+                    TimeSpan ts = dt - new System.DateTime();
                     strValue = ts.Hours.ToString().PadLeft(2, '0') + ":" + ts.Minutes.ToString().PadLeft(2, '0') + ":" + ts.Seconds.ToString().PadLeft(2, '0');
                 }
 
@@ -339,7 +338,6 @@ namespace HFromUI.HFrom.Bars
         /// <summary>响应 Paint 事件。</summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
             Graphics g = e.Graphics;
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
 
@@ -381,8 +379,6 @@ namespace HFromUI.HFrom.Bars
         {
             this.SuspendLayout();
             // PPTrackBar
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Name = "PPTrackBar";
             this.Size = new System.Drawing.Size(276, 29);
             this.ResumeLayout(false);

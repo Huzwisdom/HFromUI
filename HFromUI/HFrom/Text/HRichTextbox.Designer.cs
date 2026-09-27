@@ -1,6 +1,6 @@
 namespace HFromUI.HFrom.Text
 {
-    using HFromUI.HFrom.Bars;
+    using HFromUI.HControl.Tools.Bars;
     partial class HRichTextbox
     {
         /// <summary> 

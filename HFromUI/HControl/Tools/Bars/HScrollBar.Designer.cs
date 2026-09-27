@@ -1,7 +1,7 @@
-﻿
-namespace HFromUI.HFrom.Bars
+
+namespace HFromUI.HControl.Tools.Bars
 {
-    partial class HVScrollBar
+    partial class HScrollBar
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -31,13 +31,11 @@ namespace HFromUI.HFrom.Bars
         {
             this.SuspendLayout();
             // 
-            // PPVScrollBarExt
+            // PPHScrollBarExt
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Name = "PPVScrollBarExt";
-            this.Size = new System.Drawing.Size(20, 250);
+            this.Name = "PPHScrollBarExt";
+            this.Size = new System.Drawing.Size(250, 20);
             this.ResumeLayout(false);
 
         }

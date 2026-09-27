@@ -6,10 +6,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using HFromUI.HControl.Base;
 
-namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
-    public partial class HWave : UserControl
+    public partial class HWave : HBarBase
     {
         #region 定义
 
@@ -21,7 +22,6 @@ namespace HFromUI.HFrom.Bars
         private int waveHeight = 20;//波浪高度
         private int waveTop = 1;//波浪垂直位置
         private int waveLeft = -100;//波浪水平位置
-        private int radius = 0;//圆角直径
         /// <summary>waveColor 字段。</summary>
         private Color waveColor = Color.DodgerBlue;
 
@@ -89,16 +89,22 @@ namespace HFromUI.HFrom.Bars
         }
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("圆角直径"), HDescriptionLanguage("圆角直径"), Browsable(true)]
-        public int Radius
+        public new int Radius
         {
-            get { return radius; }
+            get { return base.Radius; }
             set
             {
                 if (value < 0)
                     return;
-                radius = value;
-                this.Region = new Region(HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), radius));
+                base.Radius = value;
+                UpdateWaveRegion();
             }
+        }
+
+        /// <summary>按当前圆角与尺寸刷新波浪控件的裁剪区域。</summary>
+        private void UpdateWaveRegion()
+        {
+            this.Region = new Region(HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), Radius));
         }
 
         public event PaintEventHandler Painted;
@@ -108,6 +114,7 @@ namespace HFromUI.HFrom.Bars
         public HWave()
         {
             InitializeComponent();
+            UpdateWaveRegion();
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
             {
                 return;
@@ -121,12 +128,6 @@ namespace HFromUI.HFrom.Bars
 
             timer.Interval = waveSpeed;
             timer.Tick += new EventHandler(this.Timer_Ticked);
-        }
-
-        /// <summary>PPWave_Load 方法。</summary>
-        private void PPWave_Load(object sender, EventArgs e)
-        {
-            this.Region = new Region(HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), radius));
         }
 
         /// <summary>Timer_Ticked 方法。</summary>
@@ -148,7 +149,6 @@ namespace HFromUI.HFrom.Bars
         /// <summary>响应 Paint 事件。</summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             List<Point> lst1 = new List<Point>();
@@ -184,7 +184,7 @@ namespace HFromUI.HFrom.Bars
 
             g.FillPath(brush1, path1);
             g.FillPath(brush2, path2);
-            g.DrawPath(pen, HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), radius));
+            g.DrawPath(pen, HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), Radius));
 
             brush1.Dispose();
             brush2.Dispose();
@@ -202,7 +202,7 @@ namespace HFromUI.HFrom.Bars
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            this.Region = new Region(HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), radius));
+            UpdateWaveRegion();
         }
     }
 }

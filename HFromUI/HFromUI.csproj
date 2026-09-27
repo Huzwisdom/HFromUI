@@ -522,55 +522,55 @@
     <Compile Include="HAttribute\HDisplayNameLanguage.cs" />
     <Compile Include="HAttribute\HRemarkLanguage.cs" />
     <Compile Include="HEnum\HLanguageMode.cs" />
-    <Compile Include="HFrom\Bars\HScrollBar.cs">
+    <Compile Include="HControl\Tools\Bars\HScrollBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HScrollBar.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HScrollBar.Designer.cs">
       <DependentUpon>HScrollBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HScrollBarExt.cs">
+    <Compile Include="HControl\Tools\Bars\HScrollBarExt.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HScrollBarExt.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HScrollBarExt.Designer.cs">
       <DependentUpon>HScrollBarExt.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HProgressBar.cs">
+    <Compile Include="HControl\Tools\Bars\HProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HProgressBar.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HProgressBar.Designer.cs">
       <DependentUpon>HProgressBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HRoundProgressBar.cs">
+    <Compile Include="HControl\Tools\Bars\HRoundProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HRoundProgressBar.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HRoundProgressBar.Designer.cs">
       <DependentUpon>HRoundProgressBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HTrackBar.cs">
+    <Compile Include="HControl\Tools\Bars\HTrackBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HVScrollBar.cs">
+    <Compile Include="HControl\Tools\Bars\HVScrollBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HVScrollBar.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HVScrollBar.Designer.cs">
       <DependentUpon>HVScrollBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HVScrollBarExt.cs">
+    <Compile Include="HControl\Tools\Bars\HVScrollBarExt.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HVScrollBarExt.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HVScrollBarExt.Designer.cs">
       <DependentUpon>HVScrollBarExt.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HWave.cs">
+    <Compile Include="HControl\Tools\Bars\HWave.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HWave.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HWave.Designer.cs">
       <DependentUpon>HWave.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\Bars\HWaveProgressBar.cs">
+    <Compile Include="HControl\Tools\Bars\HWaveProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\Bars\HWaveProgressBar.Designer.cs">
+    <Compile Include="HControl\Tools\Bars\HWaveProgressBar.Designer.cs">
       <DependentUpon>HWaveProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="HFrom\Base\HAnchorBase.cs">
@@ -1030,31 +1030,31 @@
     <EmbeddedResource Include="HControl\Coordinate\SetLayer.resx">
       <DependentUpon>SetLayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HScrollBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HScrollBar.resx">
       <DependentUpon>HScrollBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HScrollBarExt.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HScrollBarExt.resx">
       <DependentUpon>HScrollBarExt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HProgressBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HProgressBar.resx">
       <DependentUpon>HProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HRoundProgressBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HRoundProgressBar.resx">
       <DependentUpon>HRoundProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HTrackBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HTrackBar.resx">
       <DependentUpon>HTrackBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HVScrollBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HVScrollBar.resx">
       <DependentUpon>HVScrollBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HVScrollBarExt.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HVScrollBarExt.resx">
       <DependentUpon>HVScrollBarExt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HWave.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HWave.resx">
       <DependentUpon>HWave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Bars\HWaveProgressBar.resx">
+    <EmbeddedResource Include="HControl\Tools\Bars\HWaveProgressBar.resx">
       <DependentUpon>HWaveProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HFrom\Base\HAnchorBase.resx">

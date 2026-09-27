@@ -7,15 +7,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using HFromUI.HFrom.From;
+using HFromUI.HControl.Base;
 
-namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
     [DefaultEvent("ValueChanged")]
-    public partial class HProgressBar : UserControl
+    public partial class HProgressBar : HBarBase
     {
         #region 变量定义
-
-        public event EventHandler ValueChanged;
 
         /// <summary>值。</summary>
         private long value = 0;
@@ -25,8 +24,6 @@ namespace HFromUI.HFrom.Bars
         private long maximun = 100;
         /// <summary>step 字段。</summary>
         private long step = 1;
-        /// <summary>radius 字段。</summary>
-        private int radius = 0;
         /// <summary>showTip 字段。</summary>
         private bool showTip = false;
         /// <summary>showValue 字段。</summary>
@@ -36,10 +33,10 @@ namespace HFromUI.HFrom.Bars
         /// <summary>valueColor 字段。</summary>
         private Color valueColor = Color.DodgerBlue;
         /// <summary>valueType 字段。</summary>
-        private VALUETYPE valueType = VALUETYPE.PERCENT;
+        private HValueType valueType = HValueType.Percent;
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("进度条值"), HDescriptionLanguage("进度条值"), Browsable(true)]
-        public long Value
+        public new long Value
         {
             get { return value; }
             set
@@ -58,10 +55,8 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.value = value;
                 }
-                if (ValueChanged != null)
-                {
-                    ValueChanged(this, new EventArgs());
-                }
+                SyncBaseState(minimun, maximun, this.value);
+                OnValueChanged(new EventArgs());
                 this.Invalidate();
             }
         }
@@ -80,6 +75,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.maximun = value;
                 }
+                SyncBaseState(minimun, maximun, this.value);
             }
         }
 
@@ -97,6 +93,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     minimun = value;
                 }
+                SyncBaseState(minimun, maximun, this.value);
             }
         }
 
@@ -135,15 +132,14 @@ namespace HFromUI.HFrom.Bars
         }
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("圆角半径"), HDescriptionLanguage("圆角半径"), Browsable(true)]
-        public int Radius
+        public new int Radius
         {
-            get { return radius; }
+            get { return base.Radius; }
             set
             {
-                if (value < 0 || value > Math.Min(this.Width, this.Height))
+                if (value < 0)
                     return;
-                radius = value;
-                //this.Region = new Region(CreateRound(new Rectangle(0, 0, this.Width, this.Height), radius));
+                base.Radius = Math.Min(value, Math.Min(this.Width, this.Height));
             }
         }
 
@@ -168,7 +164,7 @@ namespace HFromUI.HFrom.Bars
         }
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("文字显示类型"), HDescriptionLanguage("文字显示类型，数值和百分比"), Browsable(true)]
-        public VALUETYPE ValueType
+        public HValueType ValueType
         {
             get { return valueType; }
             set
@@ -177,10 +173,13 @@ namespace HFromUI.HFrom.Bars
             }
         }
 
-        public enum VALUETYPE
+        /// <summary>进度文字显示类型。</summary>
+        public enum HValueType
         {
-            VALUE,
-            PERCENT,
+            /// <summary>原始数值。</summary>
+            Value,
+            /// <summary>百分比。</summary>
+            Percent,
         }
 
         #endregion 变量定义
@@ -191,6 +190,7 @@ namespace HFromUI.HFrom.Bars
         public HProgressBar()
         {
             InitializeComponent();
+            SyncBaseState(minimun, maximun, value);
 
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
             {
@@ -205,30 +205,21 @@ namespace HFromUI.HFrom.Bars
             this.ValueChanged += new EventHandler(this.Value_Changed);
         }
 
-        /// <summary>响应 Load 事件。</summary>
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            //this.Region = new Region(CreateRound(new Rectangle(0, 0, this.Width, this.Height), radius));
-        }
-
         /// <summary>响应 SizeChanged 事件。</summary>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            if (radius > Math.Min(this.Width, this.Height))
+            if (Radius > Math.Min(this.Width, this.Height))
             {
-                radius = Math.Min(this.Width, this.Height);
+                Radius = Math.Min(this.Width, this.Height);
             }
-            //this.Region = new Region(CreateRound(new Rectangle(0, 0, this.Width, this.Height), radius));
         }
 
         /// <summary>响应 Paint 事件。</summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
             Graphics g = e.Graphics;
-            g.SmoothingMode = radius==0? System.Drawing.Drawing2D.SmoothingMode.Default:SmoothingMode.AntiAlias;
+            g.SmoothingMode = Radius==0? System.Drawing.Drawing2D.SmoothingMode.Default:SmoothingMode.AntiAlias;
             g.TextRenderingHint = TextDrawMode == HEnum.HDrawMode.Anti ? System.Drawing.Text.TextRenderingHint.AntiAlias : System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             float percent = (float)Math.Round((decimal)this.value / (this.maximun - this.minimun), 2);
@@ -237,17 +228,17 @@ namespace HFromUI.HFrom.Bars
             Brush valueBrush = new SolidBrush(valueColor);
             Brush backBrush = new SolidBrush(BackColor);
 
-            GraphicsPath basePath = HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), radius);
+            GraphicsPath basePath = HDrawPaint.CreatePath(new Rectangle(0, 0, this.Width, this.Height), Radius);
             g.FillPath(baseBrush, basePath);
 
             Rectangle valueRect = new Rectangle((int)(-1 * (1 - percent) * (this.Width - 1)), 0, this.Width, this.Height);
-            GraphicsPath valeupath = HDrawPaint.CreatePath(valueRect, radius,HEnum.HRoundStyle.Left);
+            GraphicsPath valeupath = HDrawPaint.CreatePath(valueRect, Radius,HEnum.HRoundStyle.Left);
             g.FillPath(valueBrush, valeupath);
 
             if (showValue)
             {
                 string text = (100 * percent).ToString() + "%";
-                if (valueType == VALUETYPE.VALUE)
+                if (valueType == HValueType.Value)
                 {
                     text = value.ToString();
                 }
@@ -265,8 +256,6 @@ namespace HFromUI.HFrom.Bars
             backBrush.Dispose();
             basePath.Dispose();
             valueBrush.Dispose();
-
-            //g.DrawPath(new Pen(this.BackColor,1f),PaintHelper.CreateRound(new Rectangle(1, 1, this.Width-1, this.Height-1), radius));
         }
 
         /// <summary>响应 VisibleChanged 事件。</summary>
@@ -335,7 +324,7 @@ namespace HFromUI.HFrom.Bars
                 float percent = (float)Math.Round((decimal)this.value / (this.maximun - this.minimun), 2);
                 Rectangle rect = new Rectangle((int)(percent * this.Width) - 5, 0, 5, this.Height);
                 string text = (100 * percent).ToString() + "%";
-                if (valueType == VALUETYPE.VALUE)
+                if (valueType == HValueType.Value)
                 {
                     text = value.ToString();
                 }

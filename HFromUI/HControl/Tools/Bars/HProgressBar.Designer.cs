@@ -1,6 +1,6 @@
-﻿namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
-    partial class HWave
+    partial class HProgressBar
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -30,13 +30,10 @@
         {
             this.SuspendLayout();
             // 
-            // PPWave
+            // PPProgressBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Name = "PPWave";
-            this.Size = new System.Drawing.Size(173, 146);
-            this.Load += new System.EventHandler(this.PPWave_Load);
+            this.Name = "PPProgressBar";
+            this.Size = new System.Drawing.Size(267, 32);
             this.ResumeLayout(false);
 
         }

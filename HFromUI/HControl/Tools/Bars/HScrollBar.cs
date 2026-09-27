@@ -1,19 +1,19 @@
+using HFromUI.HAttribute;
+using HFromUI.HData;
+using HFromUI.HMath;
+using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using HFromUI.HMath;
-using HFromUI.HData;
-using HFromUI.HAttribute;
+using HFromUI.HControl.Base;
 
-namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
     using HFromUI.HData.Win;
-    [Obsolete("请使用 HVScrollBarExt，功能更完善", false)]
-    public partial class HVScrollBar : UserControl
+    [Obsolete("请使用 HScrollBarExt，功能更完善", false)]
+    public partial class HScrollBar : HBarBase
     {
         #region 私有参数
 
@@ -48,7 +48,7 @@ namespace HFromUI.HFrom.Bars
 
         protected bool isMouseHover = false;//表示鼠标是否移入滚动按钮
         protected bool isMouseDown = false;//表示鼠标是否在滚动按钮按下
-        protected int mouseDownPoint = 0;//记录鼠标在滚动按钮按下时鼠标距离按钮上边缘的距离
+        protected int mouseDownPoint = 0;//记录鼠标在滚动按钮按下时鼠标距离按钮左边缘的距离
 
         /// <summary>bindControl 字段。</summary>
         private Control bindControl = null;
@@ -63,7 +63,7 @@ namespace HFromUI.HFrom.Bars
         #region 公共参数
 
         [HCategoryLanguage("通用"), HDisplayNameLanguage("滚动条值"), HDescriptionLanguage("滚动条值"), Browsable(true)]
-        public int Value
+        public new int Value
         {
             get { return this.value; }
             set
@@ -80,6 +80,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.value = value;
                 }
+                SyncBaseState(minimum, maximum, this.value);
                 this.Invalidate();
             }
         }
@@ -98,6 +99,7 @@ namespace HFromUI.HFrom.Bars
                     this.value = maximum;
                 }
                 //visibleValue =(int)((this.Height - 1) * ((float)largeChange / (maximun - minimun)));
+                SyncBaseState(minimum, maximum, this.value);
                 this.Invalidate();
             }
         }
@@ -115,6 +117,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.value = minimum;
                 }
+                SyncBaseState(minimum, maximum, this.value);
                 this.Invalidate();
             }
         }
@@ -235,18 +238,14 @@ namespace HFromUI.HFrom.Bars
 
         #endregion 公共参数
 
-        #region 事件
-
-        public event EventHandler ValueChanged;
-
-        #endregion 事件
-
         /// <summary>
-        /// 垂直滚动条
+        /// 水平滚动条
         /// </summary>
-        public HVScrollBar()
+        public HScrollBar()
         {
             InitializeComponent();
+            SyncBaseState(minimum, maximum, value);
+
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
             {
                 return;
@@ -260,16 +259,9 @@ namespace HFromUI.HFrom.Bars
             this.UpdateStyles();
         }
 
-        /// <summary>响应 Load 事件。</summary>
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-        }
-
         /// <summary>响应 Paint 事件。</summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -278,11 +270,12 @@ namespace HFromUI.HFrom.Bars
             SolidBrush buttonBrush = new SolidBrush(buttonColor);
             SolidBrush buttonHoverBrush = new SolidBrush(buttonHoverColor);
 
-            GraphicsPath basepath = HDrawPaint.CreatePath(new RectangleF((float)(this.Width - baseSize) / 2, 0, baseSize, this.Height), baseRadius);
+            GraphicsPath basepath = HDrawPaint.CreatePath(new RectangleF(0, (float)(this.Height - baseSize) / 2, this.Width - 1, baseSize), baseRadius);
             g.FillPath(baseBrush, basepath);//画背景
 
             RectangleF buttonRect = GetButtonRect();
             GraphicsPath buttonPath = HDrawPaint.CreatePath(buttonRect, buttonRadius);
+
             if (isMouseHover)//判断鼠标是否移入按钮
             {
                 g.FillPath(buttonHoverBrush, buttonPath);
@@ -314,10 +307,7 @@ namespace HFromUI.HFrom.Bars
                     this.Value += smallChange;
                 }
                 this.Invalidate();
-                if (ValueChanged != null)
-                {
-                    this.BeginInvoke(new Action(() => { ValueChanged(this, new EventArgs()); }));
-                }
+                this.BeginInvoke(new Action(() => { OnValueChanged(EventArgs.Empty); }));
             }
         }
 
@@ -333,17 +323,14 @@ namespace HFromUI.HFrom.Bars
                 if (buttonRect.Contains(mousePoint))
                 {
                     isMouseDown = true;
-                    mouseDownPoint = (int)(mousePoint.Y - buttonRect.Top);
+                    mouseDownPoint = (int)(mousePoint.X - buttonRect.Left);
                 }
                 else
                 {
-                    float buttonHeight = (float)((this.Height - 1) * ((float)visibleValue / (maximum - minimum)));
-                    float y = mousePoint.Y - buttonHeight / 2;
-                    this.Value = (int)((maximum - minimum - visibleValue) * y / (this.Height - buttonHeight));
-                    if (ValueChanged != null)
-                    {
-                        this.BeginInvoke(new Action(() => { ValueChanged(this, new EventArgs()); }));
-                    }
+                    float buttonWidth = (float)((this.Width - 1) * ((float)visibleValue / (maximum - minimum)));
+                    float x = mousePoint.X - buttonWidth / 2;
+                    this.Value = (int)((maximum - minimum - visibleValue) * x / (this.Width - buttonWidth));
+                    this.BeginInvoke(new Action(() => { OnValueChanged(EventArgs.Empty); }));
                     this.Invalidate();
                 }
             }
@@ -374,17 +361,14 @@ namespace HFromUI.HFrom.Bars
 
             if (isMouseDown)
             {
-                int currentY = mousePoint.Y;
+                int currentX = mousePoint.X;
 
-                int newTop = currentY - mouseDownPoint;
+                int newLeft = currentX - mouseDownPoint;
 
-                this.Value = (int)((maximum - minimum - visibleValue) * (newTop) / (this.Height - 1 - buttonRect.Height));
+                this.Value = (int)((maximum - minimum - visibleValue) * (newLeft) / (this.Width - 1 - buttonRect.Width));
                 //Console.WriteLine("downY:{0},currentY:{1},delta:{2},value:{3}", downY, currentY, delta, Value);
                 this.Invalidate();
-                if (ValueChanged != null)
-                {
-                    this.BeginInvoke(new Action(() => { ValueChanged(this, new EventArgs()); }));
-                }
+                this.BeginInvoke(new Action(() => { OnValueChanged(EventArgs.Empty); }));
             }
         }
 
@@ -425,10 +409,10 @@ namespace HFromUI.HFrom.Bars
         /// <summary>获取 buttonRect。</summary>
         private RectangleF GetButtonRect()
         {
-            float buttonHeight = (float)((this.Height - 1) * ((float)visibleValue / (maximum - minimum)));
-            if (buttonHeight < 10)
-                buttonHeight = 10;
-            RectangleF buttonRect = new RectangleF((this.Width - buttonSize) / 2, (float)((this.Height - 1 - buttonHeight) * ((float)value / (maximum - minimum - visibleValue))), buttonSize, buttonHeight);//获取按钮区域
+            float buttonWidth = (float)((this.Width - 1) * ((float)visibleValue / (maximum - minimum)));
+            if (buttonWidth < 10)
+                buttonWidth = 10;
+            RectangleF buttonRect = new RectangleF((float)((this.Width - 1 - buttonWidth) * ((float)value / (maximum - minimum - visibleValue))), (this.Height - buttonSize) / 2, buttonWidth, buttonSize);//获取按钮区域
             return buttonRect;
         }
 
@@ -441,47 +425,20 @@ namespace HFromUI.HFrom.Bars
             if (control == null || control.IsDisposed || bindControl != null)
                 return;
             bindControl = control;
-            this.ValueChanged += PPVScrollBarExt_ValueChanged;
+            this.ValueChanged += PPHScrollBarExt_ValueChanged;
             bindControl.Disposed += BindControl_Disposed;
-            bindControl.MouseWheel += BindControl_MouseWheel;
             bindControl.SizeChanged += BindControl_SizeChanged;
-            bindControl.VisibleChanged += BindControl_VisibleChanged;
 
             if (bindControl is RichTextBox)
             {
                 (bindControl as RichTextBox).TextChanged += BindControl_TextChanged;
                 (bindControl as RichTextBox).SelectionChanged += BindControl_SelectionChanged;
-                (bindControl as RichTextBox).VScroll += BindControl_VScroll;
             }
             else if (bindControl is DataGridView)
             {
-                (bindControl as DataGridView).RowHeightChanged += BindControl_RowHeightChanged;
-                (bindControl as DataGridView).RowsAdded += BindControl_RowsAdded;
-                (bindControl as DataGridView).RowsRemoved += BindControl_RowsRemoved;
-            }
-            else if (bindControl is TreeView)
-            {
-                (bindControl as TreeView).AfterExpand += BindControl_AfterExpand;
+                (bindControl as DataGridView).ColumnWidthChanged += BindControl_ColumnWidthChanged;
             }
 
-            SetScrollBarNum();
-        }
-
-        /// <summary>BindControl_AfterExpand 方法。</summary>
-        private void BindControl_AfterExpand(object sender, TreeViewEventArgs e)
-        {
-            SetScrollBarNum();
-        }
-
-        /// <summary>BindControl_VisibleChanged 方法。</summary>
-        private void BindControl_VisibleChanged(object sender, EventArgs e)
-        {
-            SetScrollBarNum();
-        }
-
-        /// <summary>BindControl_VScroll 方法。</summary>
-        private void BindControl_VScroll(object sender, EventArgs e)
-        {
             SetScrollBarNum();
         }
 
@@ -493,54 +450,19 @@ namespace HFromUI.HFrom.Bars
             SetScrollBarNum();
         }
 
-        /// <summary>BindControl_MouseWheel 方法。</summary>
-        private void BindControl_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if (bindControl != null && !bindControl.IsDisposed && (bindControl is RichTextBox || bindControl is FlowLayoutPanel))
-            {
-                SetScrollBarNum();
-                return;
-            }
-            else
-            {
-                if (e.Delta > 0)
-                {
-                    this.Value -= largeChange;
-                }
-                else
-                {
-                    this.Value += largeChange;
-                }
-                this.Invalidate();
-
-                if (bindControl == null || bindControl.IsDisposed)
-                    return;
-                SetControlNum();
-            }
-        }
-
         /// <summary>BindControl_Disposed 方法。</summary>
         private void BindControl_Disposed(object sender, EventArgs e)
         {
             bindControl.Disposed -= BindControl_Disposed;
-            bindControl.MouseWheel -= BindControl_MouseWheel;
             bindControl.SizeChanged -= BindControl_SizeChanged;
-            bindControl.VisibleChanged -= BindControl_VisibleChanged;
             if (bindControl is RichTextBox)
             {
                 (bindControl as RichTextBox).TextChanged -= BindControl_TextChanged;
                 (bindControl as RichTextBox).SelectionChanged -= BindControl_SelectionChanged;
-                (bindControl as RichTextBox).VScroll -= BindControl_VScroll;
             }
             else if (bindControl is DataGridView)
             {
-                (bindControl as DataGridView).RowHeightChanged -= BindControl_RowHeightChanged;
-                (bindControl as DataGridView).RowsAdded -= BindControl_RowsAdded;
-                (bindControl as DataGridView).RowsRemoved -= BindControl_RowsRemoved;
-            }
-            else if (bindControl is TreeView)
-            {
-                (bindControl as TreeView).AfterExpand -= BindControl_AfterExpand;
+                (bindControl as DataGridView).ColumnWidthChanged -= BindControl_ColumnWidthChanged;
             }
 
             bindControl = null;
@@ -562,26 +484,14 @@ namespace HFromUI.HFrom.Bars
             SetScrollBarNum();
         }
 
-        /// <summary>BindControl_RowHeightChanged 方法。</summary>
-        private void BindControl_RowHeightChanged(object sender, DataGridViewRowEventArgs e)
+        /// <summary>BindControl_ColumnWidthChanged 方法。</summary>
+        private void BindControl_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             ResetDataGridViewScrollBarNum();
         }
 
-        /// <summary>BindControl_RowsAdded 方法。</summary>
-        private void BindControl_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            ResetDataGridViewScrollBarNum();
-        }
-
-        /// <summary>BindControl_RowsRemoved 方法。</summary>
-        private void BindControl_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            ResetDataGridViewScrollBarNum();
-        }
-
-        /// <summary>PPVScrollBarExt_ValueChanged 方法。</summary>
-        private void PPVScrollBarExt_ValueChanged(object sender, EventArgs e)
+        /// <summary>PPHScrollBarExt_ValueChanged 方法。</summary>
+        private void PPHScrollBarExt_ValueChanged(object sender, EventArgs e)
         {
             if (bindControl == null || bindControl.IsDisposed)
                 return;
@@ -589,7 +499,7 @@ namespace HFromUI.HFrom.Bars
         }
 
         /// <summary>设置 scrollBarNum。</summary>
-        public void SetScrollBarNum()
+        private void SetScrollBarNum()
         {
             if (bindControl == null || bindControl.IsDisposed)
                 return;
@@ -597,92 +507,27 @@ namespace HFromUI.HFrom.Bars
             {
                 ResetDataGridViewScrollBarNum();
             }
-            else if (bindControl is FlowLayoutPanel)
-            {
-                HWin32.Scrollinfo si = new HWin32.Scrollinfo();
-                si.cbSize = (uint)Marshal.SizeOf(si);
-                si.fMask = (int)(HWin32.ScrollInfoMask.SIF_DISABLENOSCROLL | HWin32.ScrollInfoMask.SIF_ALL);
-                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_VERT, ref si);
-                this.visibleValue = (int)si.nPage - 1;
-                this.Maximum = si.nMax;
-                this.Minimum = si.nMin;
-                this.Value = si.nPos;
-                this.Visible = (bindControl as FlowLayoutPanel).VerticalScroll.Visible;
-                this.BringToFront();
-            }
-            else if (bindControl is RichTextBox)
-            {
-                HWin32.Scrollinfo si = new HWin32.Scrollinfo();
-                si.cbSize = (uint)Marshal.SizeOf(si);
-                si.fMask = (int)(HWin32.ScrollInfoMask.SIF_DISABLENOSCROLL | HWin32.ScrollInfoMask.SIF_ALL);
-                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_VERT, ref si);
-
-                this.visibleValue = (int)si.nPage - 1;
-                this.Maximum = si.nMax;
-                this.Minimum = si.nMin;
-                this.Value = si.nPos;
-                RichTextBox richTextBox = (bindControl as RichTextBox);
-
-                if (richTextBox.ScrollBars == RichTextBoxScrollBars.ForcedVertical || richTextBox.ScrollBars == RichTextBoxScrollBars.ForcedBoth)
-                {
-                    this.Visible = true;
-                    this.BringToFront();
-                }
-                else if (richTextBox.ScrollBars == RichTextBoxScrollBars.Vertical || richTextBox.ScrollBars == RichTextBoxScrollBars.Both)
-                {
-                    if (si.nPage == 0 || visibleValue >= Maximum)
-                    {
-                        this.Visible = false;
-                    }
-                    else
-                    {
-                        if (richTextBox.Text == "")
-                        {
-                            this.Visible = false;
-                        }
-                        else
-                        {
-                            int height = richTextBox.Font.Height;// TextRenderer.MeasureText("AA", richTextBox.Font).Height;
-                            int pageline = richTextBox.Height / height;//能显示的行数
-                            int line = richTextBox.GetLineFromCharIndex(richTextBox.TextLength) + 2;//当前总行数
-                            if (line >= pageline)
-                            {
-                                this.Visible = true;
-                                this.BringToFront();
-                            }
-                            else
-                            {
-                                this.Visible = false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    this.Visible = false;
-                }
-            }
             else
             {
                 HWin32.Scrollinfo si = new HWin32.Scrollinfo();
                 si.cbSize = (uint)Marshal.SizeOf(si);
                 si.fMask = (int)(HWin32.ScrollInfoMask.SIF_DISABLENOSCROLL | HWin32.ScrollInfoMask.SIF_ALL);
-                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_VERT, ref si);
+                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_HORZ, ref si);
 
                 this.visibleValue = (int)si.nPage - 1;
                 this.Maximum = si.nMax;
                 this.Minimum = si.nMin;
                 this.Value = si.nPos;
-                if (si.nPage == 0 || visibleValue >= Maximum)
+                if (si.nPage == 0)
                 {
                     this.Visible = false;
                 }
                 else
                 {
                     this.Visible = true;
-                    this.BringToFront();
                 }
-                //Console.WriteLine(string.Format("nPage:{0};nMax:{1};nMin:{2};nPose:{3};Max:{4};Min:{5};VisValue:{6};value:{7}", si.nPage, si.nMax, si.nMin, si.nPos,Maximum,Minimun,visibleValue,value));
+                // Console.WriteLine(string.Format("nPage:{0};nMax:{1};nMin:{2};nPose:{3};Max:{4};Min:{5};VisValue:{6};value:{7}",
+                // si.nPage, si.nMax, si.nMin, si.nPos,Maximum,Minimum,visibleValue,value));
             }
         }
 
@@ -694,22 +539,19 @@ namespace HFromUI.HFrom.Bars
             if (bindControl is DataGridView)
             {
                 DataGridView d = (bindControl as DataGridView);
-                if (d.Rows.Count > 0 && d.Rows.Count >= this.Value + 1)
-                {
-                    if (d.Rows.Count > 0)
-                        d.FirstDisplayedScrollingRowIndex = this.Value;
-                }
+                if (d.Rows.Count > 0)
+                    d.HorizontalScrollingOffset = this.Value;
             }
             else
             {
                 HWin32.Scrollinfo si = new HWin32.Scrollinfo();
                 si.cbSize = (uint)Marshal.SizeOf(si);
                 si.fMask = (int)(HWin32.ScrollInfoMask.SIF_DISABLENOSCROLL | HWin32.ScrollInfoMask.SIF_ALL);
-                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_VERT, ref si);
+                HWin32.GetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_HORZ, ref si);
                 si.nPos = this.Value;
-                HWin32.SetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_VERT, ref si, true);
+                HWin32.SetScrollInfo(bindControl.Handle, (int)HWin32.ScrollBarDirection.SB_HORZ, ref si, true);
                 IntPtr aa = new IntPtr(HWin32.MakeLong((short)HWin32.SB_THUMBTRACK, (short)(si.nPos)));
-                HWin32.SendMessage(bindControl.Handle, HWin32.WM_VSCROLL, aa, new IntPtr());
+                HWin32.SendMessage(bindControl.Handle, HWin32.WM_HSCROLL, aa, new IntPtr());
             }
         }
 
@@ -717,25 +559,26 @@ namespace HFromUI.HFrom.Bars
         private void ResetDataGridViewScrollBarNum()
         {
             DataGridView d = (bindControl as DataGridView);
-            if (d.Rows.Count > 0)
+            int totalValue = 0;
+            if (d.RowHeadersVisible)
             {
-                int pageRowCount = 0;
-                int pageHeight = 0;
-                pageHeight += d.ColumnHeadersHeight;
-                for (int i = d.FirstDisplayedScrollingRowIndex; i < d.RowCount; i++)
+                totalValue += d.RowHeadersWidth;
+            }
+            if (d.Columns.Count > 0)
+            {
+                for (int i = 0; i < d.Columns.Count; i++)
                 {
-                    if (i == -1)
-                        continue;
-                    if (pageHeight >= d.Height)
-                    { break; }
-                    pageRowCount += 1;
-                    pageHeight += d.Rows[i].Height;
+                    totalValue += d.Columns[i].Width;
                 }
-
-                this.Maximum = d.Rows.Count + 1;// (d.AllowUserToAddRows ? 1 : 0);
-                this.Minimum = 0;
-                this.visibleValue = pageRowCount;
-                this.Value = d.FirstDisplayedScrollingRowIndex;
+                this.Maximum = totalValue;
+                if (d.Width > this.Maximum)
+                {
+                    this.visibleValue = 0;
+                }
+                else
+                {
+                    visibleValue = d.Width;
+                }
             }
             else
             {

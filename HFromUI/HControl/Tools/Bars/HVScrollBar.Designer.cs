@@ -1,6 +1,7 @@
-﻿namespace HFromUI.HFrom.Bars
+
+namespace HFromUI.HControl.Tools.Bars
 {
-    partial class HProgressBar
+    partial class HVScrollBar
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -30,12 +31,11 @@
         {
             this.SuspendLayout();
             // 
-            // PPProgressBar
+            // PPVScrollBarExt
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Name = "PPProgressBar";
-            this.Size = new System.Drawing.Size(267, 32);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Name = "PPVScrollBarExt";
+            this.Size = new System.Drawing.Size(20, 250);
             this.ResumeLayout(false);
 
         }

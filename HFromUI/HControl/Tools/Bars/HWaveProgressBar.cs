@@ -6,14 +6,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using HFromUI.HControl.Base;
 
-namespace HFromUI.HFrom.Bars
+namespace HFromUI.HControl.Tools.Bars
 {
     [DefaultEvent("ValueChanged")]
-    public partial class HWaveProgressBar : UserControl
+    public partial class HWaveProgressBar : HBarBase
     {
-        public event EventHandler ValueChanged;
-
         /// <summary>timer 字段。</summary>
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -30,7 +29,7 @@ namespace HFromUI.HFrom.Bars
         /// <summary>baseColor 字段。</summary>
         private Color baseColor = Color.White;
         /// <summary>valueType 字段。</summary>
-        private VALUETYPE valueType = VALUETYPE.PERCENT;
+        private HValueType valueType = HValueType.Percent;
 
         /// <summary>值。</summary>
         private long value = 0;
@@ -42,7 +41,7 @@ namespace HFromUI.HFrom.Bars
         private long step = 1;
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("进度条值"), HDescriptionLanguage("进度条值"), Browsable(true)]
-        public long Value
+        public new long Value
         {
             get { return value; }
             set
@@ -61,10 +60,8 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.value = value;
                 }
-                if (ValueChanged != null)
-                {
-                    ValueChanged(this, new EventArgs());
-                }
+                SyncBaseState(minimun, maximun, this.value);
+                OnValueChanged(EventArgs.Empty);
                 this.Invalidate();
             }
         }
@@ -83,6 +80,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     this.maximun = value;
                 }
+                SyncBaseState(minimun, maximun, this.value);
             }
         }
 
@@ -100,6 +98,7 @@ namespace HFromUI.HFrom.Bars
                 {
                     minimun = value;
                 }
+                SyncBaseState(minimun, maximun, this.value);
             }
         }
 
@@ -192,7 +191,7 @@ namespace HFromUI.HFrom.Bars
         }
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("圆角直径"), HDescriptionLanguage("圆角直径"), Browsable(true)]
-        public int Radius
+        public new int Radius
         {
             get { return radius; }
             set
@@ -205,7 +204,7 @@ namespace HFromUI.HFrom.Bars
         }
 
         [HCategoryLanguage("自定义"), HDisplayNameLanguage("文字显示类型"), HDescriptionLanguage("文字显示类型，数值和百分比"), Browsable(true)]
-        public VALUETYPE ValueType
+        public HValueType ValueType
         {
             get { return valueType; }
             set
@@ -214,10 +213,10 @@ namespace HFromUI.HFrom.Bars
             }
         }
 
-        public enum VALUETYPE
+        public enum HValueType
         {
-            VALUE,
-            PERCENT,
+            Value,
+            Percent,
         }
 
         #endregion 定义变量
@@ -225,6 +224,7 @@ namespace HFromUI.HFrom.Bars
         public HWaveProgressBar()
         {
             InitializeComponent();
+            SyncBaseState(minimun, maximun, value);
             if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
             {
                 return;
@@ -240,13 +240,6 @@ namespace HFromUI.HFrom.Bars
             timer.Tick += new EventHandler(this.Timer_Ticked);
         }
 
-        /// <summary>响应 Load 事件。</summary>
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            //this.Region = new Region(CreateRound(new Rectangle(0, 0, this.Width, this.Height), radius));
-        }
-
         /// <summary>响应 VisibleChanged 事件。</summary>
         protected override void OnVisibleChanged(EventArgs e)
         {
@@ -257,7 +250,6 @@ namespace HFromUI.HFrom.Bars
         /// <summary>响应 Paint 事件。</summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -299,7 +291,7 @@ namespace HFromUI.HFrom.Bars
 
             double percent = (double)Math.Round((decimal)this.value / (this.maximun - this.minimun), 2);
             string text = ((int)(100 * percent)).ToString() + "%";
-            if (valueType == VALUETYPE.VALUE)
+            if (valueType == HValueType.Value)
             {
                 text = value.ToString();
             }

@@ -51,6 +51,20 @@ namespace HFromUI.HControl.Base
         [HCategoryLanguage("图形基础设置"), HDisplayNameLanguage("当前值改变时触发"), HDescriptionLanguage("当前值改变时触发"), Browsable(true)]
         public event EventHandler ValueChanged;
 
+        /// <summary>触发 ValueChanged 事件（派生类使用 int/long 等自有值体系时由此统一触发，保证事件只有一份）。</summary>
+        protected virtual void OnValueChanged(EventArgs e) => ValueChanged?.Invoke(this, e);
+
+        /// <summary>
+        /// 派生类静默同步基类值域与当前值（不触发 ValueChanged），使 Percent/基类 Value 与派生值保持一致。
+        /// 用于自带 int/long 值体系的进度条/滚动条控件，避免基类赋值引发事件重入。
+        /// </summary>
+        protected void SyncBaseState(double min, double max, double value)
+        {
+            _minValue = min;
+            _maxValue = Math.Max(min, max);
+            _value = Math.Max(_minValue, Math.Min(_maxValue, value));
+        }
+
         public HBarBase()
         {
             AutoSize = false;
@@ -100,7 +114,7 @@ namespace HFromUI.HControl.Base
                 if (Math.Abs(v - _value) < double.Epsilon) return;
                 _value = v;
                 Invalidate();
-                ValueChanged?.Invoke(this, EventArgs.Empty);
+                OnValueChanged(EventArgs.Empty);
             }
         }
 
@@ -184,7 +198,7 @@ namespace HFromUI.HControl.Base
             if (Math.Abs(v - _value) >= double.Epsilon)
             {
                 _value = v;
-                ValueChanged?.Invoke(this, EventArgs.Empty);
+                OnValueChanged(EventArgs.Empty);
             }
         }
 

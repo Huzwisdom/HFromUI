@@ -13,7 +13,7 @@ namespace HFromUI.HCamera
     using HFromUI.HFrom.Panel;
     using HFromUI.HFrom.Text;
     using HFromUI.HControl.Tools.Button;
-    using HFromUI.HFrom.Bars;
+    using HFromUI.HControl.Tools.Bars;
     /// <summary>
     /// 本地视频播放器控件（纯 WinForms）：优先使用 VLC(libvlc) 引擎，支持 VLC 能播放的
     /// 全部格式（mkv/flv/ts/m2ts/vob/rmvb/3gp/webm/mp4/avi/wmv… 及 RTSP/HTTP 网络流）；
