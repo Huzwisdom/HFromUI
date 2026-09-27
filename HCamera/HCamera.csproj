@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C4E2A91-5B3D-4F68-A2E1-9D7C0B4E6A23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HFromUI.HCamera</RootNamespace>
+    <AssemblyName>HCamera</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\HFromUI\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\HFromUI\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="halcondotnet">
+      <HintPath>..\packages\Halcon\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <!-- HALCON 21.11 Progress（HHalcon 目录下各封装类使用）；不复制到输出目录，依赖运行机 HALCON 安装 -->
+  </ItemGroup>
+  <ItemGroup>
+    <!-- 单向依赖：HCamera 引用 HFromUI（UI 套件/多语言/可视窗口），HFromUI 不引用 HCamera -->
+    <ProjectReference Include="..\HFromUI\HFromUI.csproj">
+      <Project>{FBBBC9BD-A8CE-4505-91DE-31F21CA6A519}</Project>
+      <Name>HFromUI</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HAviRecorder.cs" />
+    <Compile Include="HCameraChannel.cs" />
+    <Compile Include="HRecordCleaner.cs" />
+    <Compile Include="HVideoPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HConvert\HFrameToBitmapConverter.cs" />
+    <Compile Include="HShell\HVideoWall.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DaHuaNetSDK\DahuaCamera.cs" />
+    <Compile Include="Dvp\DvpCamera.cs" />
+    <Compile Include="HCNetSDK\HikCamera.cs" />
+    <Compile Include="HHalcon\HHalconBase.cs" />
+    <Compile Include="HHalcon\HHalconEnv.cs" />
+    <Compile Include="HHalcon\HHalconWindow.cs" />
+    <Compile Include="HHalcon\HHalconCamera.cs" />
+    <Compile Include="HHalcon\HHalconImage.cs" />
+    <Compile Include="HHalcon\HHalconRoi.cs" />
+    <Compile Include="HHalcon\HHalconFilter.cs" />
+    <Compile Include="HHalcon\HHalconMorphology.cs" />
+    <Compile Include="HHalcon\HHalconBlob.cs" />
+    <Compile Include="HHalcon\HHalconContour.cs" />
+    <Compile Include="HHalcon\HHalconMeasure.cs" />
+    <Compile Include="HHalcon\HHalconMetrology.cs" />
+    <Compile Include="HHalcon\HHalconCalibration.cs" />
+    <Compile Include="HHalcon\HHalconRobot.cs" />
+    <Compile Include="HHalcon\HHalconShapeMatch.cs" />
+    <Compile Include="HHalcon\HHalconScaledShapeMatch.cs" />
+    <Compile Include="HHalcon\HHalconNccMatch.cs" />
+    <Compile Include="HHalcon\HHalconGenericShapeMatch.cs" />
+    <Compile Include="HHalcon\HHalconComponentMatch.cs" />
+    <Compile Include="HHalcon\HHalconPerspectiveMatch.cs" />
+    <Compile Include="HHalcon\HHalconFeatureFinder.cs" />
+    <Compile Include="HHalcon\HHalconGeometry.cs" />
+    <Compile Include="HHalcon\HHalconDeformableMatch.cs" />
+    <Compile Include="HHalcon\HHalconSurfaceMatch.cs" />
+    <Compile Include="HHalcon\HHalconCodeReader.cs" />
+    <Compile Include="HHalcon\HHalconOcr.cs" />
+    <Compile Include="HHalcon\HHalconOcv.cs" />
+    <Compile Include="HHalcon\HHalconVariation.cs" />
+    <Compile Include="HHalcon\HHalconTexture.cs" />
+    <Compile Include="HHalcon\HHalconDeepLearning.cs" />
+    <Compile Include="HHalcon\HHalconSheetOfLight.cs" />
+    <Compile Include="HHalcon\HHalconStereo.cs" />
+    <Compile Include="HHalcon\HHalconDepthFromFocus.cs" />
+    <Compile Include="HHalcon\HHalconResult.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

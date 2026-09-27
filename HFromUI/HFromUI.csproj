@@ -1,0 +1,1311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FBBBC9BD-A8CE-4505-91DE-31F21CA6A519}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HFromUI</RootNamespace>
+    <AssemblyName>HFromUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.9\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HAttribute\HDictMemberAttribute.cs" />
+    <Compile Include="HAttribute\HSerializationAttributes.cs" />
+    <Compile Include="HBase\HDrawBase.cs" />
+    <Compile Include="HBase\HDrawProcessParameters.cs" />
+    <Compile Include="HBase\HCodeDomCompiler.cs" />
+    <Compile Include="HBase\HReflectionBase.cs" />
+    <Compile Include="HBase\HDataBase.cs" />
+    <Compile Include="HBase\HStepDataBase.cs" />
+    <Compile Include="HBase\HTaskDataBase.cs" />
+    <Compile Include="HBase\HTimeAxisScale.cs" />
+    <Compile Include="HBase\HTimeValue.cs" />
+    <Compile Include="HBase\HLine3DBase.cs" />
+    <Compile Include="HColor\HBorder.cs" />
+    <Compile Include="HColor\HColors.cs" />
+    <Compile Include="HColor\HPhoto.cs" />
+    <Compile Include="HColor\HVectorPhoto.cs" />
+    <Compile Include="HData\Step\HStepData.cs" />
+    <Compile Include="HData\Step\HStepDataA.cs" />
+    <Compile Include="HFile\HJsonFile.cs" />
+    <Compile Include="HFile\HXmlFile.cs" />
+    <Compile Include="HConvert\HFormatConvert.cs" />
+    <Compile Include="HConvert\HDateTime.cs" />
+    <Compile Include="HConvert\HStringPath.cs" />
+    <Compile Include="HConvert\HStringValidator.cs" />
+    <Compile Include="HConvert\HRGBToYUV.cs" />
+    <Compile Include="HData\GCodeText.cs" />
+    <Compile Include="HData\Win\HAccessibility.cs" />
+    <Compile Include="HData\Win\HAdvancedSystemSettings.cs" />
+    <Compile Include="HData\Win\HComputer.cs" />
+    <Compile Include="HData\Win\HDesktopUI.cs" />
+    <Compile Include="HData\Win\HDeviceManager.cs" />
+    <Compile Include="HData\Win\HDiskManager.cs" />
+    <Compile Include="HData\Win\HEventLog.cs" />
+    <Compile Include="HData\HExclusiveTimer.cs" />
+    <Compile Include="HData\Win\HFileRegistryVirtualization.cs" />
+    <Compile Include="HData\Win\HFirewallNetwork.cs" />
+    <Compile Include="HData\HighPrecisionBoolFlasher.cs" />
+    <Compile Include="HData\Win\HIme.cs" />
+    <Compile Include="HData\Win\HInputRegion.cs" />
+    <Compile Include="HData\HList.cs" />
+    <Compile Include="HData\Win\HNetworkShare.cs" />
+    <Compile Include="HData\Win\HPerformanceMonitor.cs" />
+    <Compile Include="HData\Win\HPowerManagement.cs" />
+    <Compile Include="HData\Win\HProcessManager.cs" />
+    <Compile Include="HData\Win\HRegistry.cs" />
+    <Compile Include="HData\Win\HServiceDriverManager.cs" />
+    <Compile Include="HData\Win\HSystemInfo.cs" />
+    <Compile Include="HData\Win\HTaskScheduler.cs" />
+    <Compile Include="HData\HRunTimer.cs" />
+    <Compile Include="HData\Win\HUserManager.cs" />
+    <Compile Include="HData\Win\HWin.cs" />
+    <Compile Include="HData\Win\HHardwareInfo.cs" />
+    <Compile Include="HData\Win\HWinSet.cs" />
+    <Compile Include="HData\OK.cs" />
+    <Compile Include="HData\Win\HWin32.cs" />
+    <Compile Include="HControl\Base\HLabelBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HTextBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HComboBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HBarBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HDropDownPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HDateTimeFieldBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Base\HToolAnimBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HCalendarDrop.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HDatePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HDateRangePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\DateTime\HTimeRangePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HBottle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HBattery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Valve\HValves.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HFactory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HMotor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HBlower.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Shared\HToolDraw.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HFan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Valve\HPipe.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Valve\HWire.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HBelt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HRoller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HVibrator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HHopper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HMixSilo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HElevator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HChip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HSilicon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HCleaner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HGrinder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Valve\HDispenseValve.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HEutectic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HRoom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HFire.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Valve\HValveStem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Indicator\HWireless.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Vessel\HBeaker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Power\HStirRod.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Indicator\HSignalLamp.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Indicator\HAlarmLamp.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HEStop.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Process\HSwitchButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Indicator\HWarningSign.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HHmiPalette.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HHmiDraw.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HInstrumentBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HDialPlate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HThermometer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HPlayButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HMarquee.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HRotarySwitch.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HLanternSimple.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HLanternAlarm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Hmi\HClock.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HHeart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HStarSky.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HFlower.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HMoon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HSun.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Nature\HArrow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Editors\HNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Editors\HSearchBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\HCoordinateA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\HCoordinateA.Designer.cs">
+      <DependentUpon>HCoordinateA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HControl\Coordinate\HCoordinate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\HDraw3PArc.cs" />
+    <Compile Include="HControl\Coordinate\HDrawChange.cs" />
+    <Compile Include="HControl\Coordinate\HDrawGCode.cs" />
+    <Compile Include="HControl\Coordinate\HDrawGroup.cs" />
+    <Compile Include="HControl\Coordinate\HDrawLine.cs" />
+    <Compile Include="HControl\Coordinate\HDrawList.cs" />
+    <Compile Include="HControl\Coordinate\HDrawPoint.cs" />
+    <Compile Include="HControl\Coordinate\HDrawPointCross.cs" />
+    <Compile Include="HControl\Coordinate\HDrawPointRect.cs" />
+    <Compile Include="HControl\Coordinate\HDrawProcessParametersDefault.cs" />
+    <Compile Include="HControl\Coordinate\HDrawRunPoint.cs" />
+    <Compile Include="HControl\Coordinate\HDrawSet.cs" />
+    <Compile Include="HControl\Coordinate\SetDecimalPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\SetDecimalPlaces.Designer.cs">
+      <DependentUpon>SetDecimalPlaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HControl\Coordinate\SetFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\SetFormat.Designer.cs">
+      <DependentUpon>SetFormat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HControl\Coordinate\SetLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HControl\Coordinate\SetLayer.Designer.cs">
+      <DependentUpon>SetLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\AxisGoHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HControl\Draw\Draw2DTableUtil.cs" />
+    <Compile Include="HControl\Draw\DrawArcUtil.cs" />
+    <Compile Include="HControl\Draw\DrawCurveUtil.cs" />
+    <Compile Include="HControl\Draw\DrawEllipseUtil.cs" />
+    <Compile Include="HControl\Draw\DrawImageUtil.cs" />
+    <Compile Include="HControl\Draw\DrawLinesUtil.cs" />
+    <Compile Include="HControl\Draw\DrawLineUtil.cs" />
+    <Compile Include="HControl\Draw\DrawPieUtil.cs" />
+    <Compile Include="HControl\Draw\DrawPolygonUtil.cs" />
+    <Compile Include="HControl\Draw\DrawRectangleUtil.cs" />
+    <Compile Include="HControl\Draw\DrawRoundUtil.cs" />
+    <Compile Include="HControl\Draw\DrawStringUtil.cs" />
+    <Compile Include="HControl\Draw\DrawStripDataUtil.cs" />
+    <Compile Include="HControl\Draw\DrawStripUtil.cs" />
+    <Compile Include="HControl\Draw\DrawTriangleUtil.cs" />
+    <Compile Include="HControl\Draw\RectangleFConvertUtil.cs" />
+    <Compile Include="HControl\VisualWindow\HVisualWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\VisualWindow\HTableTool.cs" />
+    <Compile Include="HControl\VisualWindow\HTableShape.cs" />
+    <Compile Include="HControl\VisualWindow\HTableShapeList.cs" />
+    <Compile Include="HControl\VisualWindow\HTablePoint.cs" />
+    <Compile Include="HControl\VisualWindow\HTableLine.cs" />
+    <Compile Include="HControl\VisualWindow\HTableRectangle.cs" />
+    <Compile Include="HControl\VisualWindow\HTableRotatedRectangle.cs" />
+    <Compile Include="HControl\VisualWindow\HTableCircle.cs" />
+    <Compile Include="HControl\VisualWindow\HTableEllipse.cs" />
+    <Compile Include="HControl\VisualWindow\HTableArc3P.cs" />
+    <Compile Include="HControl\VisualWindow\HTablePolyline.cs" />
+    <Compile Include="HControl\VisualWindow\HTablePolygon.cs" />
+    <Compile Include="HControl\VisualWindow\HTableAnnulus.cs" />
+    <Compile Include="HControl\VisualWindow\HTableSector.cs" />
+    <Compile Include="HControl\VisualWindow\HTableAnnulusSector.cs" />
+    <Compile Include="HControl\VisualWindow\HTableBullseye.cs" />
+    <Compile Include="HControl\VisualWindow\HTableBezier.cs" />
+    <Compile Include="HControl\VisualWindow\HTableArrow.cs" />
+    <Compile Include="HControl\VisualWindow\HTableCross.cs" />
+    <Compile Include="HControl\VisualWindow\HTablePointRect.cs" />
+    <Compile Include="HControl\VisualWindow\HTableText.cs" />
+    <Compile Include="HControl\VisualWindow\HTableCaliper.cs" />
+    <Compile Include="HControl\VisualWindow\HTableAngle.cs" />
+    <Compile Include="HControl\VisualWindow\HTableFreehand.cs" />
+    <Compile Include="HControl\VisualWindow\HTableLasso.cs" />
+    <Compile Include="HControl\VisualWindow\HTableMask.cs" />
+    <Compile Include="HControl\VisualWindow\HVisualWindowA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HEnum\AnchorTipsLocation.cs" />
+    <Compile Include="HEnum\HOperationMode.cs" />
+    <Compile Include="HEnum\HCharType.cs" />
+    <Compile Include="HEnum\HDrawMode.cs" />
+    <Compile Include="HEnum\HLinePhoto.cs" />
+    <Compile Include="HEnum\HShapeType.cs" />
+    <Compile Include="HConvert\HBytes.cs" />
+    <Compile Include="HEnum\HThemeMode.cs" />
+    <Compile Include="HFrom\Combbox\HNoBoraderCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HNoBoraderCombobox.Designer.cs">
+      <DependentUpon>HNoBoraderCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\ZvMessageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\ZvMessageShow.Designer.cs">
+      <DependentUpon>ZvMessageShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\ZxMessageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\ZxMessageShow.Designer.cs">
+      <DependentUpon>ZxMessageShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\HMI\FromHelper.cs" />
+    <Compile Include="HFrom\HMI\HBagFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HBarChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HCurve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HCurveHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HDigitalInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HGanttChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\CLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HLabelCombo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HLedDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HMachineCenter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HPieChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HProgress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\CProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HProgressColorful.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HProgressLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HPumpOne.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HSignature.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HStatusManagement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HTruck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HVacuumPump.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\HMI\HWaterBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HScrollablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HTabControlL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HTabControlT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\PropertyGrid\APropertyGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HGCodeEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HInterface\iHDrawContinuousLine.cs" />
+    <Compile Include="HInterface\iHGode.cs" />
+    <Compile Include="HInterface\iHGuid.cs" />
+    <Compile Include="HMath\HBool.cs" />
+    <Compile Include="HMath\HChangePoint.cs" />
+    <Compile Include="HMath\HFloat.cs" />
+    <Compile Include="HMath\HInt.cs" />
+    <Compile Include="HMath\HLong.cs" />
+    <Compile Include="HMath\HScreenImage.cs" />
+    <Compile Include="HMath\HShort.cs" />
+    <Compile Include="HMath\HUInt.cs" />
+    <Compile Include="HMath\HULong.cs" />
+    <Compile Include="HMath\HUShort.cs" />
+    <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangJson.cs" />
+    <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangData.cs" />
+    <Compile Include="HSocket\HTcpClient\SocketTcpClient.cs" />
+    <Compile Include="HData\ReplyData.cs" />
+    <Compile Include="HEnum\HLogGrade.cs" />
+    <Compile Include="HEnum\HRoundStyle.cs" />
+    <Compile Include="HFile\HFilePath.cs" />
+    <Compile Include="HFile\HIniFile.cs" />
+    <Compile Include="HFile\HLogFile.cs" />
+    <Compile Include="HFile\HDictionaryFile.cs" />
+    <Compile Include="HEnum\HDictionaryType.cs" />
+    <Compile Include="HData\HAppData.cs" />
+    <Compile Include="HAttribute\HCategoryLanguage.cs" />
+    <Compile Include="HAttribute\HDescriptionLanguage.cs" />
+    <Compile Include="HAttribute\HDisplayNameLanguage.cs" />
+    <Compile Include="HAttribute\HRemarkLanguage.cs" />
+    <Compile Include="HEnum\HLanguageMode.cs" />
+    <Compile Include="HFrom\Bars\HScrollBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HScrollBar.Designer.cs">
+      <DependentUpon>HScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HScrollBarExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HScrollBarExt.Designer.cs">
+      <DependentUpon>HScrollBarExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HProgressBar.Designer.cs">
+      <DependentUpon>HProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HRoundProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HRoundProgressBar.Designer.cs">
+      <DependentUpon>HRoundProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HTrackBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HVScrollBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HVScrollBar.Designer.cs">
+      <DependentUpon>HVScrollBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HVScrollBarExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HVScrollBarExt.Designer.cs">
+      <DependentUpon>HVScrollBarExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HWave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HWave.Designer.cs">
+      <DependentUpon>HWave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Bars\HWaveProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Bars\HWaveProgressBar.Designer.cs">
+      <DependentUpon>HWaveProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Base\HAnchorBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\Base\HAnchorBase.Designer.cs">
+      <DependentUpon>HAnchorBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Base\HPanelBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Base\HPanelBase.Designer.cs">
+      <DependentUpon>HPanelBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Base\HControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Base\HControlBase.Designer.cs">
+      <DependentUpon>HControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HStatusLed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HUiTheme.cs" />
+    <Compile Include="HFrom\HUiKit\HGlyph.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HBadge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HChip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HIconTile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HSideMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HUiKit\HZoomBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HNavigator\HNavigator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HNavigator\HNavigatorTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\HShell\HTopNav.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Chart\HChartTypes.cs" />
+    <Compile Include="HControl\Chart\HChartDataPoint.cs" />
+    <Compile Include="HControl\Chart\HChartSeries.cs" />
+    <Compile Include="HControl\Chart\HChartAxis.cs" />
+    <Compile Include="HControl\Chart\HChartLegend.cs" />
+    <Compile Include="HControl\Chart\ChartPalettes.cs" />
+    <Compile Include="HControl\Chart\HChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Chart\Menu\HMenuGlyph.cs" />
+    <Compile Include="HControl\Chart\Menu\HVecCore.cs" />
+    <Compile Include="HControl\Chart\Menu\HVecArt.cs" />
+    <Compile Include="HControl\Chart\Menu\HVecBiz.cs" />
+    <Compile Include="HControl\Chart\Menu\HMenuScheme.cs" />
+    <Compile Include="HControl\Chart\Menu\HMenuSkin.cs" />
+    <Compile Include="HControl\Chart\Menu\HMenuRenderer.cs" />
+    <Compile Include="HControl\Chart\HChartMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Chart\Tips\HTipLine.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipScheme.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipSkin.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipShape.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipArt.cs" />
+    <Compile Include="HControl\Chart\Tips\HTipPopup.cs" />
+    <Compile Include="HControl\Tools\Button\HPushButtonTypes.cs" />
+    <Compile Include="HControl\Tools\Button\HPushButtonScheme.cs" />
+    <Compile Include="HControl\Tools\Button\HPushButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Button\HCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Button\HSlideSwitch.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Button\HSlideSwitchTypes.cs" />
+    <Compile Include="HControl\Tools\Button\HSlideSwitchRenderer.cs" />
+    <Compile Include="HControl\Tools\Button\HIndicatorStyle.cs" />
+    <Compile Include="HControl\Tools\Button\HIndicatorRenderer.cs" />
+    <Compile Include="HControl\Tools\Button\HToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HControl\Tools\Button\HRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HCombobox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HCombobox.Designer.cs">
+      <DependentUpon>HCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HComboboxDropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HComboboxDropForm.Designer.cs">
+      <DependentUpon>HComboboxDropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HComboboxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HComboboxEx.Designer.cs">
+      <DependentUpon>HComboboxEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HTreeComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HTreeComboBox.Designer.cs">
+      <DependentUpon>HTreeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HTreeComboDropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\Combbox\HTreeComboDropForm.Designer.cs">
+      <DependentUpon>HTreeComboDropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateDayPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateDayPanel.Designer.cs">
+      <DependentUpon>HDateDayPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateMonthPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateMonthPanel.Designer.cs">
+      <DependentUpon>HDateMonthPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateTimeDropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateTimeDropForm.Designer.cs">
+      <DependentUpon>HDateTimeDropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateTimePicker.Designer.cs">
+      <DependentUpon>HDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateYearPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HDateYearPanel.Designer.cs">
+      <DependentUpon>HDateYearPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Date\HTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Date\HTimePicker.Designer.cs">
+      <DependentUpon>HTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\DDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HAnchorTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HAnchorTips.Designer.cs">
+      <DependentUpon>HAnchorTips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HMaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HMaskForm.Designer.cs">
+      <DependentUpon>HMaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HForm.Designer.cs">
+      <DependentUpon>HForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HFormNw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HFormNw.Designer.cs">
+      <DependentUpon>HFormNw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HFormSizable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HFormSizable.Designer.cs">
+      <DependentUpon>HFormSizable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HMessageForm.Designer.cs">
+      <DependentUpon>HMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HShadowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HShadowForm.designer.cs">
+      <DependentUpon>HShadowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HShadowFormSizable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HShadowFormSizable.designer.cs">
+      <DependentUpon>HShadowFormSizable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\HUpdateLayeredForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\HUpdateLayeredForm.Designer.cs">
+      <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\From\ZzMessageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\From\ZzMessageShow.Designer.cs">
+      <DependentUpon>ZzMessageShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\LED\HLedBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\LED\HLedBar.Designer.cs">
+      <DependentUpon>HLedBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\LED\HLedNum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\LED\HLedNum.Designer.cs">
+      <DependentUpon>HLedNum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryB.Designer.cs">
+      <DependentUpon>MaterialTaryB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryC.Designer.cs">
+      <DependentUpon>MaterialTaryC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialUserControlB.cs" />
+    <Compile Include="HFrom\MenuStrip\HMenuStripRenderer.cs" />
+    <Compile Include="HFrom\MenuStrip\HDarkMenuRenderer.cs" />
+    <Compile Include="HFrom\Panel\HFlodPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HFlodPanel.Designer.cs">
+      <DependentUpon>HFlodPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Panel\HGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HGroupBox.Designer.cs">
+      <DependentUpon>HGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Panel\HListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HListBox.Designer.cs">
+      <DependentUpon>HListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Panel\HMovePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HMovePanel.Designer.cs">
+      <DependentUpon>HMovePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Panel\HPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HPanel.Designer.cs">
+      <DependentUpon>HPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Panel\HUnlockerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Panel\HUnlockerPanel.Designer.cs">
+      <DependentUpon>HUnlockerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\ScreenShot\HScreenShotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\ScreenShot\HScreenShotForm.Designer.cs">
+      <DependentUpon>HScreenShotForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\ScrollSelect\HScrollSelectH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\ScrollSelect\HScrollSelectH.Designer.cs">
+      <DependentUpon>HScrollSelectH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\ScrollSelect\HScrollSelectV.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\ScrollSelect\HScrollSelectV.Designer.cs">
+      <DependentUpon>HScrollSelectV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\DataGridViewButtonClickEventArgs.cs" />
+    <Compile Include="HFrom\Tables\HMenuRender.cs" />
+    <Compile Include="HFrom\Tables\HContextMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HContextMenuStrip.Designer.cs">
+      <DependentUpon>HContextMenuStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HDataFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HDataFilterForm.Designer.cs">
+      <DependentUpon>HDataFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HDataGridView.Designer.cs">
+      <DependentUpon>HDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HDataGridViewButtonCell.cs" />
+    <Compile Include="HFrom\Tables\HTabButtonBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTabButtonBar.Designer.cs">
+      <DependentUpon>HTabButtonBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTabControl.Designer.cs">
+      <DependentUpon>HTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTabControlExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTabControlExt.Designer.cs">
+      <DependentUpon>HTabControlExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTreeView.Designer.cs">
+      <DependentUpon>HTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTreeLazyLoadEventArgs.cs" />
+    <Compile Include="HFrom\Tables\HTreeListColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HTreeList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HClearTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HSearchBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HLabel.Designer.cs">
+      <DependentUpon>HLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Text\HNumericUpDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HNumericUpDown.Designer.cs">
+      <DependentUpon>HNumericUpDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Text\HRichTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HRichTextbox.Designer.cs">
+      <DependentUpon>HRichTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Text\HTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HTextbox.Designer.cs">
+      <DependentUpon>HTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Text\HWaterMarkTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Text\HWaterMarkTextbox.Designer.cs">
+      <DependentUpon>HWaterMarkTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tips\HToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tips\HToolTip.Designer.cs">
+      <DependentUpon>HToolTip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HSocket\HTTP\HttpClient.cs" />
+    <Compile Include="HInformation\Log\HAppDataAddNum.cs" />
+    <Compile Include="HInformation\Log\HLogRecording.cs" />
+    <Compile Include="HInformation\PMaterial.cs" />
+    <Compile Include="HInterface\iHFrom.cs" />
+    <Compile Include="HInformation\HTary.cs" />
+    <Compile Include="HFrom\MaterialTary\MaterialUserControlA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\MaterialTary\MaterialTaryA.Designer.cs">
+      <DependentUpon>MaterialTaryA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFile\HTxtFile.cs" />
+    <Compile Include="HLangage\HLanguage.cs" />
+    <Compile Include="HLangage\HTranslation.cs" />
+    <Compile Include="HMath\H3PArc.cs" />
+    <Compile Include="HMath\HAngle.cs" />
+    <Compile Include="HMath\HBezier.cs" />
+    <Compile Include="HMath\HCatmullRom.cs" />
+    <Compile Include="HMath\HCircle.cs" />
+    <Compile Include="HMath\HCuboid.cs" />
+    <Compile Include="HMath\HDouble.cs" />
+    <Compile Include="HMath\HDrawPaint.cs" />
+    <Compile Include="HMath\HEllipse.cs" />
+    <Compile Include="HMath\HLine.cs" />
+    <Compile Include="HBase\HLineBase.cs" />
+    <Compile Include="HMath\HLine3D.cs" />
+    <Compile Include="HMath\HLines.cs" />
+    <Compile Include="HMath\HPoints.cs" />
+    <Compile Include="HMath\HPoint.cs" />
+    <Compile Include="HMath\HPoint3D.cs" />
+    <Compile Include="HMath\HRect.cs" />
+    <Compile Include="HMath\HRectangle.cs" />
+    <Compile Include="HMath\HScreen.cs" />
+    <Compile Include="HMath\HSphere.cs" />
+    <Compile Include="HMath\HStringOutline.cs" />
+    <Compile Include="HMath\HTriangle.cs" />
+    <Compile Include="HMath\HAnimation.cs" />
+    <Compile Include="HThread\HTaskStart.cs" />
+    <Compile Include="HThread\HTask\HTaskData.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HThreadHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HThreadPoolHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HTaskHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HTaskFactoryHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HTaskSchedulerHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HParallelHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HPlinqHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HBackgroundWorkerHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HQueueUserWorkItemHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HIThreadPoolWorkItemHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HProcessHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HExecutionContextHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HRegisteredWaitHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HIoCompletionPortHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HThreadPoolTuningHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HPartitionerHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HConcurrentExclusiveSchedulerPairHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HLazyInitHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HParallelOptionsHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HThreadLegacyHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HThreadDataSlotHelp.cs" />
+    <Compile Include="HThread\Help\ThreadCreate\HApartmentStateHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HMonitorHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HMutexHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HSemaphoreHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HSemaphoreSlimHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HReaderWriterLockSlimHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HSpinLockHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HSpinWaitHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HInterlockedHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HVolatileHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HMemoryBarrierHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HLockHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HWaitHandleHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HReaderWriterLockHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HMethodImplSynchronizedHelp.cs" />
+    <Compile Include="HThread\Help\Synchronization\HKernelObjectSecurityHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HAutoResetEventHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HManualResetEventHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HCountdownEventHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HBarrierHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HCancellationTokenHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HBlockingCollectionHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HChannelHelp.cs" />
+    <Compile Include="HThread\Help\Signaling\HManualResetEventSlimHelp.cs" />
+    <Compile Include="HThread\Help\ConcurrentCollection\HConcurrentDictionaryHelp.cs" />
+    <Compile Include="HThread\Help\ConcurrentCollection\HConcurrentQueueHelp.cs" />
+    <Compile Include="HThread\Help\ConcurrentCollection\HConcurrentStackHelp.cs" />
+    <Compile Include="HThread\Help\ConcurrentCollection\HConcurrentBagHelp.cs" />
+    <Compile Include="HThread\Help\ConcurrentCollection\HImmutableCollectionHelp.cs" />
+    <Compile Include="HThread\Help\Async\HAsyncAwaitHelp.cs" />
+    <Compile Include="HThread\Help\Async\HValueTaskHelp.cs" />
+    <Compile Include="HThread\Help\Async\HIAsyncEnumerableHelp.cs" />
+    <Compile Include="HThread\Help\Async\HTaskCompletionSourceHelp.cs" />
+    <Compile Include="HThread\Help\Async\HConfigureAwaitHelp.cs" />
+    <Compile Include="HThread\Help\Async\HSynchronizationContextHelp.cs" />
+    <Compile Include="HThread\Help\Async\HIAsyncDisposableHelp.cs" />
+    <Compile Include="HThread\Help\Async\HIValueTaskSourceHelp.cs" />
+    <Compile Include="HThread\Help\Async\HAggregateExceptionHelp.cs" />
+    <Compile Include="HThread\Help\Async\HAsyncMethodBuilderHelp.cs" />
+    <Compile Include="HThread\Help\ThreadLocal\HThreadStaticHelp.cs" />
+    <Compile Include="HThread\Help\ThreadLocal\HThreadLocalHelp.cs" />
+    <Compile Include="HThread\Help\ThreadLocal\HAsyncLocalHelp.cs" />
+    <Compile Include="HThread\Help\Timer\HThreadingTimerHelp.cs" />
+    <Compile Include="HThread\Help\Timer\HTimersTimerHelp.cs" />
+    <Compile Include="HThread\Help\Timer\HPeriodicTimerHelp.cs" />
+    <Compile Include="HThread\Help\Timer\HDispatcherTimerHelp.cs" />
+    <Compile Include="HThread\Help\Timer\HFormsTimerHelp.cs" />
+    <Compile Include="HThread\Help\DataflowPipeline\HTplDataflowHelp.cs" />
+    <Compile Include="HThread\Help\DataflowPipeline\HPipelinesHelp.cs" />
+    <Compile Include="HThread\Help\Diagnostics\HThreadDiagnosticsHelp.cs" />
+    <Compile Include="HThread\Help\Diagnostics\HThreadExceptionHelp.cs" />
+    <Compile Include="HThread\Help\Diagnostics\HProcessThreadHelp.cs" />
+    <Compile Include="HThread\Help\LegacyAsync\HApmHelp.cs" />
+    <Compile Include="HThread\Help\LegacyAsync\HEapHelp.cs" />
+    <Compile Include="HThread\Help\LegacyAsync\HIAsyncResultHelp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HInformation\HMaterial.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HControl\Coordinate\HCoordinateA.resx">
+      <DependentUpon>HCoordinateA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HControl\Coordinate\SetDecimalPlaces.resx">
+      <DependentUpon>SetDecimalPlaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HControl\Coordinate\SetFormat.resx">
+      <DependentUpon>SetFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HControl\Coordinate\SetLayer.resx">
+      <DependentUpon>SetLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HScrollBar.resx">
+      <DependentUpon>HScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HScrollBarExt.resx">
+      <DependentUpon>HScrollBarExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HProgressBar.resx">
+      <DependentUpon>HProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HRoundProgressBar.resx">
+      <DependentUpon>HRoundProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HTrackBar.resx">
+      <DependentUpon>HTrackBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HVScrollBar.resx">
+      <DependentUpon>HVScrollBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HVScrollBarExt.resx">
+      <DependentUpon>HVScrollBarExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HWave.resx">
+      <DependentUpon>HWave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Bars\HWaveProgressBar.resx">
+      <DependentUpon>HWaveProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Base\HAnchorBase.resx">
+      <DependentUpon>HAnchorBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Base\HControlBase.resx">
+      <DependentUpon>HControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Combbox\HCombobox.resx">
+      <DependentUpon>HCombobox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Combbox\HComboboxDropForm.resx">
+      <DependentUpon>HComboboxDropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Combbox\HComboboxEx.resx">
+      <DependentUpon>HComboboxEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HDateDayPanel.resx">
+      <DependentUpon>HDateDayPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HDateMonthPanel.resx">
+      <DependentUpon>HDateMonthPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HDateTimeDropForm.resx">
+      <DependentUpon>HDateTimeDropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HDateTimePicker.resx">
+      <DependentUpon>HDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HDateYearPanel.resx">
+      <DependentUpon>HDateYearPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Date\HTimePicker.resx">
+      <DependentUpon>HTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HAnchorTips.resx">
+      <DependentUpon>HAnchorTips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HMaskForm.resx">
+      <DependentUpon>HMaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HForm.resx">
+      <DependentUpon>HForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HFormNw.resx">
+      <DependentUpon>HFormNw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HFormSizable.resx">
+      <DependentUpon>HFormSizable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HMessageForm.resx">
+      <DependentUpon>HMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HShadowForm.resx">
+      <DependentUpon>HShadowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HShadowFormSizable.resx">
+      <DependentUpon>HShadowFormSizable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\HUpdateLayeredForm.resx">
+      <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\ZvMessageShow.resx">
+      <DependentUpon>ZvMessageShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\ZxMessageShow.resx">
+      <DependentUpon>ZxMessageShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\From\ZzMessageShow.resx">
+      <DependentUpon>ZzMessageShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\LED\HLedNum.resx">
+      <DependentUpon>HLedNum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryA.resx">
+      <DependentUpon>MaterialTaryA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryB.resx">
+      <DependentUpon>MaterialTaryB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryC.resx">
+      <DependentUpon>MaterialTaryC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Panel\HListBox.resx">
+      <DependentUpon>HListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Panel\HUnlockerPanel.resx">
+      <DependentUpon>HUnlockerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\ScreenShot\HScreenShotForm.resx">
+      <DependentUpon>HScreenShotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\ScrollSelect\HScrollSelectH.resx">
+      <DependentUpon>HScrollSelectH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\ScrollSelect\HScrollSelectV.resx">
+      <DependentUpon>HScrollSelectV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Tables\HDataGridView.resx">
+      <DependentUpon>HDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Tables\HTabButtonBar.resx">
+      <DependentUpon>HTabButtonBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Tables\HTabControl.resx">
+      <DependentUpon>HTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Tables\HTabControlExt.resx">
+      <DependentUpon>HTabControlExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Text\HNumericUpDown.resx">
+      <DependentUpon>HNumericUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Text\HRichTextbox.resx">
+      <DependentUpon>HRichTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Text\HTextbox.resx">
+      <DependentUpon>HTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HFrom\Text\HWaterMarkTextbox.resx">
+      <DependentUpon>HWaterMarkTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="HFrom\Text\HSearchBox.Designer.cs">
+      <DependentUpon>HSearchBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HPagination.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HPagination.Designer.cs">
+      <DependentUpon>HPagination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HFrom\Tables\HPagedDataGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HFrom\Tables\HPagedDataGridView.Designer.cs">
+      <DependentUpon>HPagedDataGridView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

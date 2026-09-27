@@ -1,0 +1,269 @@
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Text;
+using System.Windows.Forms;
+using HFromUI.HAttribute;
+using HFromUI.HEnum;
+using HFromUI.HMath;
+
+namespace HFromUI.HControl.Base
+{
+    using HFromUI.HLangage;
+    /// <summary>
+    /// 标签基类：继承 Control 全自绘（同 HBadge 风格），具备 Windows Label 的常用能力
+    /// （AutoSize、TextAlign、BorderStyle、&amp; 助记符），并支持圆角背景。
+    /// 圆角通过 Radius 设置：小于等于 0（0 或负数）即直角矩形，不使用枚举或开关。
+    /// </summary>
+    [DefaultProperty("Text")]
+    [DefaultEvent("Click")]
+    public class HLabelBase : Control
+    {
+        private ContentAlignment _textAlign = ContentAlignment.TopLeft;
+        private BorderStyle _borderStyle = BorderStyle.None;
+        private bool _autoSize = true;
+        private bool _useMnemonic = true;
+        private int _radius;
+        private int _borderWidth = 1;
+        private Color _shapeBackColor = Color.Empty;
+
+        public HLabelBase()
+        {
+            SetStyle(ControlStyles.UserPaint | ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw |
+                     ControlStyles.SupportsTransparentBackColor, true);
+            Font = new Font("微软雅黑", 9f);
+            Size = new Size(100, 23);
+            UpdateAutoSize();
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("圆角半径"), HDescriptionLanguage("圆角半径，0 或负数为直角矩形"), Browsable(true)]
+        [DefaultValue(0)]
+        public int Radius
+        {
+            get => _radius;
+            set { _radius = value; Invalidate(); }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("边框宽度"), HDescriptionLanguage("边框宽度（像素），0 或负数不描边；仅 FixedSingle/圆角 Fixed3D 生效，描边向内收半个线宽不缺边"), Browsable(true)]
+        [DefaultValue(1)]
+        public int BorderWidth
+        {
+            get => _borderWidth;
+            set
+            {
+                _borderWidth = value;
+                UpdateAutoSize();
+                Invalidate();
+            }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("框内背景色"), HDescriptionLanguage("圆角/椭圆/胶囊外形内部的背景色；未设置时使用控件背景色。颜色只填充外形内部，圆角外不染色"), Browsable(true)]
+        [DefaultValue(typeof(Color), "")]
+        public Color ShapeBackColor
+        {
+            get => _shapeBackColor;
+            set { _shapeBackColor = value; Invalidate(); }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("文字对齐"), HDescriptionLanguage("文字对齐（九宫格）"), Browsable(true)]
+        [DefaultValue(ContentAlignment.TopLeft)]
+        public ContentAlignment TextAlign
+        {
+            get => _textAlign;
+            set { _textAlign = value; Invalidate(); }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("自动大小"), HDescriptionLanguage("是否随文字自动调整大小"), Browsable(true)]
+        [DefaultValue(true)]
+        public override bool AutoSize
+        {
+            get => _autoSize;
+            set
+            {
+                _autoSize = value;
+                // 打开自动尺寸时立即贴合一次；关闭时保留当前尺寸（与 Windows Label 一致）
+                if (value) UpdateAutoSize();
+                Invalidate();
+            }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("边框样式"), HDescriptionLanguage("边框样式：无边框/单线/三维"), Browsable(true)]
+        [DefaultValue(BorderStyle.None)]
+        public BorderStyle BorderStyle
+        {
+            get => _borderStyle;
+            set { _borderStyle = value; UpdateAutoSize(); Invalidate(); }
+        }
+
+        [HCategoryLanguage("标签基础设置"), HDisplayNameLanguage("启用助记符"), HDescriptionLanguage("是否将 & 字符解释为助记符（按下 Alt+字符时焦点跳到下一控件）"), Browsable(true)]
+        [DefaultValue(true)]
+        public bool UseMnemonic
+        {
+            get => _useMnemonic;
+            set { _useMnemonic = value; UpdateAutoSize(); Invalidate(); }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+            UpdateAutoSize();
+            Invalidate();
+        }
+
+        protected override void OnFontChanged(EventArgs e)
+        {
+            base.OnFontChanged(e);
+            UpdateAutoSize();
+            Invalidate();
+        }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            base.OnPaddingChanged(e);
+            UpdateAutoSize();
+            Invalidate();
+        }
+
+        /// <summary>助记符语义同 Windows Label：自身不取焦点，把焦点交给 Tab 序中的下一控件。</summary>
+        protected override bool ProcessMnemonic(char charCode)
+        {
+            if (_useMnemonic && IsMnemonic(charCode, Text) && Parent != null)
+            {
+                Parent.SelectNextControl(this, true, true, true, true);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 圆角分支在背景阶段整块铺父容器底色（外扩 1px 防双缓冲黑晕）再填外形底色，
+        /// 圆角四角透出父容器；直角分支走系统 GDI 不透明擦除。
+        /// 放在 OnPaintBackground（而非 OnPaint），避免双缓冲两阶段半透明合成产生余晕。
+        /// </summary>
+        protected override void OnPaintBackground(PaintEventArgs pevent)
+        {
+            if (_radius <= 0)
+            {
+                base.OnPaintBackground(pevent);
+                return;
+            }
+            var g = pevent.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            HDrawPaint.FillParentBackdrop(g, Width, Height, Parent?.BackColor ?? SystemColors.Control);
+            Color fill = _shapeBackColor.IsEmpty ? BackColor : _shapeBackColor;
+            using (GraphicsPath path = HDrawPaint.CreateOuterBoxPath(Width, Height, _radius))
+            using (var bg = new SolidBrush(fill))
+                g.FillPath(bg, path);
+        }
+
+        /// <summary>响应 Paint 事件。</summary>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            var g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+            var rect = new Rectangle(0, 0, Width - 1, Height - 1);
+            using (GraphicsPath path = HDrawPaint.CreateOuterBoxPath(Width, Height, _radius))
+            {
+                // 裁剪在外形内，防止文字溢出圆角；文字区扣除内边距与边框
+                var oldClip = g.Clip;
+                g.SetClip(new Region(path), CombineMode.Replace);
+                int inset = _borderStyle == BorderStyle.None ? 0
+                    : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
+                var textRect = new Rectangle(
+                    Padding.Left + inset, Padding.Top + inset,
+                    Width - Padding.Horizontal - inset * 2,
+                    Height - Padding.Vertical - inset * 2);
+                TextRenderer.DrawText(g, Text, Font, textRect, ForeColor, BuildTextFlags());
+                g.Clip = oldClip;
+
+                DrawBorder(g, rect);
+            }
+        }
+
+        /// <summary>按边框样式描边：单线/圆角三维沿内缩路径绘制（粗边完整不缺边）；直角三维用原生立体边。</summary>
+        private void DrawBorder(Graphics g, Rectangle rect)
+        {
+            switch (_borderStyle)
+            {
+                case BorderStyle.FixedSingle:
+                    DrawRoundedFrame(g, SystemColors.ControlDark);
+                    break;
+                case BorderStyle.Fixed3D:
+                    if (_radius > 0) DrawRoundedFrame(g, SystemColors.ControlDark);
+                    else ControlPaint.DrawBorder3D(g, rect, Border3DStyle.Sunken);
+                    break;
+            }
+        }
+
+        /// <summary>圆角用向内填充环（外轮廓固定像素盒、改线宽外沿不动）；直角保留内缩居中笔。</summary>
+        private void DrawRoundedFrame(Graphics g, Color color)
+        {
+            if (_borderWidth <= 0) return;
+            if (_radius > 0)
+            {
+                HDrawPaint.FillRoundedBorder(g, Width, Height, _radius, _borderWidth, color);
+                return;
+            }
+            using (GraphicsPath path = HDrawPaint.CreateFramePath(Width, Height, 0, _borderWidth))
+            using (var pen = new Pen(color, _borderWidth))
+                g.DrawPath(pen, path);
+        }
+
+        /// <summary>
+        /// AutoSize 时按文字实际显示尺寸调整控件大小：
+        /// 宽度走 GDI 严格步进宽（与 HTextBoxBase 同源，不含 MeasureText 的尾部安全余量，也不会偏小），
+        /// 高度走无衬距文字测量，再对称计入边框内缩量与内边距——文字、边框、内边距任一变化都重新贴合。
+        /// </summary>
+        private void UpdateAutoSize()
+        {
+            if (!_autoSize) return;
+            string shown = _useMnemonic ? StripMnemonic(Text ?? string.Empty) : (Text ?? string.Empty);
+            int textW = HDrawPaint.TextAdvance(shown, Font);
+            int textH = TextRenderer.MeasureText(HTranslation.GetContent("Ag中"), Font, Size.Empty,
+                TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine).Height;
+            // 文字区每侧让开的量（与 OnPaint 的 inset 完全一致）
+            int inset = _borderStyle == BorderStyle.None ? 0
+                : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
+            Size = new Size(
+                textW + Padding.Horizontal + inset * 2 + 2,
+                textH + Padding.Vertical + inset * 2 + 2);
+        }
+
+        /// <summary>按 Windows Label 语义去掉助记符标记：单个 &amp; 跳过不显示，连续两个 &amp; 显示为一个。</summary>
+        private static string StripMnemonic(string s)
+        {
+            var sb = new StringBuilder(s.Length);
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '&' && i + 1 < s.Length) sb.Append(s[++i]);
+                else sb.Append(s[i]);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>九宫格对齐与换行/省略号/助记符标志（非自动尺寸时允许换行并以省略号截断）。</summary>
+        private TextFormatFlags BuildTextFlags()
+        {
+            var flags = TextFormatFlags.WordBreak;
+            string a = _textAlign.ToString();
+            if (a.EndsWith("Left")) flags |= TextFormatFlags.Left;
+            else if (a.EndsWith("Right")) flags |= TextFormatFlags.Right;
+            else flags |= TextFormatFlags.HorizontalCenter;
+            if (a.StartsWith("Top")) flags |= TextFormatFlags.Top;
+            else if (a.StartsWith("Bottom")) flags |= TextFormatFlags.Bottom;
+            else flags |= TextFormatFlags.VerticalCenter;
+
+            if (_autoSize)
+                flags |= TextFormatFlags.SingleLine;
+            else
+                flags |= TextFormatFlags.EndEllipsis;
+            if (!_useMnemonic)
+                flags |= TextFormatFlags.NoPrefix;
+            return flags;
+        }
+    }
+}
