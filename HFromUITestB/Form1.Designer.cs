@@ -34,8 +34,8 @@ namespace HFromUITestB
             this.hRadioButton2 = new HFromUI.HControl.Tools.Button.HRadioButton();
             this.hRadioButton1 = new HFromUI.HControl.Tools.Button.HRadioButton();
             this.hPushButton1 = new HFromUI.HControl.Tools.Button.HPushButton();
-            this.hSearchBox1 = new HFromUI.HControl.Editors.HSearchBox();
-            this.hNumericUpDown1 = new HFromUI.HControl.Editors.HNumericUpDown();
+            this.hSearchBox1 = new HFromUI.HControl.Tools.Editors.HSearchBox();
+            this.hNumericUpDown1 = new HFromUI.HControl.Tools.Editors.HNumericUpDown();
             this.SuspendLayout();
             // 
             // hSlideSwitch1
@@ -170,13 +170,13 @@ namespace HFromUITestB
             0,
             0});
             this.hNumericUpDown1.Name = "hNumericUpDown1";
-            this.hNumericUpDown1.NumStyle = HFromUI.HControl.Editors.HEditStyle.Neon;
+            this.hNumericUpDown1.NumStyle = HFromUI.HControl.Tools.Editors.HEditStyle.Neon;
             this.hNumericUpDown1.Radius = 30;
             this.hNumericUpDown1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.hNumericUpDown1.SelectionLength = 0;
             this.hNumericUpDown1.SelectionStart = 5;
             this.hNumericUpDown1.Size = new System.Drawing.Size(328, 82);
-            this.hNumericUpDown1.SpinLayout = HFromUI.HControl.Editors.HSpinLayout.Split;
+            this.hNumericUpDown1.SpinLayout = HFromUI.HControl.Tools.Editors.HSpinLayout.Split;
             this.hNumericUpDown1.TabIndex = 6;
             this.hNumericUpDown1.Text = "60.00";
             this.hNumericUpDown1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -211,13 +211,13 @@ namespace HFromUITestB
 
         #endregion
 
-        private HFromUI.HControl.Editors.HSearchBox hSearchBox1;
+        private HFromUI.HControl.Tools.Editors.HSearchBox hSearchBox1;
         private HFromUI.HControl.Tools.Button.HPushButton hPushButton1;
         private HFromUI.HControl.Tools.Button.HRadioButton hRadioButton1;
         private HFromUI.HControl.Tools.Button.HRadioButton hRadioButton2;
         private HFromUI.HControl.Tools.Button.HCheckBox hCheckBox1;
         private HFromUI.HControl.Tools.Button.HSlideSwitch hSlideSwitch1;
-        private HFromUI.HControl.Editors.HNumericUpDown hNumericUpDown1;
+        private HFromUI.HControl.Tools.Editors.HNumericUpDown hNumericUpDown1;
     }
 }
 

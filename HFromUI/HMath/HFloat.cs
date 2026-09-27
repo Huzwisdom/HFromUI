@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using HFromUI.HFrom.From;
+using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
 {
@@ -282,7 +283,7 @@ namespace HFromUI.HMath
             => destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
 
         /// <summary>zxMessageShow 字段。</summary>
-        private ZvMessageShow zxMessageShow = new ZvMessageShow();
+        private HMessageA zxMessageShow = new HMessageA();
 
         /// <summary>ConvertFrom 方法。</summary>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)

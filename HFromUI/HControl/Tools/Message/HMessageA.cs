@@ -4,74 +4,318 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace HFromUI.HControl.Coordinate
+namespace HFromUI.HControl.Tools.Message
 {
-    using HFromUI.HLangage;
-    public partial class SetFormat : Form
+    public partial class HMessageA : Form
     {
-
-        /// <summary>IsEnableFormat 成员。</summary>
-        public bool IsEnableFormat { set; get; }
-        /// <summary>FormatX1 成员。</summary>
-        public double FormatX1 { set; get; }
-        /// <summary>FormatY1 成员。</summary>
-        public double FormatY1 { set; get; }
-        /// <summary>FormatX2 成员。</summary>
-        public double FormatX2 { set; get; }
-        /// <summary>FormatY2 成员。</summary>
-        public double FormatY2 { set; get; }
-
         private SynchronizationContext _uiContext;
         /// <summary>IsCanClose 成员。</summary>
         public bool IsCanClose { set; get; } = true;
         /// <summary>IsShow 成员。</summary>
         public bool IsShow {private set; get; }
-        public SetFormat()
+        public HMessageA()
         {
             InitializeComponent();
-
-            if (!this.DesignMode && System.ComponentModel.LicenseManager.UsageMode != System.ComponentModel.LicenseUsageMode.Designtime)
+            if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
             {
-
-                time_show.Enabled = IsShow;
-                _uiContext = SynchronizationContext.Current;
-                LoadTranslationLanguage();
-                HTranslation.TranslationLanguageChanged += HTranslation_TranslationLanguageChanged;
-                // 坐标输入仅允许数字、小数点、负号（原 HTextbox.Regex = "[0-9.\\-]"）
-                TB_setX1.KeyPress += AllowDecimalOnly;
-                TB_setY1.KeyPress += AllowDecimalOnly;
-                TB_setX2.KeyPress += AllowDecimalOnly;
-                TB_setY2.KeyPress += AllowDecimalOnly;
+                return;
             }
-
-
+            time_show.Enabled = IsShow;
+            _uiContext = SynchronizationContext.Current;
+        }
+        /// <summary>HMessageA0 字段。</summary>
+        private static HMessageA HMessageA0 = new HMessageA();
+        /// <summary>HMessageAA 字段。</summary>
+        private static HMessageA HMessageAA = new HMessageA();
+        /// <summary>HMessageAB 字段。</summary>
+        private static HMessageA HMessageAB = new HMessageA();
+        /// <summary>HMessageAC 字段。</summary>
+        private static HMessageA HMessageAC = new HMessageA();
+        /// <summary>HMessageAD 字段。</summary>
+        private static HMessageA HMessageAD = new HMessageA();
+        /// <summary>HMessageAE 字段。</summary>
+        private static HMessageA HMessageAE = new HMessageA();
+        /// <summary>HMessageAF 字段。</summary>
+        private static HMessageA HMessageAF = new HMessageA();
+        /// <summary>HMessageAG 字段。</summary>
+        private static HMessageA HMessageAG = new HMessageA();
+        /// <summary>HMessageAH 字段。</summary>
+        private static HMessageA HMessageAH = new HMessageA();
+        public static bool GetIsShow
+        {
+            get { return HMessageA0.IsShow; }
+        }
+        public static bool GetIsShowA
+        {
+            get { return HMessageAA.IsShow; }
+        }
+        public static bool GetIsShowB
+        {
+            get { return HMessageAB.IsShow; }
+        }
+        public static bool GetIsShowC
+        {
+            get { return HMessageAC.IsShow; }
+        }
+        public static bool GetIsShowD
+        {
+            get { return HMessageAD.IsShow; }
+        }
+        public static bool GetIsShowE
+        {
+            get { return HMessageAE.IsShow; }
+        }
+        public static bool GetIsShowF
+        {
+            get { return HMessageAF.IsShow; }
+        }
+        public static bool GetIsShowG
+        {
+            get { return HMessageAG.IsShow; }
+        }
+        public static bool GetIsShowH
+        {
+            get { return HMessageAH.IsShow; }
         }
 
-        /// <summary>仅允许数字、小数点、负号与控制字符输入。</summary>
-        private static void AllowDecimalOnly(object sender, KeyPressEventArgs e)
+        public static bool ShowIsCanClose
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
+            set {
+                HMessageA0.IsCanClose = value;
+            }
+            get {
+                return HMessageA0.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseA
+        {
+            set
             {
-                e.Handled = true;
+                HMessageAA.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAA.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseB
+        {
+            set
+            {
+                HMessageAB.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAB.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseC
+        {
+            set
+            {
+                HMessageAC.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAC.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseD
+        {
+            set
+            {
+                HMessageAD.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAD.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseE
+        {
+            set
+            {
+                HMessageAE.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAE.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseF
+        {
+            set
+            {
+                HMessageAF.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAF.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseG
+        {
+            set
+            {
+                HMessageAG.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAG.IsCanClose;
+            }
+        }
+        public static bool ShowIsCanCloseH
+        {
+            set
+            {
+                HMessageAH.IsCanClose = value;
+            }
+            get
+            {
+                return HMessageAH.IsCanClose;
             }
         }
 
-        private void HTranslation_TranslationLanguageChanged(object sender, EventArgs e)
+
+        /// <summary>ShowClose 方法。</summary>
+        public static void ShowClose()
         {
-            LoadTranslationLanguage();
+            if (HMessageA0.IsShow)
+            {
+                HMessageA0.btn_Close_Click(null, null);
+            }
+         
+        }
+        /// <summary>ShowCloseA 方法。</summary>
+        public static void ShowCloseA()
+        {
+            if (HMessageAA.IsShow)
+            {
+                HMessageAA.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseB 方法。</summary>
+        public static void ShowCloseB()
+        {
+            if (HMessageAB.IsShow)
+            {
+                HMessageAB.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseC 方法。</summary>
+        public static void ShowCloseC()
+        {
+            if (HMessageAC.IsShow)
+            {
+                HMessageAC.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseD 方法。</summary>
+        public static void ShowCloseD()
+        {
+            if (HMessageAD.IsShow)
+            {
+                HMessageAD.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseE 方法。</summary>
+        public static void ShowCloseE()
+        {
+            if (HMessageAE.IsShow)
+            {
+                HMessageAE.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseF 方法。</summary>
+        public static void ShowCloseF()
+        {
+            if (HMessageAF.IsShow)
+            {
+                HMessageAF.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseG 方法。</summary>
+        public static void ShowCloseG()
+        {
+            if (HMessageAG.IsShow)
+            {
+                HMessageAG.btn_Close_Click(null, null);
+            }
+        }
+        /// <summary>ShowCloseH 方法。</summary>
+        public static void ShowCloseH()
+        {
+            if (HMessageAH.IsShow)
+            {
+                HMessageAH.btn_Close_Click(null, null);
+            }
         }
 
-
-        /// <summary>LoadTranslationLanguage 方法。</summary>
-        public void LoadTranslationLanguage()
+        /// <summary>显示。</summary>
+        public static void Show(string content, string title = "", int mode = 0,  string closeContent = "")
         {
-            lbl_enable.Text = HTranslation.GetContent("显示幅面：");
-            lbl_setX1.Text = HTranslation.GetContent("设置对角点1X：");
-            lbl_setY1.Text = HTranslation.GetContent("设置对角点1Y：");
-            lbl_setX2.Text = HTranslation.GetContent("设置对角点2X：");
-            lbl_setY2.Text = HTranslation.GetContent("设置对角点2Y：");
+            HMessageA0.ZzShow(content, title, mode,closeContent);
         }
+        /// <summary>ShowA 方法。</summary>
+        public static void ShowA(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAA.ZzShow(content, title, mode,  closeContent);
 
+        }
+        /// <summary>ShowB 方法。</summary>
+        public static void ShowB(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAB.ZzShow(content, title, mode,  closeContent);
+
+        }
+        /// <summary>ShowC 方法。</summary>
+        public static void ShowC(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAC.ZzShow(content, title, mode,  closeContent);
+
+        }
+        /// <summary>ShowD 方法。</summary>
+        public static void ShowD(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAD.ZzShow(content, title, mode,  closeContent);
+
+        }
+        /// <summary>ShowE 方法。</summary>
+        public static void ShowE(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAE.ZzShow(content, title, mode,  closeContent);
+        }
+        /// <summary>ShowF 方法。</summary>
+        public static void ShowF(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAF.ZzShow(content, title, mode,  closeContent);
+        }
+        /// <summary>ShowG 方法。</summary>
+        public static void ShowG(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAG.ZzShow(content, title, mode,  closeContent);
+        }
+        /// <summary>ShowH 方法。</summary>
+        public static void ShowH(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageAH.ZzShow(content, title, mode,  closeContent);
+        }
+        /// <summary>Show2 方法。</summary>
+        public static void Show2(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageA HMessageAFF = new HMessageA();
+            HMessageAFF.ZzShow(content,title,mode,  closeContent);
+        }
+   
+        /// <summary>ShowDialog 方法。</summary>
+        public static DialogResult ShowDialog(string content, string title = "", int mode = 0,  string closeContent = "")
+        {
+            HMessageA HMessageADD = new HMessageA();
+            DialogResult DialogResultHMessageADD= HMessageADD.ZzShowDialog(content, title, mode,  closeContent);
+            HMessageADD.Dispose();
+            HMessageADD = null;
+            return DialogResultHMessageADD;
+        }
         /// <summary>响应 FormClosing 事件。</summary>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -98,7 +342,7 @@ namespace HFromUI.HControl.Coordinate
         /// <summary>modeTitle 字段。</summary>
         private int modeTitle = 0;
         /// <summary>ZzShow 方法。</summary>
-        public  void ZzShow(string content, string title="",int mode=0,string okContent = "",string closeContent="")
+        public  void ZzShow(string content, string title="",int mode=0,string closeContent="")
         {
             _uiContext.Post(_ =>
             {
@@ -130,14 +374,6 @@ namespace HFromUI.HControl.Coordinate
                     if (!string.IsNullOrWhiteSpace(title))
                     {
                         lbl_title.Text = title; this.Text = title;
-                    }
-                    if (!string.IsNullOrWhiteSpace(okContent))
-                    {
-                        btn_OK.Text = okContent;
-                    }
-                    else
-                    {
-                        btn_OK.Text = "Confirm";
                     }
                     if (!string.IsNullOrWhiteSpace(closeContent))
                     {
@@ -186,14 +422,6 @@ namespace HFromUI.HControl.Coordinate
                         {
                             lbl_title.Text = title; this.Text = title;
                         }
-                        if (!string.IsNullOrWhiteSpace(okContent))
-                        {
-                            btn_OK.Text = okContent;
-                        }
-                        else
-                        {
-                            btn_OK.Text = "Confirm";
-                        }
                         if (!string.IsNullOrWhiteSpace(closeContent))
                         {
                             btn_Close.Text = closeContent;
@@ -215,7 +443,7 @@ namespace HFromUI.HControl.Coordinate
 
         }
         /// <summary>ZzShowDialog 方法。</summary>
-        public DialogResult ZzShowDialog(string content, string title = "", int mode = 0, string okContent = "", string closeContent = "")
+        public DialogResult ZzShowDialog(string content, string title = "", int mode = 0,  string closeContent = "")
         {
             if (!this.InvokeRequired)
             {
@@ -246,14 +474,6 @@ namespace HFromUI.HControl.Coordinate
                 if (!string.IsNullOrWhiteSpace(title))
                 {
                     lbl_title.Text = title; this.Text = title;
-                }
-                if (!string.IsNullOrWhiteSpace(okContent))
-                {
-                    btn_OK.Text = okContent;
-                }
-                else
-                {
-                    btn_OK.Text = "Confirm";
                 }
                 if (!string.IsNullOrWhiteSpace(closeContent))
                 {
@@ -298,14 +518,6 @@ namespace HFromUI.HControl.Coordinate
                     if (!string.IsNullOrWhiteSpace(title))
                     {
                         lbl_title.Text = title; this.Text = title;
-                    }
-                    if (!string.IsNullOrWhiteSpace(okContent))
-                    {
-                        btn_OK.Text = okContent;
-                    }
-                    else
-                    {
-                        btn_OK.Text = "Confirm";
                     }
                     if (!string.IsNullOrWhiteSpace(closeContent))
                     {
@@ -352,19 +564,11 @@ namespace HFromUI.HControl.Coordinate
             }
             if (IsCanClose)
             {
-                btn_OK.BackColor = Color.White;
                 btn_Close.BackColor = Color.White;
             }
             else
             {
-                if (btn_OK.BackColor == Color.White)
-                {
-                    btn_OK.BackColor = Color.Red;
-                }
-                else
-                {
-                    btn_OK.BackColor = Color.White;
-                }
+                
                 if (btn_Close.BackColor == Color.White)
                 {
                     btn_Close.BackColor = Color.Red;
@@ -395,50 +599,10 @@ namespace HFromUI.HControl.Coordinate
             }
         
         }
-        /// <summary>ZxMessageShow_Load 方法。</summary>
-        private void ZxMessageShow_Load(object sender, EventArgs e)
+        /// <summary>HMessageA_Load 方法。</summary>
+        private void HMessageA_Load(object sender, EventArgs e)
         {
             IsShow = true;
-        }
-
-        /// <summary>cb_enable_CheckedChanged 方法。</summary>
-        private void cb_enable_CheckedChanged(object sender, EventArgs e)
-        {
-            IsEnableFormat = cb_enable.Checked;
-        }
-
-        /// <summary>TB_setX1_TextChanged 方法。</summary>
-        private void TB_setX1_TextChanged(object sender, EventArgs e)
-        {
-            double d; if (double.TryParse(TB_setX1.Text, out d)) FormatX1 = d;
-        }
-
-        /// <summary>TB_setY1_TextChanged 方法。</summary>
-        private void TB_setY1_TextChanged(object sender, EventArgs e)
-        {
-            double d; if (double.TryParse(TB_setY1.Text, out d)) FormatY1 = d;
-        }
-
-        /// <summary>TB_setX2_TextChanged 方法。</summary>
-        private void TB_setX2_TextChanged(object sender, EventArgs e)
-        {
-            double d; if (double.TryParse(TB_setX2.Text, out d)) FormatX2 = d;
-        }
-
-        /// <summary>TB_setY2_TextChanged 方法。</summary>
-        private void TB_setY2_TextChanged(object sender, EventArgs e)
-        {
-            double d; if (double.TryParse(TB_setY2.Text, out d)) FormatY2 = d;
-        }
-
-        public void SetValue(bool isenable,double x1,double y1,double x2,double y2)
-        {
-            IsEnableFormat = cb_enable.Checked = isenable;
-            FormatX1 = x1; FormatX2 = x2; FormatY1 = y1; FormatY2 = y2;
-            TB_setX1.Text = x1.ToString();
-            TB_setX2.Text = x2.ToString();
-            TB_setY1.Text = y1.ToString();
-            TB_setY2.Text = y2.ToString();
         }
     }
 }

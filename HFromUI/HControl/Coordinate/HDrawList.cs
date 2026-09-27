@@ -18,6 +18,7 @@ namespace HFromUI.HControl.Coordinate
     using HFromUI.HLangage;
     using HFromUI.HInterface;
     using HFromUI.HFrom.From;
+    using HFromUI.HControl.Tools.Message;
 
     public class HDrawList
     {
@@ -795,7 +796,7 @@ namespace HFromUI.HControl.Coordinate
             return OK.FromError(2);
         }
         /// <summary>zxMessageShow 字段。</summary>
-        private ZxMessageShow zxMessageShow = new ZxMessageShow();
+        private HMessageB zxMessageShow = new HMessageB();
         /// <summary>Last 方法。</summary>
         public OK Last(Action<object> action)
         {

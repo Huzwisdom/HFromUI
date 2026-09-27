@@ -13,7 +13,6 @@ namespace HFromUI.HFrom.From
     using HFromUI.HData.Win;
     using HFromUI.HFrom.Panel;
     using HFromUI.HControl.Tools.Button;
-    using HFromUI.HFrom.Text;
     public partial class HMaskForm : Form
     {
         private HForm MainPPForm;
@@ -142,14 +141,6 @@ namespace HFromUI.HFrom.From
             else if (MainControl is HPushButton)
             {
                 radius = (MainControl as HPushButton).Radius;
-            }
-            else if (MainControl is HRichTextbox)
-            {
-                radius = (MainControl as HRichTextbox).Radius;
-            }
-            else if (MainControl is HTextbox)
-            {
-                radius = (MainControl as HTextbox).Radius;
             }
             else if (MainControl is HDateTimePicker)
             {

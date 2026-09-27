@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using HFromUI.HFrom.From;
+using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
 {
@@ -471,7 +472,7 @@ namespace HFromUI.HMath
             => destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
 
 
-        ZvMessageShow zxMessageShow = new ZvMessageShow();
+        HMessageA zxMessageShow = new HMessageA();
         // 从 string 解析为 HDouble
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {

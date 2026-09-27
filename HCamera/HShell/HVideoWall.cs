@@ -6,7 +6,6 @@ using HFromUI.HControl;
 using HFromUI.HEnum;
 using HFromUI.HFrom.Panel;
 using HFromUI.HFrom.HUiKit;
-using HFromUI.HFrom.Text;
 using HFromUI.HControl.VisualWindow;
 
 namespace HFromUI.HFrom.HShell
@@ -22,8 +21,8 @@ namespace HFromUI.HFrom.HShell
     {
         private readonly HPanel _topBar;
         private readonly HStatusLed _led;
-        private readonly HLabel _title;
-        private readonly HLabel _info;
+        private readonly Label _title;
+        private readonly Label _info;
         private readonly HStatusLed _ledRec;
         private readonly Panel _content;
         private readonly HVisualWindowA _win;
@@ -59,13 +58,13 @@ namespace HFromUI.HFrom.HShell
 
             _led = new HStatusLed { Left = 10, Top = 7, Width = 16, Height = 16, State = HLedState.Off };
 
-            _title = new HLabel { Left = 32, Top = 1, Width = 260, Height = 28 };
+            _title = new Label { Left = 32, Top = 1, Width = 260, Height = 28 };
             HUiTheme.StyleLabel(_title, false, true);
             _title.TextAlign = ContentAlignment.MiddleLeft;
             _title.Text = HTranslation.GetContent("通道") + (index + 1) + HTranslation.GetContent(" - 未连接");
             _title.BackColor = Color.FromArgb(34, 37, 46);
 
-            _info = new HLabel { Text = "", Width = 200, Height = 28, Left = 300, Visible = false };
+            _info = new Label { Text = "", Width = 200, Height = 28, Left = 300, Visible = false };
             HUiTheme.StyleLabel(_info, true);
             _info.TextAlign = ContentAlignment.MiddleRight;
             _info.BackColor = Color.FromArgb(34, 37, 46);

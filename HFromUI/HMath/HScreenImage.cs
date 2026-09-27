@@ -8,6 +8,7 @@ namespace HFromUI.HMath
     using HFromUI.HColor;
     using HFromUI.HLangage;
     using HFromUI.HFrom.From;
+    using HFromUI.HControl.Tools.Message;
     using HFromUI.HEnum;
     public class HScreenImage : HScreen
     {
@@ -148,11 +149,11 @@ namespace HFromUI.HMath
                     }
                     catch (OutOfMemoryException)
                     {
-                        ZvMessageShow.ShowDialog(HTranslation.GetContent("文件不是有效的图片格式，或文件已损坏。"), HTranslation.GetContent("打开图片出错"), 0, HTranslation.GetContent("确认"));
+                        HMessageA.ShowDialog(HTranslation.GetContent("文件不是有效的图片格式，或文件已损坏。"), HTranslation.GetContent("打开图片出错"), 0, HTranslation.GetContent("确认"));
                     }
                     catch (Exception ex)
                     {
-                        ZvMessageShow.ShowDialog(HTranslation.GetContent("加载图片时出错：") + ex.Message, HTranslation.GetContent("打开图片出错"), 0, HTranslation.GetContent("确认"));
+                        HMessageA.ShowDialog(HTranslation.GetContent("加载图片时出错：") + ex.Message, HTranslation.GetContent("打开图片出错"), 0, HTranslation.GetContent("确认"));
                     }
                 }
             }

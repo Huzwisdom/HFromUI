@@ -3,8 +3,8 @@ using System.Windows.Forms;
 using HFromUI.HEnum;
 using HFromUI.HControl;
 using HFromUI.HControl.Tools.Button;
+using HFromUI.HControl.Tools.Editors;
 using HFromUI.HFrom.Panel;
-using HFromUI.HFrom.Text;
 using HFromUI.HFrom.Tables;
 
 
@@ -170,49 +170,10 @@ namespace HFromUI.HFrom.HUiKit
             return p;
         }
 
-        // ============ 输入控件 ============
-
-        /// <summary>输入框（HTextbox）深色样式</summary>
-        public static HTextbox StyleInput(HTextbox t)
-        {
-            t.Radius = 4;
-            t.BorderWidth = 1;
-            t.ShowBorder = true;
-            t.BackColor = CardBg;
-            t.BaseColor = InputBg;
-            t.BorderColor = Border;
-            t.ForeColor = TextMain;
-            t.Font = FontUi;
-            return t;
-        }
-
-        /// <summary>数字框（HNumericUpDown）深色样式 + 浅色箭头</summary>
-        public static HNumericUpDown StyleInput(HNumericUpDown n)
-        {
-            n.Radius = 4;
-            n.BorderWidth = 1;
-            n.ShowBorder = true;
-            n.BackColor = CardBg;
-            n.BaseColor = InputBg;
-            n.BorderColor = Border;
-            n.ForeColor = TextMain;
-            n.Font = FontUi;
-            try
-            {
-                // 深色背景使用蓝色箭头资源（黑色箭头在深底上不可见）
-                n.ButtonPicUP = HPhoto.Get("upBlue");
-                n.ButtonPicDown = HPhoto.Get("downBlue");
-                n.ButtonPicUPHover = HPhoto.Get("upBlue");
-                n.ButtonPicDownHover = HPhoto.Get("downBlue");
-            }
-            catch { }
-            return n;
-        }
-
         // ============ 标签 ============
 
-        /// <summary>标签（HLabel）</summary>
-        public static HLabel StyleLabel(HLabel l, bool secondary = false, bool bold = false)
+        /// <summary>标签（Label）</summary>
+        public static Label StyleLabel(Label l, bool secondary = false, bool bold = false)
         {
             l.BackColor = Color.Transparent;
             l.ForeColor = secondary ? TextSub : TextMain;
@@ -222,14 +183,11 @@ namespace HFromUI.HFrom.HUiKit
 
         // ============ 新增控件主题 ============
 
-        /// <summary>搜索框（HSearchBox）</summary>
+        /// <summary>搜索框（HSearchBox 深色风格）</summary>
         public static HSearchBox StyleSearchBox(HSearchBox s)
         {
-            s.BackColor = InputBg;
-            s.BaseColor = InputBg;
-            s.BorderColor = Border;
-            s.WatermarkColor = TextSub;
-            s.ShowBorder = true;
+            s.SearchStyle = HEditStyle.Dark;
+            s.IconColor = TextSub;
             return s;
         }
 

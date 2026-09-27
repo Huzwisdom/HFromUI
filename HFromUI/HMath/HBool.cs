@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 using HFromUI.HFrom.From;
+using HFromUI.HControl.Tools.Message;
 
 namespace HFromUI.HMath
 {
@@ -132,7 +133,7 @@ namespace HFromUI.HMath
     public class HBoolConverter : TypeConverter
     {
         // 原有字段与方法
-        private ZvMessageShow zxMessageShow = new ZvMessageShow();
+        private HMessageA zxMessageShow = new HMessageA();
 
         /// <summary>CanConvertFrom 方法。</summary>
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)

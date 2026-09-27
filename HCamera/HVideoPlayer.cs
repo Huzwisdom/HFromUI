@@ -11,7 +11,6 @@ namespace HFromUI.HCamera
     using HFromUI.HLangage;
     using HFromUI.HFrom.HUiKit;
     using HFromUI.HFrom.Panel;
-    using HFromUI.HFrom.Text;
     using HFromUI.HControl.Tools.Button;
     using HFromUI.HControl.Tools.Bars;
     /// <summary>
@@ -46,9 +45,9 @@ namespace HFromUI.HCamera
         private const int State_Paused = 1;
         private const int State_Running = 2;
         private readonly Panel _videoHost;
-        private readonly HLabel _lblHint;
-        private readonly HLabel _lblFile;
-        private readonly HLabel _lblTime;
+        private readonly Label _lblHint;
+        private readonly Label _lblFile;
+        private readonly Label _lblTime;
         private readonly HPushButton _btnPlay;
         private readonly HPushButton _btnStop;
         private readonly HTrackBar _track;
@@ -83,7 +82,7 @@ namespace HFromUI.HCamera
             };
             _videoHost.Resize += (s, e) => PositionVideo();
             _videoHost.DoubleClick += (s, e) => TogglePlay();
-            _lblHint = new HLabel
+            _lblHint = new Label
             {
                 Dock = DockStyle.Fill,
                 Text = HTranslation.GetContent("本地视频播放\r\n右键画面框选择“打开本地视频…”，或在录像回放页选择文件"),
@@ -98,7 +97,7 @@ namespace HFromUI.HCamera
             HUiTheme.StylePanel(bar, HUiTheme.PanelBg, 0);
             bar.ShowBorder = false;
             bar.RoundStyle = HRoundStyle.None;
-            _lblFile = new HLabel
+            _lblFile = new Label
             {
                 Dock = DockStyle.Top,
                 Height = 20,
@@ -119,7 +118,7 @@ namespace HFromUI.HCamera
             _btnStop = new HPushButton { Dock = DockStyle.Left, Width = 42, Left = 44, Glyph = HPushButtonGlyph.Stop, ImageSize = 14 };
             HUiTheme.StyleGhost(_btnStop);
             _btnStop.Click += (s, e) => Stop();
-            _lblTime = new HLabel
+            _lblTime = new Label
             {
                 Dock = DockStyle.Right,
                 Width = 118,

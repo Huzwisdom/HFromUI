@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using HFromUI.HFrom.Base;
-using HFromUI.HFrom.Text;
+using HFromUI.HControl.Tools.Editors;
 
 namespace HFromUI.HFrom.Tables
 {
@@ -128,7 +128,7 @@ namespace HFromUI.HFrom.Tables
         #region 搜索
 
         /// <summary>响应 Search 事件。</summary>
-        private void OnSearch(object sender, HSearchEventArgs e)
+        private void OnSearch(object sender, HSearchQueryEventArgs e)
         {
             pagination.CurrentPage = 1;
             if (ProvideData != null)
@@ -252,7 +252,7 @@ namespace HFromUI.HFrom.Tables
             {
                 Page = pagination.CurrentPage,
                 PageSize = pagination.PageSize,
-                SearchText = searchBox.SearchText,
+                SearchText = searchBox.Text,
                 SortColumn = _sortColumn,
                 SortDescending = _sortDescending,
                 Filters = new Dictionary<string, HashSet<string>>(_filters)
@@ -296,7 +296,7 @@ namespace HFromUI.HFrom.Tables
         private List<object> FilterMemoryData()
         {
             var result = new List<object>();
-            string searchText = searchBox.SearchText?.ToLowerInvariant() ?? string.Empty;
+            string searchText = searchBox.Text?.ToLowerInvariant() ?? string.Empty;
 
             foreach (var item in _allData)
             {
@@ -402,7 +402,7 @@ namespace HFromUI.HFrom.Tables
         /// <summary>重置搜索和过滤</summary>
         public void ResetFilters()
         {
-            searchBox.SearchText = string.Empty;
+            searchBox.Text = string.Empty;
             _filters.Clear();
             _sortColumn = string.Empty;
             _sortDescending = false;

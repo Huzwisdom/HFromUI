@@ -361,10 +361,10 @@
     <Compile Include="HControl\Tools\Nature\HArrow.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Editors\HNumericUpDown.cs">
+    <Compile Include="HControl\Tools\Editors\HNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Editors\HSearchBox.cs">
+    <Compile Include="HControl\Tools\Editors\HSearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Coordinate\HCoordinateA.cs">
@@ -406,7 +406,7 @@
     <Compile Include="HControl\Coordinate\SetLayer.Designer.cs">
       <DependentUpon>SetLayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\From\AxisGoHome.cs">
+    <Compile Include="HControl\Tools\Homing\AxisGoHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HControl\Draw\Draw2DTableUtil.cs" />
@@ -464,18 +464,19 @@
     <Compile Include="HEnum\HLinePhoto.cs" />
     <Compile Include="HEnum\HShapeType.cs" />
     <Compile Include="HConvert\HBytes.cs" />
+    <Compile Include="HConvert\HSvgToBitmap.cs" />
     <Compile Include="HEnum\HThemeMode.cs" />
-    <Compile Include="HFrom\From\ZvMessageShow.cs">
+    <Compile Include="HControl\Tools\Message\HMessageA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HFrom\From\ZvMessageShow.Designer.cs">
-      <DependentUpon>ZvMessageShow.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HMessageA.Designer.cs">
+      <DependentUpon>HMessageA.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\From\ZxMessageShow.cs">
+    <Compile Include="HControl\Tools\Message\HMessageB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HFrom\From\ZxMessageShow.Designer.cs">
-      <DependentUpon>ZxMessageShow.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HMessageB.Designer.cs">
+      <DependentUpon>HMessageB.cs</DependentUpon>
     </Compile>
     <Compile Include="HFrom\Panel\HScrollablePanel.cs">
       <SubType>Component</SubType>
@@ -487,9 +488,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\PropertyGrid\APropertyGrid.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HGCodeEditor.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HInterface\iHDrawContinuousLine.cs" />
@@ -616,7 +614,7 @@
     <Compile Include="HFrom\HUiKit\HZoomBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HControl\Tools\HNavigator\HNavigator.cs">
+    <Compile Include="HControl\Tools\HNavigator\Navigator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\HNavigator\HNavigatorTree.cs">
@@ -734,25 +732,18 @@
     <Compile Include="HFrom\From\HUpdateLayeredForm.Designer.cs">
       <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\From\ZzMessageShow.cs">
+    <Compile Include="HControl\Tools\Message\HMessageC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HFrom\From\ZzMessageShow.Designer.cs">
-      <DependentUpon>ZzMessageShow.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Message\HMessageC.Designer.cs">
+      <DependentUpon>HMessageC.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryB.cs">
+    <Compile Include="HControl\Tools\Material\HMaterialGroup.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryB.Designer.cs">
-      <DependentUpon>MaterialTaryB.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Material\HMaterialGroup.Designer.cs">
+      <DependentUpon>HMaterialGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryC.Designer.cs">
-      <DependentUpon>MaterialTaryC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialUserControlB.cs" />
     <Compile Include="HFrom\Panel\HFlodPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -856,56 +847,20 @@
     <Compile Include="HFrom\Tables\HTreeList.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\Text\HClearTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HSearchBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HLabel.Designer.cs">
-      <DependentUpon>HLabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Text\HNumericUpDown.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HNumericUpDown.Designer.cs">
-      <DependentUpon>HNumericUpDown.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Text\HRichTextbox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HRichTextbox.Designer.cs">
-      <DependentUpon>HRichTextbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Text\HTextbox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HTextbox.Designer.cs">
-      <DependentUpon>HTextbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HFrom\Text\HWaterMarkTextbox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HFrom\Text\HWaterMarkTextbox.Designer.cs">
-      <DependentUpon>HWaterMarkTextbox.cs</DependentUpon>
-    </Compile>
     <Compile Include="HSocket\HTTP\HttpClient.cs" />
     <Compile Include="HInformation\Log\HAppDataAddNum.cs" />
     <Compile Include="HInformation\Log\HLogRecording.cs" />
     <Compile Include="HInformation\PMaterial.cs" />
     <Compile Include="HInterface\iHFrom.cs" />
     <Compile Include="HInformation\HTary.cs" />
-    <Compile Include="HFrom\MaterialTary\MaterialUserControlA.cs">
+    <Compile Include="HControl\Tools\Material\HMaterialCell.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryA.cs">
+    <Compile Include="HControl\Tools\Material\HMaterialTray.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HFrom\MaterialTary\MaterialTaryA.Designer.cs">
-      <DependentUpon>MaterialTaryA.cs</DependentUpon>
+    <Compile Include="HControl\Tools\Material\HMaterialTray.Designer.cs">
+      <DependentUpon>HMaterialTray.cs</DependentUpon>
     </Compile>
     <Compile Include="HFile\HTxtFile.cs" />
     <Compile Include="HLangage\HLanguage.cs" />
@@ -1090,23 +1045,20 @@
     <EmbeddedResource Include="HFrom\From\HUpdateLayeredForm.resx">
       <DependentUpon>HUpdateLayeredForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\ZvMessageShow.resx">
-      <DependentUpon>ZvMessageShow.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HMessageA.resx">
+      <DependentUpon>HMessageA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\ZxMessageShow.resx">
-      <DependentUpon>ZxMessageShow.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HMessageB.resx">
+      <DependentUpon>HMessageB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\From\ZzMessageShow.resx">
-      <DependentUpon>ZzMessageShow.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Message\HMessageC.resx">
+      <DependentUpon>HMessageC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryA.resx">
-      <DependentUpon>MaterialTaryA.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Material\HMaterialTray.resx">
+      <DependentUpon>HMaterialTray.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryB.resx">
-      <DependentUpon>MaterialTaryB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\MaterialTary\MaterialTaryC.resx">
-      <DependentUpon>MaterialTaryC.cs</DependentUpon>
+    <EmbeddedResource Include="HControl\Tools\Material\HMaterialGroup.resx">
+      <DependentUpon>HMaterialGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HFrom\Panel\HListBox.resx">
       <DependentUpon>HListBox.cs</DependentUpon>
@@ -1132,24 +1084,9 @@
     <EmbeddedResource Include="HFrom\Tables\HTabControlExt.resx">
       <DependentUpon>HTabControlExt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Text\HNumericUpDown.resx">
-      <DependentUpon>HNumericUpDown.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Text\HRichTextbox.resx">
-      <DependentUpon>HRichTextbox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Text\HTextbox.resx">
-      <DependentUpon>HTextbox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HFrom\Text\HWaterMarkTextbox.resx">
-      <DependentUpon>HWaterMarkTextbox.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="HFrom\Text\HSearchBox.Designer.cs">
-      <DependentUpon>HSearchBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="HFrom\Tables\HPagination.cs">
       <SubType>UserControl</SubType>
     </Compile>

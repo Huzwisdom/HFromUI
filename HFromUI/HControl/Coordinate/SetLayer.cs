@@ -32,9 +32,19 @@ namespace HFromUI.HControl.Coordinate
                 _uiContext = SynchronizationContext.Current;
                 LoadTranslationLanguage();
                 HTranslation.TranslationLanguageChanged += HTranslation_TranslationLanguageChanged;
-
+                // 图层输入仅允许数字（原 HTextbox.Regex = "[0-9]"）
+                TB_set.KeyPress += AllowDigitOnly;
             }
 
+        }
+
+        /// <summary>仅允许数字与控制字符输入。</summary>
+        private static void AllowDigitOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void HTranslation_TranslationLanguageChanged(object sender, EventArgs e)

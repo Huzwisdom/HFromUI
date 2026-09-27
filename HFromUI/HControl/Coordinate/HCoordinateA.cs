@@ -19,6 +19,7 @@ namespace HFromUI.HControl.Coordinate
     using HFromUI.HColor;
     using HFromUI.HEnum;
     using HFromUI.HFrom.From;
+    using HFromUI.HControl.Tools.Message;
     public partial class HCoordinateA : UserControl
     {
 
@@ -401,7 +402,7 @@ namespace HFromUI.HControl.Coordinate
                     }
                     else
                     {
-                        ZvMessageShow zxMessageShow = new ZvMessageShow();
+                        HMessageA zxMessageShow = new HMessageA();
                         DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("加载失败：", (result.Message ?? HTranslation.GetContent("文件格式错误"))), HTranslation.GetContent("打开文件错误"), 0, HTranslation.GetContent("确认"));
                       
                     }
@@ -429,7 +430,7 @@ namespace HFromUI.HControl.Coordinate
                     OK success = SaveShapesToFile(filePath, HCoordinateDraw.CoordinateDrawList.Shapes);
                     if (!success)
                     {
-                        ZvMessageShow zxMessageShow = new ZvMessageShow();
+                        HMessageA zxMessageShow = new HMessageA();
                         DialogResult dialogResult = zxMessageShow.ZzShowDialog(HTranslation.GetContent("保存失败，请检查路径或权限。")+ success, HTranslation.GetContent("保存文件错误"), 0, HTranslation.GetContent("确认"));
 
                     }
@@ -949,7 +950,7 @@ namespace HFromUI.HControl.Coordinate
             {
                 return;
             }
-            DialogResult dialogResult= ZxMessageShow.ShowDialog(HTranslation.GetContent($"是否开启模拟运行？"),
+            DialogResult dialogResult= HMessageB.ShowDialog(HTranslation.GetContent($"是否开启模拟运行？"),
                 HTranslation.GetContent($"模拟运行"),2,
                 HTranslation.GetContent($"确认"),
                 HTranslation.GetContent($"取消")
