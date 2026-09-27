@@ -318,7 +318,8 @@ namespace HFromUI.HControl.Tools.Hmi
             string[] custom = null;
             if (!string.IsNullOrEmpty(_scaleLabels))
                 custom = _scaleLabels.Split(';');
-            float labelR = rTickOut - majorLen - rFace * 0.115f;
+            // 标签环压在最外轨道环（报警红线）上：刻度尖之外、底板遮住红线，文字不与刻度/指针重合
+            float labelR = rTrack - rFace * 0.02f;
 
             // 涡轮装饰
             if (st.Turbine)
