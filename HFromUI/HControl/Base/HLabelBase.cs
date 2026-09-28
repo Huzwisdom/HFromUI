@@ -182,12 +182,14 @@ namespace HFromUI.HControl.Base
                 g.SetClip(new Region(path), CombineMode.Replace);
                 int inset = _borderStyle == BorderStyle.None ? 0
                     : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
-                // 左右各让 1px：NoPadding 后斜体 f/弯引号等左侧悬垂字形不被裁剪区削边；
-                // 居中时绘制原点与 AutoSize 的严格步进宽同口径，不再因 GDI overhang 余量为负而吞掉首字
+                // 文字区只扣除内边距与边框，不手缩像素：DrawText 的 overhang 衬距由其内部处理，
+                // 控件宽度在 UpdateAutoSize 中按同一 TextRenderer 口径测量，二者必须同源
+                // （曾用 GDI TextAdvance 严格宽定宽 + DrawText 绘制，CJK 排版宽大于严格宽，
+                // 实测“中/Hg”被横向挤削 1~2px、首字发淡）
                 var textRect = new Rectangle(
-                    Padding.Left + inset + 1, Padding.Top + inset,
-                    Math.Max(0, Width - Padding.Horizontal - inset * 2 - 2),
-                    Height - Padding.Vertical - inset * 2);
+                    Padding.Left + inset, Padding.Top + inset,
+                    Math.Max(0, Width - Padding.Horizontal - inset * 2),
+                    Math.Max(0, Height - Padding.Vertical - inset * 2));
                 TextRenderer.DrawText(g, Text, Font, textRect, ForeColor, BuildTextFlags());
                 g.Clip = oldClip;
 
@@ -225,25 +227,35 @@ namespace HFromUI.HControl.Base
         }
 
         /// <summary>
-        /// AutoSize 时按文字实际显示尺寸调整控件大小：
-        /// 宽度走 GDI 严格步进宽（与 HTextBoxBase 同源，不含 MeasureText 的尾部安全余量，也不会偏小），
-        /// 高度走无衬距文字测量，再对称计入边框内缩量与内边距——文字、边框、内边距任一变化都重新贴合。
+        /// AutoSize 时按文字实际显示尺寸调整控件大小：测量与绘制必须同为 TextRenderer.DrawText
+        /// 口径（含其内部 overhang 衬距，同 Windows 原生 Label），控件尺寸直接取该测量值再计入
+        /// 边框内缩与内边距——绘制矩形永远不小于排版矩形，CJK/斜体/弯引号等字形都不会被挤削。
+        /// 切勿改用 GDI TextAdvance 严格步进宽定宽：DrawTextEx 对 CJK 等字符的排版宽明显大于
+        /// 严格步进宽（微软雅黑 9pt“中”实测 20px vs 12px），混用即出现横向削字。
         /// </summary>
         private void UpdateAutoSize()
         {
             if (!_autoSize) return;
             string shown = _useMnemonic ? StripMnemonic(Text ?? string.Empty) : (Text ?? string.Empty);
-            int textW = HDrawPaint.TextAdvance(shown, Font);
+            // 宽度按实际显示文本量；空文本也给一个字高宽位（同原生 Label）
+            Size ts = TextRenderer.MeasureText(shown.Length == 0 ? " " : shown, Font, Size.Empty,
+                BuildMeasureFlags());
+            // 高度取“Ag中”统一行高（含拉丁大写/基线/全角），不随具体文本变化
             int textH = TextRenderer.MeasureText(HTranslation.GetContent("Ag中"), Font, Size.Empty,
-                TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine).Height;
-            // 文字区每侧让开的量（与 OnPaint 的 inset 完全一致）
+                BuildMeasureFlags()).Height;
             int inset = _borderStyle == BorderStyle.None ? 0
                 : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
-            // 横向 4px 余量与 OnPaint 文字区（左右各让 1px）+ NoPadding 严格宽配套，
-            // 保证居中/斜体悬垂字形不被裁；纵向不变
             Size = new Size(
-                textW + Padding.Horizontal + inset * 2 + 4,
-                textH + Padding.Vertical + inset * 2 + 2);
+                ts.Width + Padding.Horizontal + inset * 2,
+                textH + Padding.Vertical + inset * 2);
+        }
+
+        /// <summary>AutoSize 测量标志：与 BuildTextFlags 的单行绘制口径一致（对齐/换行不影响无限宽单行测量）。</summary>
+        private TextFormatFlags BuildMeasureFlags()
+        {
+            var flags = TextFormatFlags.SingleLine;
+            if (!_useMnemonic) flags |= TextFormatFlags.NoPrefix;
+            return flags;
         }
 
         /// <summary>按 Windows Label 语义去掉助记符标记：单个 &amp; 跳过不显示，连续两个 &amp; 显示为一个。</summary>
@@ -260,13 +272,12 @@ namespace HFromUI.HControl.Base
 
         /// <summary>
         /// 九宫格对齐与换行/省略号/助记符标志（非自动尺寸时允许换行并以省略号截断）。
-        /// 固定带 NoPadding：绘制宽度与 AutoSize 使用的 TextAdvance 严格步进宽同口径，
-        /// 否则 DrawText 自带的 overhang 内边距会让居中绘制原点算出负值，第一个字母被裁剪区切掉。
-        /// RightToLeft.Yes 时水平对齐镜像（左↔右）并附加 RTL 阅读顺序，垂直方向不变。
+        /// 使用 DrawText 默认 overhang 衬距（不加 NoPadding），与 UpdateAutoSize 的 MeasureText
+        /// 同口径；RightToLeft.Yes 时水平对齐镜像（左↔右）并附加 RTL 阅读顺序，垂直方向不变。
         /// </summary>
         private TextFormatFlags BuildTextFlags()
         {
-            var flags = TextFormatFlags.WordBreak | TextFormatFlags.NoPadding;
+            var flags = TextFormatFlags.WordBreak;
             bool rtl = RightToLeft == RightToLeft.Yes;
             string a = _textAlign.ToString();
             // RTL 时水平语义镜像：逻辑左对齐视觉靠右、逻辑右对齐视觉靠左、居中不变
