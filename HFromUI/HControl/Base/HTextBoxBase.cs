@@ -21,7 +21,8 @@ namespace HFromUI.HControl.Base
     /// AutoFitFactor 大于 0 后字号（像素 em 高）直接取“控件高度 × 倍数”，随控件高度等比缩放
     /// （与文字长短无关，超长单行横向滚动，绘制严格裁剪在内容区内，不越下划线也不压装饰图标）；
     /// 小于等于 0 不自动缩放；仅单行模式生效，多行模式固定使用 Font。
-    /// 底部下划线在鼠标悬停/激活时变色。
+    /// 底部下划线在鼠标悬停/激活时变色，可用 ShowUnderline 关闭。
+    /// RightToLeft.Yes 时仅显示镜像：文字右锚、横向滚动反向、GDI 按 RTL 阅读顺序成形，编辑逻辑不变。
     /// </summary>
     [DefaultProperty("Text")]
     [DefaultEvent("TextChanged")]
@@ -81,6 +82,7 @@ namespace HFromUI.HControl.Base
         private Color _underlineColor = Color.FromArgb(170, 170, 170);
         private Color _underlineHoverColor = Color.DodgerBlue;
         private Color _underlineActiveColor = Color.DodgerBlue;
+        private bool _showUnderline = true;
 
         private string _watermarkText;
         private Color _watermarkColor = Color.Gray;
@@ -172,6 +174,14 @@ namespace HFromUI.HControl.Base
         {
             get => _underlineActiveColor;
             set { _underlineActiveColor = value; Invalidate(); }
+        }
+
+        [HCategoryLanguage("文本框基础设置"), HDisplayNameLanguage("显示下划线"), HDescriptionLanguage("是否绘制底部下划线；关闭后只保留外框，文字内容区布局保持不变（不影响编辑）"), Browsable(true)]
+        [DefaultValue(true)]
+        public bool ShowUnderline
+        {
+            get => _showUnderline;
+            set { _showUnderline = value; Invalidate(); }
         }
 
         [HCategoryLanguage("文本框基础设置"), HDisplayNameLanguage("水印提示文字"), HDescriptionLanguage("水印提示文字（内容为空时显示）"), Browsable(true)]
@@ -325,7 +335,7 @@ namespace HFromUI.HControl.Base
         }
 
         private ContentAlignment _textAlign = ContentAlignment.MiddleLeft;
-        [HCategoryLanguage("文本框基础设置"), HDisplayNameLanguage("文字对齐"), HDescriptionLanguage("文字对齐（九宫格，与 HLabelBase 一致）；多行时仅水平分量生效，长文本放不下时退化为左对齐并横向滚动"), Browsable(true)]
+        [HCategoryLanguage("文本框基础设置"), HDisplayNameLanguage("文字对齐"), HDescriptionLanguage("文字对齐（九宫格，与 HLabelBase 一致）；多行时仅水平分量生效，长文本放不下时退化为侧边对齐并横向滚动；RightToLeft.Yes 时水平分量左右镜像（仅显示）"), Browsable(true)]
         [DefaultValue(ContentAlignment.MiddleLeft)]
         public ContentAlignment TextAlign
         {
@@ -448,6 +458,13 @@ namespace HFromUI.HControl.Base
         #region 状态与布局
 
         private Font ActiveFont => AutoFitActive && _fitFont != null ? _fitFont : Font;
+
+        /// <summary>
+        /// 是否处于从右到左显示（RightToLeft.Yes；Inherit 由基类自动解析父控件）。
+        /// 当前仅做显示镜像：文字行右锚、超长向左生长、横向滚动反向、GDI 以 RTL 阅读顺序成形，
+        /// 插入符移动/键盘编辑/选词等逻辑保持从左到右不变。
+        /// </summary>
+        private bool IsRtl => RightToLeft == RightToLeft.Yes;
 
         /// <summary>自动字号当前是否生效：倍数大于 0 且是单行模式。</summary>
         private bool AutoFitActive => _autoFitFactor > 0.0 && !_multiline;
@@ -723,13 +740,26 @@ namespace HFromUI.HControl.Base
             return cr.Y + (cr.Height - _lineH) / 2;
         }
 
-        /// <summary>可视行文字的起始 X（单行按九宫格水平分量对齐并支持横向滚动，多行固定左侧）。</summary>
+        /// <summary>
+        /// 可视行文字的起始 X（单行按九宫格水平分量对齐并支持横向滚动，多行固定侧边）。
+        /// RTL 仅镜像显示：右边缘为锚，超长向左生长、随横向滚动向右平移；逻辑序与插入符定位不变，
+        /// 故 IndexFromPoint/PointFromIndex 复用同一基点即可逐像素对应（拉丁/中文等 LTR 字形序不变）。
+        /// </summary>
         private int LineBaseX(int i, Rectangle cr, Font f)
         {
             int w = TextWidth(DisplayOf(_lines[i].Text), f);
+            string a = _textAlign.ToString();
+            if (IsRtl)
+            {
+                // 多行折行行宽不超过内容区，直接右锚；单行超长时以右边缘为锚向左生长
+                if (_multiline) return cr.Right - w;
+                if (w >= cr.Width) return cr.Right - w + _scrollX;
+                if (a.EndsWith("Left")) return cr.Right - w;    // 逻辑靠左 → 视觉靠右
+                if (a.EndsWith("Right")) return cr.X;           // 逻辑靠右 → 视觉靠左
+                return cr.X + (cr.Width - w) / 2;
+            }
             // 多行或文字宽超出内容区：固定左对齐，超出部分横向滚动
             if (_multiline || w >= cr.Width) return cr.X - _scrollX;
-            string a = _textAlign.ToString();
             if (a.EndsWith("Right")) return cr.Right - w;
             if (a.EndsWith("Center")) return cr.X + (cr.Width - w) / 2;
             return cr.X;
@@ -1304,7 +1334,7 @@ namespace HFromUI.HControl.Base
             DrawAdornments(g);
 
             DrawTextAndSelection(g);
-            if (UseDefaultFrame) DrawUnderline(g, rect);
+            if (UseDefaultFrame && _showUnderline) DrawUnderline(g, rect);
             if (_sbVisible) DrawScrollbar(g);
         }
 
@@ -1361,10 +1391,20 @@ namespace HFromUI.HControl.Base
                 EnsureMeasureHdc();
                 string wm = HDrawPaint.EllipsisToFit(_watermarkText, f, cr.Width, _measureHdc);
                 int ww = TextWidth(wm, f);
-                string al = _textAlign.ToString();
-                if (!_multiline && al.EndsWith("Right")) wmX = cr.Right - ww;
-                else if (!_multiline && al.EndsWith("Center")) wmX = cr.X + (cr.Width - ww) / 2;
-                else wmX = cr.X;
+                // 与 LineBaseX 同一套镜像口径：RTL 下逻辑左对齐视觉靠右；多行固定贴右
+                if (_multiline)
+                {
+                    wmX = IsRtl ? cr.Right - ww : cr.X;
+                }
+                else
+                {
+                    string al = _textAlign.ToString();
+                    bool wmRight = !IsRtl && al.EndsWith("Right") || IsRtl && al.EndsWith("Left");
+                    bool wmLeft = !IsRtl && al.EndsWith("Left") || IsRtl && al.EndsWith("Right");
+                    if (wmRight) wmX = cr.Right - ww;
+                    else if (!wmLeft) wmX = cr.X + (cr.Width - ww) / 2;
+                    else wmX = cr.X;
+                }
                 wmY = (_multiline ? cr.Y : cr.Y + (cr.Height - _lineH) / 2) + 1;
                 wmText = wm;
             }
@@ -1375,7 +1415,9 @@ namespace HFromUI.HControl.Base
             IntPtr hdc = g.GetHdc();
             try
             {
-                using (var tc = HDrawPaint.BeginGdiText(hdc, f, cr))
+                // RTL 时携带 ETO_RTLREADING，阿拉伯/希伯来文字按 RTL 基方向成形重排；
+                // 各 run 坐标仍由 LineBaseX 的镜像基点 + 前缀步进宽给出，与插入符同一套定位
+                using (var tc = HDrawPaint.BeginGdiText(hdc, f, cr, IsRtl))
                 {
                     foreach (var run in runs)
                         tc.DrawRun(run.text, run.x, run.y, run.color);
@@ -1486,6 +1528,13 @@ namespace HFromUI.HControl.Base
         {
             base.OnFontChanged(e);
             RefreshLayout(); // ApplyFitFont 内部按基础字体变化重算，或丢弃适配字体
+        }
+
+        /// <summary>RightToLeft 切换（含父控件 Inherit 联动）后按显示镜像重排重绘；编辑逻辑不随之改变。</summary>
+        protected override void OnRightToLeftChanged(EventArgs e)
+        {
+            base.OnRightToLeftChanged(e);
+            RefreshLayout();
         }
 
         protected override void OnBackColorChanged(EventArgs e)

@@ -69,29 +69,42 @@ namespace HFromUI.HMath
         /// （微软雅黑 12pt 下直引号视觉占位从 8px 变成约 24px，约 3 个字符宽），
         /// 而插入符按 TextAdvance 定位，于是出现“字很松、光标不贴字”。
         /// </summary>
-        public static GdiTextContext BeginGdiText(IntPtr hdc, Font font) => new GdiTextContext(hdc, font, null);
+        public static GdiTextContext BeginGdiText(IntPtr hdc, Font font) => new GdiTextContext(hdc, font, null, false);
 
         /// <summary>
         /// 同 <see cref="BeginGdiText(IntPtr, Font)"/>，并把 GDI 裁剪区交集到 clip：
         /// GDI+ 的 Graphics.SetClip 不会安装到 GetHdc 返回的 DC，ExtTextOutW 只认 DC 裁剪区，
         /// 故滚动绘制长文本时必须用 GDI IntersectClipRect 显式约束，文字才不会越界压到装饰图标。
         /// </summary>
-        public static GdiTextContext BeginGdiText(IntPtr hdc, Font font, Rectangle? clip) => new GdiTextContext(hdc, font, clip);
+        public static GdiTextContext BeginGdiText(IntPtr hdc, Font font, Rectangle? clip) => new GdiTextContext(hdc, font, clip, false);
+
+        /// <summary>
+        /// 同 <see cref="BeginGdiText(IntPtr, Font, Rectangle?)"/>，rightToLeft 为 true 时
+        /// ExtTextOutW 携带 ETO_RTLREADING：仅声明从右到左阅读顺序，让希伯来/阿拉伯文字按
+        /// RTL 基方向成形与双向重排；绘制原点、对齐与滚动仍由调用方按镜像后的坐标给出。
+        /// </summary>
+        public static GdiTextContext BeginGdiText(IntPtr hdc, Font font, Rectangle? clip, bool rightToLeft)
+            => new GdiTextContext(hdc, font, clip, rightToLeft);
+
+        // ExtTextOut 的从右到左阅读顺序标志（winuser/gdi 定义）
+        private const uint ETO_RTLREADING = 0x0080;
 
         public sealed class GdiTextContext : IDisposable
         {
             private readonly IntPtr _hdc;
             private readonly IntPtr _hf;
             private readonly int _saved;
+            private readonly uint _textOptions;
             private bool _disposed;
 
-            internal GdiTextContext(IntPtr hdc, Font font, Rectangle? clip)
+            internal GdiTextContext(IntPtr hdc, Font font, Rectangle? clip, bool rightToLeft)
             {
                 _hdc = hdc;
                 _saved = SaveDC(hdc);
                 _hf = font.ToHfont();
                 SelectObject(hdc, _hf);
                 SetBkMode(hdc, GdiTransparent);
+                _textOptions = rightToLeft ? ETO_RTLREADING : 0u;
                 // GDI 裁剪矩形右/下边界为开区间，用 Right+1/Bottom+1 与内容区像素列对齐
                 if (clip.HasValue)
                 {
@@ -105,7 +118,7 @@ namespace HFromUI.HMath
             {
                 if (string.IsNullOrEmpty(s)) return;
                 SetTextColor(_hdc, (uint)ColorTranslator.ToWin32(color));
-                ExtTextOutW(_hdc, x, y, 0, IntPtr.Zero, s, s.Length, null);
+                ExtTextOutW(_hdc, x, y, _textOptions, IntPtr.Zero, s, s.Length, null);
             }
 
             public void Dispose()

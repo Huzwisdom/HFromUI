@@ -14,6 +14,7 @@ namespace HFromUI.HControl.Base
     /// <summary>
     /// 标签基类：继承 Control 全自绘（同 HBadge 风格），具备 Windows Label 的常用能力
     /// （AutoSize、TextAlign、BorderStyle、&amp; 助记符），并支持圆角背景。
+    /// RightToLeft.Yes 时仅显示镜像：水平对齐左右翻转并按 RTL 阅读顺序绘制阿拉伯/希伯来文字。
     /// 圆角通过 Radius 设置：小于等于 0（0 或负数）即直角矩形，不使用枚举或开关。
     /// </summary>
     [DefaultProperty("Text")]
@@ -126,6 +127,14 @@ namespace HFromUI.HControl.Base
             Invalidate();
         }
 
+        /// <summary>RightToLeft 切换（含父控件 Inherit 联动）后按镜像对齐重排重绘。</summary>
+        protected override void OnRightToLeftChanged(EventArgs e)
+        {
+            base.OnRightToLeftChanged(e);
+            UpdateAutoSize();
+            Invalidate();
+        }
+
         /// <summary>助记符语义同 Windows Label：自身不取焦点，把焦点交给 Tab 序中的下一控件。</summary>
         protected override bool ProcessMnemonic(char charCode)
         {
@@ -173,9 +182,11 @@ namespace HFromUI.HControl.Base
                 g.SetClip(new Region(path), CombineMode.Replace);
                 int inset = _borderStyle == BorderStyle.None ? 0
                     : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
+                // 左右各让 1px：NoPadding 后斜体 f/弯引号等左侧悬垂字形不被裁剪区削边；
+                // 居中时绘制原点与 AutoSize 的严格步进宽同口径，不再因 GDI overhang 余量为负而吞掉首字
                 var textRect = new Rectangle(
-                    Padding.Left + inset, Padding.Top + inset,
-                    Width - Padding.Horizontal - inset * 2,
+                    Padding.Left + inset + 1, Padding.Top + inset,
+                    Math.Max(0, Width - Padding.Horizontal - inset * 2 - 2),
                     Height - Padding.Vertical - inset * 2);
                 TextRenderer.DrawText(g, Text, Font, textRect, ForeColor, BuildTextFlags());
                 g.Clip = oldClip;
@@ -228,8 +239,10 @@ namespace HFromUI.HControl.Base
             // 文字区每侧让开的量（与 OnPaint 的 inset 完全一致）
             int inset = _borderStyle == BorderStyle.None ? 0
                 : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
+            // 横向 4px 余量与 OnPaint 文字区（左右各让 1px）+ NoPadding 严格宽配套，
+            // 保证居中/斜体悬垂字形不被裁；纵向不变
             Size = new Size(
-                textW + Padding.Horizontal + inset * 2 + 2,
+                textW + Padding.Horizontal + inset * 2 + 4,
                 textH + Padding.Vertical + inset * 2 + 2);
         }
 
@@ -245,13 +258,22 @@ namespace HFromUI.HControl.Base
             return sb.ToString();
         }
 
-        /// <summary>九宫格对齐与换行/省略号/助记符标志（非自动尺寸时允许换行并以省略号截断）。</summary>
+        /// <summary>
+        /// 九宫格对齐与换行/省略号/助记符标志（非自动尺寸时允许换行并以省略号截断）。
+        /// 固定带 NoPadding：绘制宽度与 AutoSize 使用的 TextAdvance 严格步进宽同口径，
+        /// 否则 DrawText 自带的 overhang 内边距会让居中绘制原点算出负值，第一个字母被裁剪区切掉。
+        /// RightToLeft.Yes 时水平对齐镜像（左↔右）并附加 RTL 阅读顺序，垂直方向不变。
+        /// </summary>
         private TextFormatFlags BuildTextFlags()
         {
-            var flags = TextFormatFlags.WordBreak;
+            var flags = TextFormatFlags.WordBreak | TextFormatFlags.NoPadding;
+            bool rtl = RightToLeft == RightToLeft.Yes;
             string a = _textAlign.ToString();
-            if (a.EndsWith("Left")) flags |= TextFormatFlags.Left;
-            else if (a.EndsWith("Right")) flags |= TextFormatFlags.Right;
+            // RTL 时水平语义镜像：逻辑左对齐视觉靠右、逻辑右对齐视觉靠左、居中不变
+            bool visualLeft = !rtl && a.EndsWith("Left") || rtl && a.EndsWith("Right");
+            bool visualRight = !rtl && a.EndsWith("Right") || rtl && a.EndsWith("Left");
+            if (visualLeft) flags |= TextFormatFlags.Left;
+            else if (visualRight) flags |= TextFormatFlags.Right;
             else flags |= TextFormatFlags.HorizontalCenter;
             if (a.StartsWith("Top")) flags |= TextFormatFlags.Top;
             else if (a.StartsWith("Bottom")) flags |= TextFormatFlags.Bottom;
@@ -263,6 +285,10 @@ namespace HFromUI.HControl.Base
                 flags |= TextFormatFlags.EndEllipsis;
             if (!_useMnemonic)
                 flags |= TextFormatFlags.NoPrefix;
+            // 实测 Left/Center/Right 三档与 RightToLeft 组合均合法，RTL 下一律声明 RTL 阅读顺序，
+            // 保证阿拉伯/希伯来文字在任何对齐档位都能双向排版
+            if (rtl)
+                flags |= TextFormatFlags.RightToLeft;
             return flags;
         }
     }
