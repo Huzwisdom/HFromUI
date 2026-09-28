@@ -28,11 +28,19 @@ namespace HFromUI.HLangage
                 DirectoryName = directoryName;
             }
             TranslationLanguageMode = originalLanguageMode;
+            if (TranslationLanguageMode == HLanguageMode.not)
+            {
+                return;
+            }
             string path = HFromUI.HData.HAppData.AppDataPath + $"{DirectoryName}\\Language{TranslationLanguageMode.ToString().ToUpper()}.language";
             LanguageIniFile = new HDictionaryFile(path);
         }
         public HLanguage(string directoryName = "")
         {
+            if (TranslationLanguageMode == HLanguageMode.not)
+            {
+                return;
+            }
             if (string.IsNullOrWhiteSpace(directoryName))
             {
                 DirectoryName = "Language" + Application.CompanyName.Replace(".", "").Replace(":", "").Replace("\\", "");
@@ -87,7 +95,7 @@ namespace HFromUI.HLangage
             {
                 LanguageModeIllustrate += $"Name*{languageModeStr.ToString()}  Value*{(int)languageModeStr}||";
             }
-            LanguageIniFileMode.Write("LanguageModeIllustrate", LanguageModeIllustrate.Trim('|').Trim(),true);
+            LanguageIniFileMode.Write("LanguageModeIllustrate", LanguageModeIllustrate.Trim('|').Trim(), true);
             LanguageIniFileMode.Save();
         }
         /// <summary>
@@ -109,7 +117,11 @@ namespace HFromUI.HLangage
         /// <summary>保存。</summary>
         public void Save()
         {
-            if (LanguageIniFile!=null)
+            if (TranslationLanguageMode == HLanguageMode.not)
+            {
+                return;
+            }
+            if (LanguageIniFile != null)
             {
                 LanguageIniFile.Save();
             }
@@ -127,7 +139,7 @@ namespace HFromUI.HLangage
         /// <summary>
         /// 翻译语言
         /// </summary>
-        public HLanguageMode TranslationLanguageMode = HLanguageMode.en;
+        public HLanguageMode TranslationLanguageMode = HLanguageMode.not;
         /// <summary>baiduAppId 字段。</summary>
         private string baiduAppId = "";
         /// <summary>baiduSecretKey 字段。</summary>
@@ -159,7 +171,7 @@ namespace HFromUI.HLangage
                 {
                     for (int i = 0; i < 20; i++)
                     {
-                        if (OnlineTranslation==null)
+                        if (OnlineTranslation == null)
                         {
                             OnlineTranslation = OnlineBaiduTranslation;
                         }
@@ -347,7 +359,7 @@ namespace HFromUI.HLangage
 
         }
         /// <summary>响应 OnlineBaiduTranslation 事件。</summary>
-        public virtual  bool OnlineBaiduTranslation(string original, ref string Translation)
+        public virtual bool OnlineBaiduTranslation(string original, ref string Translation)
         {
 
             try

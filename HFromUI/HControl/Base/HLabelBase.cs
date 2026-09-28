@@ -236,6 +236,14 @@ namespace HFromUI.HControl.Base
         private void UpdateAutoSize()
         {
             if (!_autoSize) return;
+            Size = CalcAutoSize();
+        }
+
+        /// <summary>
+        /// 按当前字体/DPI 与文字量计算 AutoSize 期望尺寸（与 UpdateAutoSize、GetPreferredSize 同源）。
+        /// </summary>
+        private Size CalcAutoSize()
+        {
             string shown = _useMnemonic ? StripMnemonic(Text ?? string.Empty) : (Text ?? string.Empty);
             // 宽度按实际显示文本量；空文本也给一个字高宽位（同原生 Label）
             Size ts = TextRenderer.MeasureText(shown.Length == 0 ? " " : shown, Font, Size.Empty,
@@ -245,9 +253,27 @@ namespace HFromUI.HControl.Base
                 BuildMeasureFlags()).Height;
             int inset = _borderStyle == BorderStyle.None ? 0
                 : (_borderStyle == BorderStyle.FixedSingle ? Math.Max(1, _borderWidth) : 2);
-            Size = new Size(
+            return new Size(
                 ts.Width + Padding.Horizontal + inset * 2,
                 textH + Padding.Vertical + inset * 2);
+        }
+
+        /// <summary>
+        /// 窗体自动缩放（AutoScaleMode.Font/Dpi：设计器在 144DPI 下布局、进程在 96DPI 虚拟化
+        /// 运行时会按约 0.67 因子乘算全部子控件边界）只缩边界、不按文字重新排版，基类缩放后
+        /// AutoSize 标签的尺寸会小于文字实际宽度而被横向削字。缩放完成后按当前字体/DPI 重新
+        /// 测量贴合一次；AutoSize 关闭时保留用户/缩放后的固定尺寸（超长走省略号）。
+        /// </summary>
+        protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
+        {
+            base.ScaleControl(factor, specified);
+            if (_autoSize) UpdateAutoSize();
+        }
+
+        /// <summary>AutoSize 时向布局引擎（FlowLayoutPanel/TableLayoutPanel 等）报告文字期望尺寸。</summary>
+        public override Size GetPreferredSize(Size proposedSize)
+        {
+            return _autoSize ? CalcAutoSize() : base.GetPreferredSize(proposedSize);
         }
 
         /// <summary>AutoSize 测量标志：与 BuildTextFlags 的单行绘制口径一致（对齐/换行不影响无限宽单行测量）。</summary>

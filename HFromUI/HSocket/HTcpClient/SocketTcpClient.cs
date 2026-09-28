@@ -6,7 +6,10 @@ using System.Threading;
 
 namespace HFromUI.HSocket.HTcpClient
 {
+    using HFromUI.HEnum;
     using HFromUI.HLangage;
+    using HFromUI.HSocket.DeviceID;
+
     public  class SocketTcpClient
     {
         private readonly object mSendLock = new object();
@@ -33,14 +36,8 @@ namespace HFromUI.HSocket.HTcpClient
                 return isConnected;
             }
         }
-        /// <summary>
-        /// IP地址
-        /// </summary>
-        public string IpAddress = "127.0.0.1";
-        /// <summary>
-        /// 端口号
-        /// </summary>
-        public int Port = 5000;
+
+        public HIPAddress hIPAddress { set; get; }
         /// <summary>
         /// 超时时间
         /// </summary>
@@ -53,15 +50,35 @@ namespace HFromUI.HSocket.HTcpClient
 
         public SocketTcpClient(string strIp, int nPort)
         {
-            Port = nPort != 0 ? nPort : Port;
-            IpAddress = !string.IsNullOrEmpty(strIp) ? strIp : IpAddress;
+            if (hIPAddress==null)
+            {
+                hIPAddress = new HIPAddress();
+                hIPAddress.SocketType= HSocketType.TCP_Client;
+            }
+            hIPAddress.Port = nPort > 0 ? nPort : hIPAddress.Port;
+            hIPAddress.IP = !string.IsNullOrEmpty(strIp) ? strIp : hIPAddress.IP;
         }
         public SocketTcpClient(string strIp, int nPort,int timeout)
         {
-            Port = nPort != 0 ? nPort : Port;
-            IpAddress = !string.IsNullOrEmpty(strIp) ? strIp : IpAddress;
+            if (hIPAddress == null)
+            {
+                hIPAddress = new HIPAddress();
+                hIPAddress.SocketType = HSocketType.TCP_Client;
+            }
+            hIPAddress.Port = nPort >  0 ? nPort : hIPAddress.Port;
+            hIPAddress.IP = !string.IsNullOrEmpty(strIp) ? strIp : hIPAddress.IP;
             Timeout = timeout;
-         
+        }
+
+        public SocketTcpClient(HIPAddress hIP)
+        {
+            hIPAddress=hIP;
+            hIPAddress.SocketType = HSocketType.TCP_Client;
+        }
+        public SocketTcpClient(HIPAddress hIP, int timeout)
+        {
+            hIPAddress = hIP; Timeout = timeout;
+            hIPAddress.SocketType = HSocketType.TCP_Client;
         }
         /// <summary>
         /// 连接
@@ -82,7 +99,7 @@ namespace HFromUI.HSocket.HTcpClient
                     mClient.ReceiveBufferSize = DataLength;
                     mClient.SendBufferSize = DataLength;
                 }
-                mClient.Connect(IPAddress.Parse(IpAddress), Port);
+                mClient.Connect(hIPAddress.IP, hIPAddress.Port);
                 mStream = mClient.GetStream();
                 isConnected = true;
                 return true;

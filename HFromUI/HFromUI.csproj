@@ -78,6 +78,7 @@
     <Compile Include="HColor\HVectorPhoto.cs" />
     <Compile Include="HData\Step\HStepData.cs" />
     <Compile Include="HData\Step\HStepDataA.cs" />
+    <Compile Include="HEnum\HSocketType.cs" />
     <Compile Include="HFile\HJsonFile.cs" />
     <Compile Include="HFile\HXmlFile.cs" />
     <Compile Include="HConvert\HFormatConvert.cs" />
@@ -257,7 +258,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Fluent\HFluentBase.cs">
-      <SubType>Code</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Fluent\HFluentPalette.cs">
       <SubType>Code</SubType>
@@ -507,6 +508,9 @@
     <Compile Include="HMath\HUInt.cs" />
     <Compile Include="HMath\HULong.cs" />
     <Compile Include="HMath\HUShort.cs" />
+    <Compile Include="HSocket\DeviceID\HIPAddress.cs" />
+    <Compile Include="HSocket\DeviceID\HSerialPortAddress.cs" />
+    <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangDataRun.cs" />
     <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangJson.cs" />
     <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangData.cs" />
     <Compile Include="HSocket\HTcpClient\SocketTcpClient.cs" />
@@ -525,52 +529,52 @@
     <Compile Include="HAttribute\HRemarkLanguage.cs" />
     <Compile Include="HEnum\HLanguageMode.cs" />
     <Compile Include="HControl\Tools\Bars\HScrollBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HScrollBar.Designer.cs">
       <DependentUpon>HScrollBar.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HScrollBarExt.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HScrollBarExt.Designer.cs">
       <DependentUpon>HScrollBarExt.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HProgressBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HProgressBar.Designer.cs">
       <DependentUpon>HProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HRoundProgressBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HRoundProgressBar.Designer.cs">
       <DependentUpon>HRoundProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HTrackBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HVScrollBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HVScrollBar.Designer.cs">
       <DependentUpon>HVScrollBar.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HVScrollBarExt.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HVScrollBarExt.Designer.cs">
       <DependentUpon>HVScrollBarExt.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HWave.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HWave.Designer.cs">
       <DependentUpon>HWave.cs</DependentUpon>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HWaveProgressBar.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HControl\Tools\Bars\HWaveProgressBar.Designer.cs">
       <DependentUpon>HWaveProgressBar.cs</DependentUpon>
