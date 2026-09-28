@@ -514,6 +514,17 @@
     <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangJson.cs" />
     <Compile Include="HSocket\HTcpClient\ShengGuang\ShengGuangData.cs" />
     <Compile Include="HSocket\HTcpClient\SocketTcpClient.cs" />
+    <Compile Include="HSocket\HTcpServer\SocketTcpServer.cs" />
+    <Compile Include="HSocket\HTcpServer\TcpServerClient.cs" />
+    <Compile Include="HSocket\HSerialCommon\SerialPortSession.cs" />
+    <Compile Include="HSocket\HSerialClient\SocketSerialClient.cs" />
+    <Compile Include="HSocket\HSerialServer\SocketSerialServer.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFilePacket.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFileTransferBase.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFileTcpClient.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFileTcpServer.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFileSerialClient.cs" />
+    <Compile Include="HSocket\HFileTransfer\HFileSerialServer.cs" />
     <Compile Include="HData\ReplyData.cs" />
     <Compile Include="HEnum\HLogGrade.cs" />
     <Compile Include="HEnum\HRoundStyle.cs" />
