@@ -367,6 +367,9 @@
     <Compile Include="HControl\Tools\Editors\HSearchBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="HControl\Tools\Editors\HAffixTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HControl\Coordinate\HCoordinatePad.cs">
       <SubType>UserControl</SubType>
     </Compile>

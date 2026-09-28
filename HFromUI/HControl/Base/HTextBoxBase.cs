@@ -203,6 +203,12 @@ namespace HFromUI.HControl.Base
 
         #region 装饰区扩展点（按钮/图标带子类）
 
+        /// <summary>
+        /// 基类文字内容区（客户区坐标，已扣边框/内边距/下划线/左右装饰带），
+        /// 供装饰子类绘制时与文字同口径对齐。
+        /// </summary>
+        protected Rectangle ContentRectBox => ContentRect;
+
         /// <summary>左侧装饰区宽度（如按钮/图标带），文字排版自动让开，返回值不得为负。</summary>
         protected virtual int AdornmentLeftWidth => 0;
 
