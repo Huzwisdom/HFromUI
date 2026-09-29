@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -199,9 +199,18 @@ namespace HFromUI.HEnum
         NamedPipe_Client = 62,
 
         /// <summary>
-        /// 命名管道 服务端 / 本地进程间通讯
+        /// 命名管道 服务端（本地进程间通讯）
         /// </summary>
         NamedPipe_Server = 63,
+
+        /// <summary>FTP / FTPS 客户端（文件上传下载，默认端口 21/990）</summary>
+        FTP_Client = 64,
+
+        /// <summary>SMTP 发信客户端（默认端口 25/465 隐式SSL/587 STARTTLS）</summary>
+        SMTP_Client = 65,
+
+        /// <summary>POP3 收信客户端（默认端口 110/995 隐式SSL）</summary>
+        POP3_Client = 66,
 
         /// <summary>
         /// 自定义协议（由上层自行解析）
