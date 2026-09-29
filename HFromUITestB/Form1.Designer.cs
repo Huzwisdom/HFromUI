@@ -36,6 +36,7 @@ namespace HFromUITestB
             this.hPushButton1 = new HFromUI.HControl.Tools.Button.HPushButton();
             this.hSearchBox1 = new HFromUI.HControl.Tools.Editors.HSearchBox();
             this.hNumericUpDown1 = new HFromUI.HControl.Tools.Editors.HNumericUpDown();
+            this.hLabelBase1 = new HFromUI.HControl.Base.HLabelBase();
             this.SuspendLayout();
             // 
             // hSlideSwitch1
@@ -174,11 +175,11 @@ namespace HFromUITestB
             this.hNumericUpDown1.Radius = 30;
             this.hNumericUpDown1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.hNumericUpDown1.SelectionLength = 0;
-            this.hNumericUpDown1.SelectionStart = 5;
+            this.hNumericUpDown1.SelectionStart = 2;
             this.hNumericUpDown1.Size = new System.Drawing.Size(328, 82);
             this.hNumericUpDown1.SpinLayout = HFromUI.HControl.Tools.Editors.HSpinLayout.Split;
             this.hNumericUpDown1.TabIndex = 6;
-            this.hNumericUpDown1.Text = "60.00";
+            this.hNumericUpDown1.Text = "60";
             this.hNumericUpDown1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.hNumericUpDown1.UnderlineActiveColor = System.Drawing.Color.FloralWhite;
             this.hNumericUpDown1.UnderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
@@ -191,11 +192,21 @@ namespace HFromUITestB
             0});
             this.hNumericUpDown1.WatermarkColor = System.Drawing.Color.Gray;
             // 
+            // hLabelBase1
+            // 
+            this.hLabelBase1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.hLabelBase1.Location = new System.Drawing.Point(134, 386);
+            this.hLabelBase1.Name = "hLabelBase1";
+            this.hLabelBase1.Size = new System.Drawing.Size(117, 24);
+            this.hLabelBase1.TabIndex = 7;
+            this.hLabelBase1.Text = "hLabelBase1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1131, 690);
+            this.Controls.Add(this.hLabelBase1);
             this.Controls.Add(this.hNumericUpDown1);
             this.Controls.Add(this.hSlideSwitch1);
             this.Controls.Add(this.hCheckBox1);
@@ -206,6 +217,7 @@ namespace HFromUITestB
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -218,6 +230,7 @@ namespace HFromUITestB
         private HFromUI.HControl.Tools.Button.HCheckBox hCheckBox1;
         private HFromUI.HControl.Tools.Button.HSlideSwitch hSlideSwitch1;
         private HFromUI.HControl.Tools.Editors.HNumericUpDown hNumericUpDown1;
+        private HFromUI.HControl.Base.HLabelBase hLabelBase1;
     }
 }
 

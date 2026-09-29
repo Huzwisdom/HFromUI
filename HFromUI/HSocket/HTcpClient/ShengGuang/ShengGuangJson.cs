@@ -3,6 +3,16 @@ using HFromUI.HAttribute;
 
 namespace HFromUI.HSocket.HTcpClient.ShengGuang
 {
+    public enum MessageType
+    {
+        M0x0001 = 1,
+        M0x0002 = 2,
+        M0x0003 = 3,
+        M0x0004 = 4,
+        M0x0005 = 5,
+        M0x0006 = 6,
+        M0x0007 = 7,
+    }
     /// <summary>设备状态根对象</summary>
     public class DeviceStatus
     {

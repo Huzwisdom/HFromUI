@@ -15,6 +15,6 @@ namespace HFromUI.HSocket.HTcpClient.ShengGuang
 
         public DeviceStatus DeviceStatus { set; get; }
 
-        public MessageType MessageType { set; get; } = ShengGuangData.MessageType.M0x0005;
+        public MessageType MessageType { set; get; } = MessageType.M0x0005;
     }
 }

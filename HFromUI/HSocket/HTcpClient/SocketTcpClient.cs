@@ -313,54 +313,5 @@ namespace HFromUI.HSocket.HTcpClient
             return -200;
         }
 
-        /// <summary>
-        /// 清空接收缓存：丢弃流中全部残留字节（循环读到无数据为止，非只读一块）。
-        /// </summary>
-        /// <returns>累计丢弃字节数；未连接返回 -101，异常返回 -200</returns>
-        public int ClearCache()
-        {
-            if (!IsConnected)
-            {
-                StrError = HTranslation.GetContent(@"未连接!(Disconnected!)");
-                return -101;
-            }
-            int total = 0;
-            try
-            {
-                lock (mRecvLock)
-                {
-                    byte[] receive = new byte[mClient.ReceiveBufferSize];
-                    int oldTimeout = mClient.ReceiveTimeout;
-                    try
-                    {
-                        mClient.ReceiveTimeout = 20;
-                        while (mStream.DataAvailable)
-                        {
-                            int bytesReceived = mStream.Read(receive, 0, receive.Length);
-                            if (bytesReceived <= 0)
-                            {
-                                break;
-                            }
-                            total += bytesReceived;
-                        }
-                    }
-                    finally
-                    {
-                        mClient.ReceiveTimeout = oldTimeout;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException is SocketException && (ex.InnerException as SocketException).ErrorCode == 10060)
-                {
-                    return total;
-                }
-                StrError = ex.Message;
-                return -200;
-            }
-            return total;
-        }
-
     }
 }

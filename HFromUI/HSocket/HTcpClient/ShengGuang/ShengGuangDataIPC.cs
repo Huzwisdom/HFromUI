@@ -10,47 +10,37 @@ namespace HFromUI.HSocket.HTcpClient.ShengGuang
     using HFromUI.HFile;
     using HFromUI.HLangage;
     using HFromUI.HSocket.DeviceID;
+    using HFromUI.HSocket.HNamedPipe;
     using System.Threading;
 
-    public class ShengGuangData
+    public class ShengGuangDataIPC
     {
 
         public int SaveDay { set; get; }
-        public HIPAddress hIPAddress { set; get; } = new HIPAddress();
+        public HNamedPipeAddress hAddress { set; get; } = new HNamedPipeAddress();
 
         public string Error { private set; get; }
 
         public int HeartbeatSpan { set; get; } = 1;
-        private SocketTcpClient socketTcpClient;
+        private SocketNamedPipeClient socketTcpClient;
         private bool IsRun = false;
         private Task task;
         private List<ShengGuangDataRun> sendList=new List<ShengGuangDataRun>();
         private readonly string path= HFromUI.HData.HAppData.AppPath + @"\ShengGuangData.txt";
         private List<ShengGuangDataRun> failureList = new List<ShengGuangDataRun>();
 
-        public string IPAddress
+        public string PipeName
         {
             set
             {
-                hIPAddress.IP = value;
+                hAddress.PipeName = value;
             }
             get
             { 
-            return hIPAddress.IP;
+            return hAddress.PipeName;
             }
         }
 
-        public int Port
-        {
-            set
-            {
-                hIPAddress.Port = value;
-            }
-            get
-            {
-                return hIPAddress.Port;
-            }
-        }
 
         public void Add(string data)
         {
@@ -211,14 +201,14 @@ namespace HFromUI.HSocket.HTcpClient.ShengGuang
         {
             int num = 0;
           
-            if (hIPAddress == null)
+            if (hAddress == null)
             {
                 Error = HTranslation.GetContent("IP地址没有设置");
                 return false;
             }
             if (socketTcpClient == null)
             {
-                socketTcpClient = new SocketTcpClient(hIPAddress);
+                socketTcpClient = new SocketNamedPipeClient(hAddress);
                 socketTcpClient.Timeout = 2000;
             }
         SendNum:

@@ -34,7 +34,6 @@ namespace HFromUITestA
         private void hLabelBase1_Click(object sender, System.EventArgs e)
         {
             ShengGuangData ShengGuangData=new ShengGuangData();
-            ShengGuangData.Send("中国",ShengGuangData.MessageType.M0x0005);
             DeviceStatus s =new DeviceStatus();
             s.MachineStatus = "运行";
             string json = HJsonFile.Serialize(s,false);
