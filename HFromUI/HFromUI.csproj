@@ -530,6 +530,7 @@
     <Compile Include="HSocket\DeviceID\HFtpAddress.cs" />
     <Compile Include="HSocket\DeviceID\HMailAddress.cs" />
     <Compile Include="HSocket\DeviceID\HUsbAddress.cs" />
+    <Compile Include="HSocket\DeviceID\HNamedPipeAddress.cs" />
     <Compile Include="HSocket\HFtp\HFtpClient.cs" />
     <Compile Include="HSocket\HMail\HMailMessage.cs" />
     <Compile Include="HSocket\HMail\HMimeCodec.cs" />
@@ -537,6 +538,8 @@
     <Compile Include="HSocket\HMail\HMailReceiver.cs" />
     <Compile Include="HSocket\HUsb\HUsbClient.cs" />
     <Compile Include="HSocket\HUsb\HUsbServer.cs" />
+    <Compile Include="HSocket\HNamedPipe\SocketNamedPipeClient.cs" />
+    <Compile Include="HSocket\HNamedPipe\SocketNamedPipeServer.cs" />
     <Compile Include="HData\ReplyData.cs" />
     <Compile Include="HEnum\HLogGrade.cs" />
     <Compile Include="HEnum\HRoundStyle.cs" />
